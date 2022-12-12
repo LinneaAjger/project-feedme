@@ -1,4 +1,4 @@
-# Project Auth API
+# Project Feed Me
 
 Replace this readme with your own information about your project.
 
