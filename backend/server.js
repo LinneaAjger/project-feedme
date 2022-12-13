@@ -119,20 +119,20 @@ const authenticateUser = async (req, res, next) => {
 // RECIPES
 const RecipeDetails = new mongoose.Schema({
   name: {
-    Type: String,
-    Required: true
+    type: String,
+    required: true
   },
   ingredients: {
-    Type: String,
-    Required: true
+    type: String,
+    required: true
   },
   instructions: {
-    Type: String,
-    Required: true
+    type: String,
+    required: true
   }, 
   description: {
-    Type: String, 
-    Required: true
+    type: String, 
+    required: true
   },
 })
 
