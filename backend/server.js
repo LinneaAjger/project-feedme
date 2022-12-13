@@ -18,7 +18,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// USER 
+// SCHEMAS 
+// User-schema 
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -36,6 +37,109 @@ const UserSchema = new mongoose.Schema({
 })
 
 const User = mongoose.model("User", UserSchema);
+
+const authenticateUser = async (req, res, next) => {
+  const accessToken = req.header("Authorization")
+  try {
+    const user = await User.findOne({accessToken: accessToken})
+    if (user) {
+      next()
+    } else {
+      res.status(401).json({
+        success: false,
+        response: "Please log in"
+      })
+    }
+  } catch {
+    res.status(401).json({
+      success: false,
+      response: "Please log in"
+    })
+  }
+}
+
+// Recipe-schema
+
+const RecipeDetails = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  ingredients: {
+    type: [String],
+    required: true
+  },
+  instructions: {
+    type: String,
+    required: true
+  }, 
+  description: {
+    type: String, 
+    required: true
+  },
+  userRating: {
+    type: Number,
+    max: 5,
+  }
+})
+
+const RecipeSchema = new mongoose.Schema({
+  recipe: {
+    type: RecipeDetails
+  },
+  createdAt: {
+    type: Date,
+    default: () => new Date()
+  },
+  likes: {
+    type: Number,
+    default: 0
+  },
+  // userId: {
+  //   type: String,
+  //   default: 
+  // }
+})
+
+const Recipe = mongoose.model("Recipe", RecipeSchema);
+
+
+// Start defining your routes here
+app.get("/", (req, res) => {
+  res.send("Hello Technigo!")
+});
+// Shows feed when logged in
+app.get("/recipes", authenticateUser)
+app.get("/recipes", async (req, res) => {
+  try {
+    const recipes = await Recipe.find().sort({createdAt: 'desc'}).limit(20).exec()
+    res.status(200).json({
+     success: true,
+     response: recipes
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
+})
+
+// Posts new recipe to feed
+// app.post("/recipes", authenticateUser)
+app.post("/recipes", async (req, res) => {
+  const { recipe } = req.body
+  try {
+    const newRecipe = await new Recipe({recipe}).save()
+    res.status(201).json({
+      success: true,
+      response: newRecipe
+    })
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      response: error
+    })
+  }
+})
+
 
 // Register new user
 app.post("/register", async (req, res) => {
@@ -95,68 +199,6 @@ app.post("/login", async (req, res) => {
     })
   }
 })
-
-const authenticateUser = async (req, res, next) => {
-  const accessToken = req.header("Authorization")
-  try {
-    const user = await User.findOne({accessToken: accessToken})
-    if (user) {
-      next()
-    } else {
-      res.status(401).json({
-        success: false,
-        response: "Please log in"
-      })
-    }
-  } catch {
-    res.status(401).json({
-      success: false,
-      response: "Please log in"
-    })
-  }
-}
-
-// RECIPES
-const RecipeDetails = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  ingredients: {
-    type: String,
-    required: true
-  },
-  instructions: {
-    type: String,
-    required: true
-  }, 
-  description: {
-    type: String, 
-    required: true
-  },
-})
-
-const RecipeSchema = new mongoose.Schema({
-  recipe: {
-    type: RecipeDetails
-  },
-  createdAt: {
-    type: Date,
-    default: () => new Date()
-  },
-  likes: {
-    type: Number,
-    default: 0
-  }
-})
-
-const Recipe = mongoose.model("Recipe", RecipeSchema);
-
-
-// Start defining your routes here
-app.get("/", (req, res) => {
-  res.send("Hello Technigo!")
-});
 
 // Start the server
 app.listen(port, () => {
