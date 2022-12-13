@@ -106,7 +106,13 @@ const Recipe = mongoose.model("Recipe", RecipeSchema);
 
 // Start defining your routes here
 app.get("/", (req, res) => {
-  res.send("Hello Technigo!")
+  res.json({
+    endpoints: {
+      "/register": "use with POST to send a request with username & password",
+      "/login": "use with POST to send a request with username & password",
+      "/recipes": "use with GET & POST to send a request to get the feed and to post recipes to it"
+    }
+  })
 });
 // Shows feed when logged in
 app.get("/recipes", authenticateUser)
