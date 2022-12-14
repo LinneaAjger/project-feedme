@@ -59,10 +59,13 @@ const authenticateUser = async (req, res, next) => {
 }
 
 // Recipe-schema
-
 const RecipeDetails = new mongoose.Schema({
   name: {
     type: String,
+    required: true
+  },
+  description: {
+    type: String, 
     required: true
   },
   ingredients: {
@@ -73,10 +76,6 @@ const RecipeDetails = new mongoose.Schema({
     type: String,
     required: true
   }, 
-  description: {
-    type: String, 
-    required: true
-  },
   userRating: {
     type: Number,
     max: 5,

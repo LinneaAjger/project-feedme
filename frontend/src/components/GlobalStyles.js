@@ -144,6 +144,21 @@ export const StyledDiv = styled.div`
   }
   }
   `
+
+export const StyledTransparentDiv = styled.div`
+  padding: 20px;
+  border-radius: 30px;
+  background-color: inherit;
+  border: solid 2px var(--color-darkSand);
+`
+
+export const StyledNonTransparentDiv = styled.div`
+  padding: 20px;
+  border-radius: 30px;
+  background-color: var(--color-darkSand);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+`
+
 export const StyledFlexDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -169,3 +184,17 @@ export const StyledButton = styled.button`
   transform: translateY(2px);
 }
 `
+
+export const ButtonWithIcon = styled.button`
+  background-color:inherit;
+  padding: 10px;
+  border: none;
+  background-image: ${props => props.selectedIcon};
+  background-size: ${props => props.iconSize};
+  background-repeat: no-repeat;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+`
+
