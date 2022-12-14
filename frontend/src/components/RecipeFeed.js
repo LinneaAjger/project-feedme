@@ -66,7 +66,7 @@ const RecipeFeed = () => {
           <p>{singleRecipe.recipe.description}</p>
         </div>
         )}
-        <button onClick={logOut}>Sign out</button>
+        <button type="button" onClick={logOut}>Sign out</button>
         </>)}
     </div>
   )

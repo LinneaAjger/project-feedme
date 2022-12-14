@@ -12,6 +12,7 @@ import Contact from 'components/Contact'
 import UserPage from 'components/UserPage'
 import Recipe from 'components/Recipe'
 import NotFound from 'components/NotFound'
+import Nav from 'components/Nav'
 import { GlobalStyles } from 'components/GlobalStyles'
 import { OuterWrapper, Innerwrapper } from 'components/GlobalStyles'
 
@@ -27,9 +28,9 @@ export const App = () => {
     <Provider store={store}>
       <BrowserRouter>
       <GlobalStyles />
-      <Header />
       <OuterWrapper>
-          <Innerwrapper>
+      <Innerwrapper>
+      <Header />
         <Routes>
           <Route path={"/register"} element={
             <Login
@@ -42,7 +43,7 @@ export const App = () => {
               loginHeadline="Login here"
               buttonText="Sign in" />}/>          
           <Route path="/" element={<RecipeFeed />} />
-          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/:user-id" element={<UserPage />} />
           <Route path="/:recipe-id" element={<Recipe />} />

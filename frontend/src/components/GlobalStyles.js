@@ -1,7 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components/macro'
 
 export const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=MuseoModerno:wght@400;700&display=swap');
 
 // RESET CSS
 *, *::before, *::after {
@@ -52,10 +51,13 @@ p, h1, h2, h3, h4, h5, h6 {
   --font-main: 'Barlow', sans-serif;
   --font-secondary: 'MuseoModerno', cursive;
   
-  // font-family: var(--font-secondary)
+  // example: font-family: var(--font-secondary)
 }
 
 //regular CSS
+html {
+ font-size: 16px;
+}
 
 body {
   margin: 0;
@@ -65,25 +67,80 @@ body {
   background-color: var(--color-sand);
 }
 
-  h1, h2 {
-    font-family: var(--font-secondary);
+h1, h2 {
+  font-family: var(--font-secondary);
+}
 
+h2 {
+  font-size: 1.2rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-darkGrey);
+
+  &:hover {
+    color: var(--color-vividBlue);
   }
+
+  &.active {
+    text-decoration: underline;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  line-height: 2;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 140%;
+    height: 100%;
+    top: 70px;
+    left: -150px;
+    padding-top: 20px;
+    transition: all 0.6s ease-in-out;
+  }
+
+  .nav-menu.active {
+    background-color: var(--color-sand);
+    position: sticky;
+    position: absolute;
+    left: 0px;
+    border-radius: 10px;
+  }
+  .nav-menu a, button {
+    font-size: 1.2rem;
+    color: var(--color-darkGrey);
+  }
+
+@media (min-width: 667px) {
+  html {
+    font-size: 20px;
+  } 
+
+}
 `
 
-export const OuterWrapper = styled.div`
+export const OuterWrapper = styled.main`
 width: 100%;
 height: 100%;
 display: flex;
+flex-direction: column;
 `
 
 export const Innerwrapper = styled.div`
   margin: 0 auto;
-  width: 80%;
-  height: 100%;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 `
 
 export const StyledDiv = styled.div`
@@ -109,8 +166,8 @@ export const StyledDiv = styled.div`
   form  {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    width: 60%;
+    align-items: center;
+    width: 80%;
   }
 
   input + button {
@@ -131,6 +188,13 @@ export const StyledDiv = styled.div`
       text-align: center;
     }
 
+    @media (min-width: 667px) {
+    width: 80%;
+
+    form  {
+      width: 80%;
+    }
+  } 
   }
 
   a {
@@ -143,7 +207,8 @@ export const StyledDiv = styled.div`
       text-decoration: underline;
   }
   }
-  `
+`
+
 export const StyledFlexDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -160,12 +225,25 @@ export const StyledButton = styled.button`
   padding: 5px 0px;
   box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
   cursor: pointer;
+  width: 45%;
   transition: 0.3s ease-in-out;
 
   &:hover {
     transform: scale(1.05);
-}
-&:active {
-  transform: translateY(2px);
-}
+  }
+  &:active {
+    transform: translateY(2px);
+  }
+`
+
+export const UnstyledBtn = styled.button`
+  background-color: inherit;
+  border: none;
+  padding: 0px;
+  cursor: pointer;
+  text-align: unset;
+
+  &:hover {
+    color: var(--color-vividBlue);
+  }
 `
