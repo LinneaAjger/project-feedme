@@ -3,6 +3,7 @@ import { API_URL } from 'utils/utils'
 import { useDispatch, batch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import user from 'reducers/user'
+import { StyledDiv, StyledButton, StyledFlexDiv } from './GlobalStyles'
 
 const Login = ({loginType, loginHeadline, buttonText}) => {
   const [username, setUsername] = useState('')
@@ -56,19 +57,19 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
   }
 
   return (
-    <>
+    <StyledDiv>
     <h2>{loginHeadline}</h2>
       <form onSubmit={onSubmit}>
-        <label> Username:
-          <input type="text" value={username} onChange={handleUsernameInput} />
-        </label>
-        <label> Password:
-          <input type="password" value={password} onChange={handlePasswordInput} />
-        </label>
-        <button type="submit">{buttonText}</button>
+          <input type="text" value={username} onChange={handleUsernameInput} placeholder="username" />
+          <input type="password" value={password} onChange={handlePasswordInput} placeholder="password"/>
+        <StyledButton type="submit">{buttonText}</StyledButton>
       </form>
-      {loginType === "login" && (<Link to="/register">Create new account</Link>)}
-    </>
+      {loginType === "login" && (
+        <StyledFlexDiv>
+          <p>Not a member?</p>
+          <Link to="/register">Create new account</Link>
+        </StyledFlexDiv>)}
+    </StyledDiv>
   )
 }
 
