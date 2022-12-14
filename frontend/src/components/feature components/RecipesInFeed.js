@@ -52,10 +52,13 @@ const RecipesInFeed = () => {
               <p>"{singleRecipe.recipe.description}"</p>
             </>
           )}
-          
           <LikeContainer>
-            <ButtonWithIcon selectedIcon={`url(${SaveIcon})`} />
-            <ButtonWithIcon selectedIcon={`url(${LikeIcon})`} />
+            <ButtonWithIcon 
+              selectedIcon={`url(${SaveIcon})`}
+              iconSize="10px" />
+            <ButtonWithIcon
+              selectedIcon={`url(${LikeIcon})`}
+              iconSize="14px" />
           </LikeContainer>
         </RecipeContainer> 
         )}
@@ -67,8 +70,9 @@ export default RecipesInFeed
 
 const RecipeContainer = styled.div`
   background-color: var(--color-beige);
-  padding: 30px;
-  border-radius: 30px;
+  padding: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
   position: relative;
   margin-top: 10px;
 `

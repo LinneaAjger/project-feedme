@@ -5,7 +5,6 @@ import Filter from './feature components/Filter';
 import RecentlyLiked from './feature components/RecentlyLiked';
 import styled from 'styled-components';
 import AddIcon from '../icons/icons8-add-new-100.png'
-import { ButtonWithIcon } from './GlobalStyles';
 import RecipesInFeed from './feature components/RecipesInFeed';
 
 const RecipeFeed = () => {
@@ -34,15 +33,15 @@ const RecipeFeed = () => {
       <FeedSection> 
         <RecentlyLiked />
         <div>
-          <div>
-            <ButtonWithIcon 
-              selectedIcon={`url(${AddIcon})`}
-              iconSize="20%" type="button"
+          <ButtonContainer>
+            <button  
+              type="button"
               onClick={toggle}>
-              add new recipe
-            </ButtonWithIcon>
+              <img src={AddIcon} />
+              <p>add new recipe</p>
+            </button>
             {collapsed && <Form />}
-            </div>
+            </ButtonContainer>
         <RecipesInFeed />
         </div>
         <Filter />
@@ -66,4 +65,27 @@ const FeedSection = styled.section`
       grid-template-columns: 1fr 2fr 1fr;
       column-gap: 2vw;    
       }
+`
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  button {
+    background-color:inherit;
+    border: none;
+    display: flex;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+    transform: scale(1.2);
+  }
+  }
+  p {
+    align-self: center;
+  }
+  img {
+    height: 30px;
+  }
 `

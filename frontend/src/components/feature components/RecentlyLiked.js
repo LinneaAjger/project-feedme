@@ -1,5 +1,6 @@
 import React from "react";
 import { StyledNonTransparentDiv } from "components/GlobalStyles";
+
 const RecentlyLiked = () => {
     return (
         <StyledNonTransparentDiv>
