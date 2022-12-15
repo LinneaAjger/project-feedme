@@ -1,8 +1,10 @@
 import React from 'react'
+import { StyledDiv } from './GlobalStyles'
+
 
 const AboutUs = () => {
   return (
-    <div>AboutUs</div>
+    <StyledDiv>AboutUs</StyledDiv>
   )
 }
 

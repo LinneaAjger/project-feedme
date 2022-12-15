@@ -70,6 +70,6 @@ const StyledNav = styled.nav`
   justify-content: center;
   
   @media (min-width: 1024px) {
-    width: 60%;
+    width: 70%;
   }
 `

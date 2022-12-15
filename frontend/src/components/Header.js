@@ -30,7 +30,6 @@ const StyledHeader = styled.header`
 
   h1 {
     font-size: 2rem;
-    margin-left: 25px;
   }
 
   @media (min-width: 668px) {
@@ -43,7 +42,7 @@ const StyledHeader = styled.header`
   }
   @media (min-width: 1024px) {
     flex-direction: row-reverse;
-    width: 100%;
+    width: 95%;
     height: 100px;
     align-items: flex-end;
 
@@ -60,7 +59,6 @@ const StyledHeader = styled.header`
 `
 
 const StyledLogo = styled.img`
-    margin-left: 10px;
     width: 70px;
 
   @media (min-width: 668px) {

@@ -87,6 +87,12 @@ ul {
 
 li {
   line-height: 2;
+  margin-left: 2.4rem;
+
+}
+
+li + button {
+  margin-left: 2.4rem;
 }
 
 .nav-menu {
@@ -132,7 +138,7 @@ li {
       background: inherit;
       position: initial;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: flex-end;
       align-items: center;
       padding-top: 0px;
       width: 100%;

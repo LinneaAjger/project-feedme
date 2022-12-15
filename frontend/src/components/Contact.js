@@ -1,8 +1,9 @@
 import React from 'react'
+import { StyledDiv } from './GlobalStyles'
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <StyledDiv>Contact</StyledDiv>
   )
 }
 
