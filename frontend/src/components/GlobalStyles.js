@@ -77,16 +77,8 @@ h2 {
 }
 
 a {
+  color: var(--color-black);
   text-decoration: none;
-  color: var(--color-darkGrey);
-
-  &:hover {
-    color: var(--color-vividBlue);
-  }
-
-  &.active {
-    text-decoration: underline;
-  }
 }
 
 ul {
@@ -103,48 +95,77 @@ li {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 70px;
+    top: 130px;
     left: -150px;
     padding-top: 20px;
+    background: linear-gradient(147deg,rgba(249,218,198,1) 0%,rgba(242,193,159,1) 100%);
+    opacity: 0;
     transition: all 0.6s ease-in-out;
+
+    a {
+      &:hover {
+          color: var(--color-vividBlue);
+        }
+    }
 
     a, button {
       font-size: 1.2rem;
       color: var(--color-darkGrey);
       padding: 10px 20px 13px 20px;
+      border-radius: 20px;
+      transition: all 0.25s ease-in-out;
+
 
       &:hover {
         color: var(--color-vividBlue);
+        background-color: var(--color-darkSand);
+        border-radius: 20px;
       }
 
       &.active {
         background-color: var(--color-darkSand);
         border-radius: 20px;
-        text-decoration: none;
       }
     } 
 
     @media (min-width: 1024px) {
-      background-color: inherit;
+      background: inherit;
       position: initial;
       flex-direction: row;
       justify-content: space-evenly;
       align-items: center;
       padding-top: 0px;
       width: 100%;
+      opacity: 1;
     }
   }
 
   .nav-menu.active {
-    background-color: var(--color-sand);
-    position: sticky;
     position: absolute;
     left: 0px;
     border-radius: 10px;
+    opacity: 1;
 
     @media (min-width: 1024px) {
       background-color: inherit;
       position: initial
+
+    }
+  }
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    transform: rotate(0.0turn);
+    transition: all 0.5s ease-in-out;
+
+    a {
+      &:hover {
+        color: var(--color-black);
+      }
+    }
+    &:hover {
+      transform: rotate(0.05turn);
     }
   }
 
@@ -153,12 +174,13 @@ li {
     font-size: 18px;
   } 
 }
+
 @media (min-width: 1024px) {
   html {
     font-size: 20px;
   } 
-
 }
+
 `
 
 export const OuterWrapper = styled.main`
@@ -244,7 +266,7 @@ export const StyledDiv = styled.div`
   } 
   @media (min-width: 1024px) {
     max-width: 600px;
-    margin-top: 0%;
+    margin-top: 10%;
     padding: 5% 10%;
 
 

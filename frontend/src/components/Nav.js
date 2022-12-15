@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import HamburgerMenu from './media/HamburgerMenu.svg'
-import Close from './media/Close.svg'
 import { UnstyledBtn } from './GlobalStyles'
 
 const Nav = () => {
@@ -24,7 +22,12 @@ const Nav = () => {
     <>
     <StyledNav>
               <UnstyledBtn type="button" className='menu-icon' onClick={handleClick}>
-          {click ? <StyledIcon src={Close} /> : <StyledIcon src={HamburgerMenu} />}
+          {click ? <StyledIcon viewBox="0 0 26 26">
+<path d="M2 2L24 24M24 2L2 24"  stroke-width="4" stroke-linecap="round"/>
+</StyledIcon> : <StyledIcon viewBox="0 0 26 23">
+<path d="M2 2H24M2 11.2432H24M2 21H24"  stroke-width="4" stroke-linecap="round"/>
+</StyledIcon>
+}
         </UnstyledBtn>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li>
@@ -48,8 +51,9 @@ const Nav = () => {
 
 export default Nav
 
-const StyledIcon = styled.img`
+const StyledIcon = styled.svg`
   width: 25px;
+  stroke: var(--color-vividBlue);
 
   @media (min-width: 668px) {
     width: 40px;
