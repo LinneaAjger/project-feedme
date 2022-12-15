@@ -60,6 +60,7 @@ const StyledHeader = styled.header`
 
 const StyledLogo = styled.img`
     width: 70px;
+    margin-left: 10px;
 
   @media (min-width: 668px) {
     width: 100px;
@@ -69,6 +70,7 @@ const StyledLogo = styled.img`
   @media (min-width: 1024px) {
     width: 220px;
     position: absolute;
+    margin-left: 0px;
     left: 30px;
     top: 15px;
     }

@@ -87,8 +87,7 @@ ul {
 
 li {
   line-height: 2;
-  margin-left: 2.4rem;
-
+  width: 80%;
 }
 
 li + button {
@@ -101,7 +100,7 @@ li + button {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 130px;
+    top: 110px;
     left: -150px;
     padding-top: 20px;
     background: linear-gradient(147deg,rgba(249,218,198,1) 0%,rgba(242,193,159,1) 100%);
@@ -117,7 +116,7 @@ li + button {
     a, button {
       font-size: 1.2rem;
       color: var(--color-darkGrey);
-      padding: 10px 20px 13px 20px;
+      padding: 10px 20px 13px 0px;
       border-radius: 20px;
       transition: all 0.25s ease-in-out;
 
@@ -134,13 +133,17 @@ li + button {
       }
     } 
 
+    @media (min-width: 668px) {
+      padding-top: 40px;
+    }
+
     @media (min-width: 1024px) {
       background: inherit;
       position: initial;
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
-      padding-top: 0px;
+      padding: 0px 20px 13px 20px;
       width: 100%;
       opacity: 1;
     }
@@ -150,8 +153,14 @@ li + button {
     position: absolute;
     left: 0px;
     border-radius: 10px;
+    padding-inline-start: 0px;
+    display: flex;
+    align-items: center;
     opacity: 1;
 
+    @media (min-width: 668px) {
+      
+    }
     @media (min-width: 1024px) {
       background-color: inherit;
       position: initial
@@ -185,6 +194,10 @@ li + button {
   html {
     font-size: 20px;
   } 
+
+  li {
+    margin-left: 2.4rem;
+  }
 }
 
 `
