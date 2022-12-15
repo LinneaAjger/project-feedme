@@ -64,7 +64,8 @@ body {
   font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-sand);
+  /* background-color: var(--color-sand); */
+  background: linear-gradient(147deg, rgba(249,218,198,1) 0%, rgba(242,193,159,1) 100%);
 }
 
 h1, h2 {
@@ -108,16 +109,18 @@ li {
     transition: all 0.6s ease-in-out;
 
     a, button {
-      margin-left: 20px;
       font-size: 1.2rem;
       color: var(--color-darkGrey);
+      padding: 10px 20px 13px 20px;
 
       &:hover {
         color: var(--color-vividBlue);
       }
 
       &.active {
-        text-decoration: underline;
+        background-color: var(--color-darkSand);
+        border-radius: 20px;
+        text-decoration: none;
       }
     } 
 
@@ -212,7 +215,7 @@ export const StyledDiv = styled.div`
     width: 100%;
     margin-bottom: 10px;
     box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
-    padding: 5px 0px 5px 10px;
+    padding: 5px 10px;
 
     ::placeholder {
       text-align: center;

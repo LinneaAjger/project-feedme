@@ -35,6 +35,7 @@ const StyledHeader = styled.header`
 
   div {
     display: flex;
+    align-items: center;
   }
 
   @media (min-width: 668px) {
@@ -64,8 +65,8 @@ const StyledHeader = styled.header`
 `
 
 const StyledLogo = styled.img`
-  margin-left: 25px;
-  width: 50px;
+    margin-left: 10px;
+    width: 70px;
 
   @media (min-width: 668px) {
     width: 100px;
