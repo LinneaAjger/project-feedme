@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import HamburgerMenu from './media/HamburgerMenu.svg'
 import Close from './media/Close.svg'
@@ -8,6 +8,8 @@ import { UnstyledBtn } from './GlobalStyles'
 const Nav = () => {
 
   const [click, setClick] = useState(false)
+  const accessToken = localStorage.getItem('accessToken');
+  const navigate = useNavigate();
 
   const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
@@ -37,7 +39,7 @@ const Nav = () => {
           <li>
             <NavLink to="/contact" className="navbar-item" onClick={closeMobileMenu}>Contact</NavLink>
           </li>
-            <UnstyledBtn type="button" onClick={logOut}>Sign Out</UnstyledBtn>
+          {accessToken && (<UnstyledBtn type="button" onClick={() => logOut()}>Sign Out</UnstyledBtn>)}
         </ul>
     </StyledNav>
     </>
@@ -48,6 +50,14 @@ export default Nav
 
 const StyledIcon = styled.img`
   width: 25px;
+
+  @media (min-width: 668px) {
+    width: 40px;
+  }
+  
+  @media (min-width: 1024px) {
+    display: none;
+  }
 `
 
 const StyledNav = styled.nav`
@@ -55,4 +65,7 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: center;
   
+  @media (min-width: 1024px) {
+    width: 60%;
+  }
 `

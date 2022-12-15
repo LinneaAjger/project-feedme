@@ -100,12 +100,36 @@ li {
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 140%;
+    width: 100%;
     height: 100%;
     top: 70px;
     left: -150px;
     padding-top: 20px;
     transition: all 0.6s ease-in-out;
+
+    a, button {
+      margin-left: 20px;
+      font-size: 1.2rem;
+      color: var(--color-darkGrey);
+
+      &:hover {
+        color: var(--color-vividBlue);
+      }
+
+      &.active {
+        text-decoration: underline;
+      }
+    } 
+
+    @media (min-width: 1024px) {
+      background-color: inherit;
+      position: initial;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      padding-top: 0px;
+      width: 100%;
+    }
   }
 
   .nav-menu.active {
@@ -114,13 +138,19 @@ li {
     position: absolute;
     left: 0px;
     border-radius: 10px;
-  }
-  .nav-menu a, button {
-    font-size: 1.2rem;
-    color: var(--color-darkGrey);
+
+    @media (min-width: 1024px) {
+      background-color: inherit;
+      position: initial
+    }
   }
 
 @media (min-width: 667px) {
+  html {
+    font-size: 18px;
+  } 
+}
+@media (min-width: 1024px) {
   html {
     font-size: 20px;
   } 
@@ -147,8 +177,7 @@ export const StyledDiv = styled.div`
   border-radius: 30px;
   width: 80%;
   min-height: 160px;
-  padding: 20px;
-  max-width: 400px;
+  padding: 10%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -156,11 +185,12 @@ export const StyledDiv = styled.div`
   justify-content: center;
   background-color: var(--color-beige);
   box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
+  margin-top: 5%;
 
-    h1, h2 {
+
+  h1, h2 {
     margin-bottom: 15px;
     color: var(--color-darkGrey);
-
   }
 
   form  {
@@ -182,19 +212,11 @@ export const StyledDiv = styled.div`
     width: 100%;
     margin-bottom: 10px;
     box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
-    padding: 5px 0px;
+    padding: 5px 0px 5px 10px;
 
     ::placeholder {
       text-align: center;
     }
-
-    @media (min-width: 667px) {
-    width: 80%;
-
-    form  {
-      width: 80%;
-    }
-  } 
   }
 
   a {
@@ -205,7 +227,24 @@ export const StyledDiv = styled.div`
 
     &:hover {
       text-decoration: underline;
+    }
   }
+
+  @media (min-width: 667px) {
+    width: 80%;
+    
+
+    form  {
+      width: 80%;
+      max-width: 200px;
+    }
+  } 
+  @media (min-width: 1024px) {
+    max-width: 600px;
+    margin-top: 0%;
+    padding: 5% 10%;
+
+
   }
 `
 
