@@ -8,7 +8,7 @@ export const ButtonDiv = styled.div`
 
 export const UnstyledBtn = styled.button`
   background-color: inherit;
-  border: black 2px solid;
+  border: none;
   padding: 0px;
   cursor: pointer;
   text-align: unset;
