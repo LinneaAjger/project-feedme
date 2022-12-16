@@ -6,6 +6,7 @@ import RecentlyLiked from './feature components/RecentlyLiked';
 import styled from 'styled-components/macro';
 import AddIcon from '../icons/icons8-add-new-100.png'
 import RecipesInFeed from './feature components/RecipesInFeed';
+import SearchForUser from './feature components/SearchForUser';
 
 const RecipeFeed = () => {
   const navigate = useNavigate()
@@ -43,7 +44,10 @@ const RecipeFeed = () => {
             </ButtonContainer>
         <RecipesInFeed />
         </div>
-        <Filter />
+        <div>
+          <SearchForUser />
+          <Filter />
+        </div>
       </FeedSection>
     )}
   </>
