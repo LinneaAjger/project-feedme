@@ -26,7 +26,7 @@ export const StyledDiv = styled.div`
   border-radius: 30px;
   width: 80%;
   min-height: 160px;
-  padding: 10% 0%;
+  padding: 30px 30px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -41,6 +41,12 @@ export const StyledDiv = styled.div`
     margin-bottom: 15px;
     color: var(--color-darkGrey);
   }
+
+  h3 {
+    font-weight: 400;
+    color: var(--color-darkGrey);
+  }
+
 
   form  {
     display: flex;
@@ -69,7 +75,11 @@ export const StyledDiv = styled.div`
     }
   }
 
-
+  span {
+    font-weight: 700;
+    color: var(--color-vividBlue);
+    
+  }
 
   a {
     text-decoration: none;
@@ -84,7 +94,8 @@ export const StyledDiv = styled.div`
 
   @media (min-width: 667px) {
     width: 80%;
-    
+    padding: 30px 30px;
+
 
     input  {
       max-width: 200px;
@@ -92,9 +103,57 @@ export const StyledDiv = styled.div`
   } 
   @media (min-width: 1024px) {
     max-width: 600px;
-    margin-top: 10%;
-    padding: 5% 0%;
+    padding: 30px 30px;
 
+  }
+`
+  export const ClonedStyledDiv = styled.div`
+  border-radius: 30px;
+  width: 80%;
+  min-height: 160px;
+  padding: 30px 30px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-beige);
+  box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
+  margin-top: 30px;
+
+  h3 {
+    font-weight: 400;
+    color: var(--color-darkGrey);
+  }
+
+  span {
+    font-weight: 700;
+    color: var(--color-vividBlue);
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-vividBlue);
+    padding: 5px 10px;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media (min-width: 667px) {
+    width: 80%;
+    padding: 30px 30px;
+
+
+    input  {
+      max-width: 200px;
+    }
+  } 
+  @media (min-width: 1024px) {
+    max-width: 600px;
+    padding: 30px 30px;
 
   }
   `

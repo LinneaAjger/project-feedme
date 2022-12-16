@@ -90,13 +90,18 @@ li {
   width: 80%;
 }
 
+img + img {
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+
 .nav-menu {
     display: flex;
     flex-direction: column;
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 110px;
+    top: 10%;
     left: -1000px;
     padding-top: 5%;
     background: linear-gradient(147deg,rgba(249,218,198,1) 0%,rgba(242,193,159,1) 100%);
@@ -108,11 +113,14 @@ li {
           color: var(--color-vividBlue);
         }
     }
+    li {
+      margin-left: -40px;
+    }
 
     a, button {
       font-size: 1.2rem;
       color: var(--color-darkGrey);
-      padding: 10px 20px 13px 0px;
+      padding: 10px 20px 13px 20px;
       border-radius: 20px;
       transition: all 0.25s ease-in-out;
 
@@ -131,20 +139,26 @@ li {
       position: initial;
       flex-direction: row;
       justify-content: flex-end;
-      align-items: center;
+      align-items: flex-end;
       padding: 0px 20px 13px 20px;
       width: 100%;
       opacity: 1;
 
       a, button {
         padding: 10px 20px 13px 20px;
+        margin-left: 2rem;
 
-        &:hover {
-        color: var(--color-vividBlue);
-        background-color: var(--color-darkSand);
-        border-radius: 20px;
+          &:hover {
+          color: var(--color-vividBlue);
+          background-color: var(--color-darkSand);
+          border-radius: 20px;
+        }
       }
-      }
+
+      li {
+        margin-left: -40px;
+    }
+
     }
   }
 
