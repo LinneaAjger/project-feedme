@@ -42,7 +42,10 @@ const Nav = () => {
           <li>
             <NavLink to="/contact" className="navbar-item" onClick={closeMobileMenu}>Contact</NavLink>
           </li>
-          {accessToken && (<UnstyledBtn type="button" onClick={() => logOut()}>Sign Out</UnstyledBtn>)}
+          {accessToken && (
+          <li>
+            <NavLink to="/login" className="navbar-item" onClick={() => logOut()}>Sign out</NavLink>
+          </li>)}
         </ul>
     </StyledNav>
     </>
