@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useNavigate } from "react-router-dom";
 import Form from './feature components/Form';
 import Filter from './feature components/Filter';
@@ -19,13 +19,55 @@ const RecipeFeed = () => {
     }   
   }, [accessToken])
 
-  const toggle = (form) => {
+  const toggle = () => {
     setCollapsed(!collapsed)
   }
 
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = useState(false);
+  
+    const updateTarget = useCallback((event) => {
+      if (event.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+  
+    useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      media.addEventListener("change", updateTarget);
+      if (media.matches) {
+        setTargetReached(true);
+      }
+      return () => media.removeEventListener("change", updateTarget);
+    }, []);
+  
+    return targetReached;
+  };
+  
+  const mobileView = useMediaQuery(668)
+
   return (
     <>
-    {accessToken && (
+    {mobileView ? ( 
+      <FeedSection>
+      <ButtonContainer>
+          <button  
+            type="button"
+            onClick={toggle}>
+            <img src={AddIcon} />
+            <p>add new recipe</p>
+          </button>
+          {collapsed && 
+          <Form 
+            style={{
+            transition: "all 10s ease"
+            }}/>}
+      </ButtonContainer>
+      <RecipesInFeed />
+    </FeedSection>
+    ) : (
       <FeedSection> 
         <RecentlyLiked />
         <div>
@@ -49,11 +91,11 @@ const RecipeFeed = () => {
           <Filter />
         </div>
       </FeedSection>
-    )}
-  </>
-
-  )
-}
+      )
+      }
+    </>
+    )
+  }
 
 export default RecipeFeed
 
@@ -93,3 +135,31 @@ const ButtonContainer = styled.div`
     height: 30px;
   }
 `
+
+{/* <>
+{accessToken && (
+  <FeedSection> 
+    <RecentlyLiked />
+    <div>
+      <ButtonContainer>
+        <button  
+          type="button"
+          onClick={toggle}>
+          <img src={AddIcon} />
+          <p>add new recipe</p>
+        </button>
+        {collapsed && 
+        <Form 
+          style={{
+          transition: "all 10s ease"
+          }}/>}
+        </ButtonContainer>
+    <RecipesInFeed />
+    </div>
+    <div>
+      <SearchForUser />
+      <Filter />
+    </div>
+  </FeedSection>
+)}
+</> */}
