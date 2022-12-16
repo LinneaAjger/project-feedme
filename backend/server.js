@@ -94,10 +94,10 @@ const RecipeSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  // userId: {
-  //   type: String,
-  //   default: 
-  // }
+  user: {
+    type: String,
+    required: true
+  }
 })
 
 const Recipe = mongoose.model("Recipe", RecipeSchema);
@@ -127,12 +127,45 @@ app.get("/recipes", async (req, res) => {
    }
 })
 
+//show all posts from a specific user
+app.get("/:userId", authenticateUser)
+app.get("/:userId", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const usersRecipes = await Recipe.find({user: userId}).sort({createdAt: 'desc'})
+    res.status(200).json({
+     success: true,
+     response: usersRecipes
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
+})
+
+// get single recipe based on id
+app.get("/:userId", authenticateUser)
+app.get("/:userId/:recipeId", async (req, res) => {
+  const { userId, recipeId } = req.params;
+  try {
+    const usersRecipes = await Recipe.find({user: userId, _id: recipeId }).sort({createdAt: 'desc'})
+    res.status(200).json({
+     success: true,
+     response: usersRecipes
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
+})
+
 // Posts new recipe to feed
-// app.post("/recipes", authenticateUser)
+app.post("/recipes", authenticateUser)
 app.post("/recipes", async (req, res) => {
   const { recipe } = req.body
+  const accessToken = req.header("Authorization")
+  const user = await User.findOne({accessToken: accessToken})
+
   try {
-    const newRecipe = await new Recipe({recipe}).save()
+    const newRecipe = await new Recipe({recipe, user: user._id}).save()
     res.status(201).json({
       success: true,
       response: newRecipe
