@@ -1,8 +1,11 @@
 import React from 'react'
+import { StyledDiv } from './GlobalStyles'
 
 const NotFound = () => {
   return (
-    <div>NotFound</div>
+    <StyledDiv>
+      <h2>NotFound</h2>
+    </StyledDiv>
   )
 }
 

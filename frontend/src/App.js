@@ -12,9 +12,7 @@ import Contact from 'components/Contact'
 import UserPage from 'components/UserPage'
 import Recipe from 'components/Recipe'
 import NotFound from 'components/NotFound'
-import Nav from 'components/Nav'
-import { GlobalStyles } from 'components/GlobalStyles'
-import { OuterWrapper, Innerwrapper } from 'components/GlobalStyles'
+import { GlobalStyles, OuterWrapper, Innerwrapper } from 'components/styles/GlobalStyles'
 
 
 export const App = () => {

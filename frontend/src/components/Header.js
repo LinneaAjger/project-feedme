@@ -25,7 +25,7 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   width: 80%;
-  height: 30%;
+  height: 10%;
 
 
   h1 {
@@ -33,7 +33,7 @@ const StyledHeader = styled.header`
   }
 
   @media (min-width: 668px) {
-    height: 30%;
+    height: 20%;
 
     h1 {
     font-size: 3rem;

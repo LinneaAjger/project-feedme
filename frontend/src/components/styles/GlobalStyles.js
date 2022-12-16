@@ -90,19 +90,15 @@ li {
   width: 80%;
 }
 
-li + button {
-  margin-left: 2.4rem;
-}
-
 .nav-menu {
     display: flex;
     flex-direction: column;
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 10%;
-    left: -150px;
-    padding-top: 20px;
+    top: 110px;
+    left: -1000px;
+    padding-top: 5%;
     background: linear-gradient(147deg,rgba(249,218,198,1) 0%,rgba(242,193,159,1) 100%);
     opacity: 0;
     transition: all 0.6s ease-in-out;
@@ -120,13 +116,6 @@ li + button {
       border-radius: 20px;
       transition: all 0.25s ease-in-out;
 
-
-      &:hover {
-        color: var(--color-vividBlue);
-        background-color: var(--color-darkSand);
-        border-radius: 20px;
-      }
-
       &.active {
         background-color: var(--color-darkSand);
         border-radius: 20px;
@@ -134,7 +123,7 @@ li + button {
     } 
 
     @media (min-width: 668px) {
-      padding-top: 40px;
+      padding-top: 10%;
     }
 
     @media (min-width: 1024px) {
@@ -146,6 +135,16 @@ li + button {
       padding: 0px 20px 13px 20px;
       width: 100%;
       opacity: 1;
+
+      a, button {
+        padding: 10px 20px 13px 20px;
+
+        &:hover {
+        color: var(--color-vividBlue);
+        background-color: var(--color-darkSand);
+        border-radius: 20px;
+      }
+      }
     }
   }
 
@@ -196,10 +195,16 @@ li + button {
   } 
 
   li {
-    margin-left: 2.4rem;
+    width: auto;
+  }
+
+  li + li {
+      margin-left: 2rem;
+  }
+  li + button {
+      margin-left: 2rem;
   }
 }
-
 `
 
 export const OuterWrapper = styled.main`
@@ -212,141 +217,10 @@ flex-direction: column;
 export const Innerwrapper = styled.div`
   margin: 0 auto;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-export const StyledDiv = styled.div`
-  border-radius: 30px;
-  width: 80%;
-  min-height: 160px;
-  padding: 10%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-beige);
-  box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
-  margin-top: 5%;
-
-
-  h1, h2 {
-    margin-bottom: 15px;
-    color: var(--color-darkGrey);
-  }
-
-  form  {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-  }
-
-  input + button {
-    margin-top: 10px;
-  }
-
-  input, textarea {
-    border-radius: 10px;
-    border: none;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
-    box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
-    padding: 5px 10px;
-
-    ::placeholder {
-      text-align: center;
-    }
-  }
-
-
-
-  a {
-    text-decoration: none;
-    color: var(--color-vividBlue);
-    padding: 5px 10px;
-    transition: 0.3s ease-in-out;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  @media (min-width: 667px) {
-    width: 80%;
-    
-
-    form  {
-      width: 80%;
-      max-width: 200px;
-    }
-  } 
-  @media (min-width: 1024px) {
-    max-width: 600px;
-    margin-top: 10%;
-    padding: 5% 10%;
-
-
-  }
-  `
-
-export const StyledTransparentDiv = styled.div`
-  padding: 20px;
-  border-radius: 10px;
-  background-color: inherit;
-  border: solid 2px var(--color-darkSand);
-  filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
-`
-
-export const StyledNonTransparentDiv = styled.div`
-  padding: 20px;
-  border-radius: 30px;
-  background-color: var(--color-darkSand);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-`
-
-export const StyledFlexDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-`
-
-export const StyledButton = styled.button`
-  border: none;
-  color: white;
-  background-color: linear-gradient(0deg, rgb(59, 65, 197) 0%, rgb(114, 96, 192) 100%);
-  background: linear-gradient(0deg, rgb(8 19 255) 0%, rgb(90 99 240) 100%);
-  border-radius: 10px;
-  padding: 5px 0px;
-  box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
-  cursor: pointer;
-  width: 45%;
-  transition: 0.3s ease-in-out;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-  &:active {
-    transform: translateY(2px);
-  }
-`
-
-export const ButtonWithIcon = styled.button`
-  background-color:inherit;
   height: 100%;
-  border: none;
-  background-image: ${props => props.selectedIcon};
-  background-size: ${props => props.iconSize};
-  background-repeat: no-repeat;
-
-  &:hover {
-    transform: scale(1.2);
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const SrOnly = styled.div`
@@ -359,22 +233,4 @@ export const SrOnly = styled.div`
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
-`
-
-export const ButtonDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  `
-
-export const UnstyledBtn = styled.button`
-  background-color: inherit;
-  border: none;
-  padding: 0px;
-  cursor: pointer;
-  text-align: unset;
-
-  &:hover {
-    color: var(--color-vividBlue);
-  }
 `

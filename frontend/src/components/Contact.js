@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledDiv } from './GlobalStyles'
+import { StyledDiv } from './styles/DivStyles'
 
 const Contact = () => {
   return (

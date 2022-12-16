@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Form from './feature components/Form';
 import Filter from './feature components/Filter';
 import RecentlyLiked from './feature components/RecentlyLiked';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import AddIcon from '../icons/icons8-add-new-100.png'
 import RecipesInFeed from './feature components/RecipesInFeed';
 
@@ -18,12 +18,7 @@ const RecipeFeed = () => {
     }   
   }, [accessToken])
 
-  const logOut = () => {
-    localStorage.removeItem('accessToken')
-    navigate("/login")
-  }
-
-  const toggle = () => {
+  const toggle = (form) => {
     setCollapsed(!collapsed)
   }
 
@@ -40,12 +35,15 @@ const RecipeFeed = () => {
               <img src={AddIcon} />
               <p>add new recipe</p>
             </button>
-            {collapsed && <Form />}
+            {collapsed && 
+            <Form 
+              style={{
+              transition: "all 10s ease"
+              }}/>}
             </ButtonContainer>
         <RecipesInFeed />
         </div>
         <Filter />
-        <button onClick={logOut}>Sign out</button>
       </FeedSection>
     )}
   </>
@@ -56,6 +54,8 @@ const RecipeFeed = () => {
 export default RecipeFeed
 
 const FeedSection = styled.section`
+  height: 100%;
+  margin-top: 4%;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   column-gap: 2vw;

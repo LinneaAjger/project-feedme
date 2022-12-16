@@ -1,9 +1,10 @@
 import React from "react";
-import { StyledNonTransparentDiv } from "components/GlobalStyles";
+import { StyledNonTransparentDiv } from "components/styles/DivStyles";
+import styled from 'styled-components/macro'
 
 const RecentlyLiked = () => {
     return (
-        <StyledNonTransparentDiv>
+        <MarginTopDiv>
             <h2>Recently liked recipes</h2>
             <p>Stirred fried noodles</p>
             <p>Cranberry glazed ham</p>
@@ -11,8 +12,13 @@ const RecentlyLiked = () => {
             <p>Spinach dip</p>
             <p>Chana masala</p>
             <p>Seafood pasta</p>
-        </StyledNonTransparentDiv>
+        </MarginTopDiv>
     )
 }
 
 export default RecentlyLiked
+
+const MarginTopDiv = styled(StyledNonTransparentDiv)`
+    margin-top: 50%;
+    height: 50vh;
+`

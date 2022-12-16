@@ -1,0 +1,100 @@
+import styled from 'styled-components/macro'
+
+export const StyledTransparentDiv = styled.div`
+  padding: 20px;
+  border-radius: 10px;
+  background-color: inherit;
+  border: solid 2px var(--color-darkSand);
+  filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
+`
+
+export const StyledNonTransparentDiv = styled.div`
+  padding: 20px;
+  border-radius: 30px;
+  background-color: var(--color-darkSand);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+`
+
+export const StyledFlexDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+`
+
+export const StyledDiv = styled.div`
+  border-radius: 30px;
+  width: 80%;
+  min-height: 160px;
+  padding: 10%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-beige);
+  box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
+  margin-top: 5%;
+
+
+  h1, h2 {
+    margin-bottom: 15px;
+    color: var(--color-darkGrey);
+  }
+
+  form  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+  }
+
+  input + button {
+    margin-top: 10px;
+  }
+
+  input, textarea {
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
+    padding: 5px 10px;
+
+    ::placeholder {
+      text-align: center;
+    }
+  }
+
+
+
+  a {
+    text-decoration: none;
+    color: var(--color-vividBlue);
+    padding: 5px 10px;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @media (min-width: 667px) {
+    width: 80%;
+    
+
+    form  {
+      width: 80%;
+      max-width: 200px;
+    }
+  } 
+  @media (min-width: 1024px) {
+    max-width: 600px;
+    margin-top: 10%;
+    padding: 5% 10%;
+
+
+  }
+  `

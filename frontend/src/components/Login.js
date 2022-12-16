@@ -3,7 +3,8 @@ import { API_URL } from 'utils/utils'
 import { useDispatch, batch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import user from 'reducers/user'
-import { StyledDiv, StyledButton, StyledFlexDiv } from './GlobalStyles'
+import { StyledDiv, StyledFlexDiv } from './styles/DivStyles'
+import { StyledButton } from './styles/ButtonStyles'
 
 const Login = ({loginType, loginHeadline, buttonText}) => {
   const [username, setUsername] = useState('')

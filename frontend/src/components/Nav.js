@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { UnstyledBtn } from './GlobalStyles'
+import { UnstyledBtn } from './styles/ButtonStyles'
 
 const Nav = () => {
 
@@ -23,9 +23,9 @@ const Nav = () => {
     <StyledNav>
               <UnstyledBtn type="button" className='menu-icon' onClick={handleClick}>
           {click ? <StyledIcon viewBox="0 0 26 26">
-<path d="M2 2L24 24M24 2L2 24"  stroke-width="4" stroke-linecap="round"/>
+<path d="M2 2L24 24M24 2L2 24"  strokeWidth="4" strokeLinecap="round"/>
 </StyledIcon> : <StyledIcon viewBox="0 0 26 23">
-<path d="M2 2H24M2 11.2432H24M2 21H24"  stroke-width="4" stroke-linecap="round"/>
+<path d="M2 2H24M2 11.2432H24M2 21H24"  strokeWidth="4" strokeLinecap="round"/>
 </StyledIcon>
 }
         </UnstyledBtn>
