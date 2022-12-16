@@ -248,7 +248,7 @@ export const StyledDiv = styled.div`
     margin-top: 10px;
   }
 
-  input {
+  input, textarea {
     border-radius: 10px;
     border: none;
     display: flex;
@@ -262,6 +262,8 @@ export const StyledDiv = styled.div`
       text-align: center;
     }
   }
+
+
 
   a {
     text-decoration: none;
@@ -290,6 +292,21 @@ export const StyledDiv = styled.div`
 
 
   }
+  `
+
+export const StyledTransparentDiv = styled.div`
+  padding: 20px;
+  border-radius: 10px;
+  background-color: inherit;
+  border: solid 2px var(--color-darkSand);
+  filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
+`
+
+export const StyledNonTransparentDiv = styled.div`
+  padding: 20px;
+  border-radius: 30px;
+  background-color: var(--color-darkSand);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `
 
 export const StyledFlexDiv = styled.div`
@@ -318,6 +335,39 @@ export const StyledButton = styled.button`
     transform: translateY(2px);
   }
 `
+
+export const ButtonWithIcon = styled.button`
+  background-color:inherit;
+  height: 100%;
+  border: none;
+  background-image: ${props => props.selectedIcon};
+  background-size: ${props => props.iconSize};
+  background-repeat: no-repeat;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+`
+
+export const SrOnly = styled.div`
+  position: absolute;
+   width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+`
+
+export const ButtonDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `
+
+
 
 export const UnstyledBtn = styled.button`
   background-color: inherit;
