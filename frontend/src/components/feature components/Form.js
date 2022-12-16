@@ -42,23 +42,23 @@ const Form = () => {
       })
   }
 
-  const handleRecipeName = () => {
+  const handleRecipeName = (event) => {
     setRecipeName(event.target.value)
   }
 
-  const handleIngredients = () => {
+  const handleIngredients = (event) => {
     setIngredients(event.target.value)
   }
 
-  const handleInstructions = () => {
+  const handleInstructions = (event) => {
     setInstructions(event.target.value)
   }
 
-  const handleDescription = () => {
+  const handleDescription = (event) => {
     setDescription(event.target.value)
   }
 
-  const handleRating = () => {
+  const handleRating = (event) => {
     setRating(event.target.value)
   }
 
@@ -115,12 +115,15 @@ export default Form
 
 const FormStyledDiv = styled(StyledDiv)`
   position: absolute;
-  top: 50%;                       
-  transform: translate(0, -50%);
+  top: 50%;  
+  left: 50%;                     
+  transform: translate(-50%, -50%);
   z-index: 1;
   max-width: 50vw;
   overflow-x: auto;
   backdrop-filter: blur(20px);
+  width: 100%;
+  padding: 10%;
   `
 
 const CreateRecipeDiv = styled.div`
