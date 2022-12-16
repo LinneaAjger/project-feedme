@@ -47,6 +47,7 @@ const RecipeFeed = () => {
   };
   
   const mobileView = useMediaQuery(668)
+  const tabletView = useMediaQuery(1024)
 
   return (
     <>
@@ -67,8 +68,31 @@ const RecipeFeed = () => {
       </ButtonContainer>
       <RecipesInFeed />
     </FeedSection>
-    ) : (
+    ) : tabletView ? (
       <FeedSection> 
+        <div>
+          <ButtonContainer>
+            <button  
+              type="button"
+              onClick={toggle}>
+              <img src={AddIcon} />
+              <p>add new recipe</p>
+            </button>
+            {collapsed && 
+            <Form 
+              style={{
+              transition: "all 10s ease"
+              }}/>}
+            </ButtonContainer>
+        <RecipesInFeed />
+        </div>
+        <div>
+          <SearchForUser />
+          <Filter />
+        </div>
+      </FeedSection>
+      ) : (
+        <FeedSection> 
         <RecentlyLiked />
         <div>
           <ButtonContainer>
@@ -103,14 +127,17 @@ const FeedSection = styled.section`
   height: 100%;
   margin-top: 4%;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  column-gap: 2vw;
-  // ändra för mobil (ovan)
+  width: 80%;
 
-    @media (min-width: 668px) {
+    @media (min-width: 668px) and (max-width: 1024px) {
+      grid-template-columns: 2fr 1fr;
+      gap: 2%;
+    }
+
+    @media (min-width: 1025px) {
       grid-template-columns: 1fr 2fr 1fr;
       column-gap: 2vw;    
-      }
+    }
 `
 
 const ButtonContainer = styled.div`
@@ -135,31 +162,3 @@ const ButtonContainer = styled.div`
     height: 30px;
   }
 `
-
-{/* <>
-{accessToken && (
-  <FeedSection> 
-    <RecentlyLiked />
-    <div>
-      <ButtonContainer>
-        <button  
-          type="button"
-          onClick={toggle}>
-          <img src={AddIcon} />
-          <p>add new recipe</p>
-        </button>
-        {collapsed && 
-        <Form 
-          style={{
-          transition: "all 10s ease"
-          }}/>}
-        </ButtonContainer>
-    <RecipesInFeed />
-    </div>
-    <div>
-      <SearchForUser />
-      <Filter />
-    </div>
-  </FeedSection>
-)}
-</> */}

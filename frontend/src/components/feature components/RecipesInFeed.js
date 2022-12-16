@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import SaveIcon from '../../icons/Vector_8.png'
-import LikeIcon from '../../icons/Vector_21.png'
 import styled from "styled-components"
 import { useDispatch, useSelector, batch } from 'react-redux'
 import recipeReducer from 'reducers/recipeReducer';
 import { API_URL } from 'utils/utils';
-import { ButtonWithIcon } from "components/GlobalStyles";
+import LikeSaveCommentContainer from "./LikeSaveCommentContainer";
 
 const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
@@ -46,20 +44,13 @@ const RecipesInFeed = () => {
       {recipeList.map((singleRecipe) => 
         <RecipeContainer>
           {singleRecipe.recipe && (
-            <>
+            <div>
               <SmallP>user, XX ago</SmallP>
               <h3>{singleRecipe.recipe.name}</h3>
               <p>"{singleRecipe.recipe.description}"</p>
-            </>
+            </div>
           )}
-          <LikeContainer>
-            <ButtonWithIcon 
-              selectedIcon={`url(${SaveIcon})`}
-              iconSize="10px" />
-            <ButtonWithIcon
-              selectedIcon={`url(${LikeIcon})`}
-              iconSize="14px" />
-          </LikeContainer>
+        <LikeSaveCommentContainer/>
         </RecipeContainer> 
         )}
     </>
@@ -69,28 +60,33 @@ const RecipesInFeed = () => {
 export default RecipesInFeed
 
 const RecipeContainer = styled.div`
-  background-color: var(--color-beige);
-  padding: 20px;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  position: relative;
+  border-radius: 15px;
+  background-color: var(--color-beige);
   margin-top: 10px;
+  width: 100%;
+  height: 20vh;
+  overflow-x: auto;
+
+  div {
+    padding: 10px;
+  }
+
+  @media (min-width: 668px) and (max-width: 1024px) {
+    div {
+    padding: 20px;
+    }
+    }
+
+    @media (min-width: 1025px) {
+      div {
+        padding: 30px;
+      }
+    }
 `
 
 const SmallP = styled.p`
   font-size: 14px;
-`
-
-const LikeContainer = styled.div`
-  position: absolute;
-  right: 10px;
-  top: 50%;                      
-  transform: translate(0, -50%);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  border-left: 2px solid var(--color-darkSand);
-  padding: 1vw;
 `
