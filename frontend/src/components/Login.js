@@ -3,12 +3,14 @@ import { API_URL } from 'utils/utils'
 import { useDispatch, batch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import user from 'reducers/user'
+import styled from 'styled-components'
 import { StyledDiv, StyledFlexDiv } from './styles/DivStyles'
 import { StyledButton } from './styles/ButtonStyles'
 
 const Login = ({loginType, loginHeadline, buttonText}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
   
   const accessToken = localStorage.getItem('accessToken');
 
@@ -42,6 +44,7 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
               dispatch(user.actions.setUsername(null))
               dispatch(user.actions.setId(null))
               dispatch(user.actions.setError(data.response))
+              setErrorMsg(data.response)
             })
           }
         })
@@ -63,6 +66,7 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
       <form onSubmit={onSubmit}>
           <input type="text" value={username} onChange={handleUsernameInput} placeholder="username" />
           <input type="password" value={password} onChange={handlePasswordInput} placeholder="password"/>
+          {errorMsg !== '' && (<ErrorMsg>Try again. {errorMsg}</ErrorMsg>)}
         <StyledButton type="submit">{buttonText}</StyledButton>
       </form>
       {loginType === "login" && (
@@ -70,8 +74,20 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
           <p>Not a member?</p>
           <Link to="/register">Create new account</Link>
         </StyledFlexDiv>)}
+      {loginType === "register" && (
+        <StyledFlexDiv>
+          <p>Already a member?</p>
+          <Link to="/login">Log in here</Link>
+        </StyledFlexDiv>)}
     </StyledDiv>
   )
 }
 
 export default Login
+
+const ErrorMsg = styled.p`
+  color: red;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  text-align: center;
+`

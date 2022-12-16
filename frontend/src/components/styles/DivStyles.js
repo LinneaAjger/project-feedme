@@ -26,7 +26,7 @@ export const StyledDiv = styled.div`
   border-radius: 30px;
   width: 80%;
   min-height: 160px;
-  padding: 10%;
+  padding: 10% 0%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -62,6 +62,7 @@ export const StyledDiv = styled.div`
     margin-bottom: 10px;
     box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
     padding: 5px 10px;
+    max-width: 200px;
 
     ::placeholder {
       text-align: center;
@@ -85,15 +86,14 @@ export const StyledDiv = styled.div`
     width: 80%;
     
 
-    form  {
-      width: 80%;
+    input  {
       max-width: 200px;
     }
   } 
   @media (min-width: 1024px) {
     max-width: 600px;
     margin-top: 10%;
-    padding: 5% 10%;
+    padding: 5% 0%;
 
 
   }

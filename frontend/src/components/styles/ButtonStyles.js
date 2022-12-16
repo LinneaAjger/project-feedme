@@ -25,10 +25,10 @@ export const StyledButton = styled.button`
   background-color: linear-gradient(0deg, rgb(59, 65, 197) 0%, rgb(114, 96, 192) 100%);
   background: linear-gradient(0deg, rgb(8 19 255) 0%, rgb(90 99 240) 100%);
   border-radius: 10px;
-  padding: 5px 0px;
+  padding: 5px 20px;
   box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
   cursor: pointer;
-  width: 45%;
+  width: auto;
   transition: 0.3s ease-in-out;
 
   &:hover {
