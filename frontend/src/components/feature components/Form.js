@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { StyledDiv } from 'components/GlobalStyles'
 import styled from 'styled-components'
 import { API_URL } from 'utils/utils'
 import { useDispatch } from 'react-redux'
 import { StyledButton } from 'components/GlobalStyles'
 import { SrOnly } from 'components/GlobalStyles'
 import { ButtonDiv } from 'components/GlobalStyles'
+import { StyledDiv } from 'components/styles/DivStyles'
 
 const Form = () => {
   const [recipeName, setRecipeName] = useState('')
@@ -117,13 +117,44 @@ const FormStyledDiv = styled(StyledDiv)`
   position: absolute;
   top: 50%;  
   left: 50%;                     
-  transform: translate(-50%, -50%);
   z-index: 1;
-  max-width: 50vw;
   overflow-x: auto;
   backdrop-filter: blur(20px);
-  width: 100%;
-  padding: 10%;
+  width: 95vw;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+
+  input, textarea {
+    max-width: 1000px;
+  }
+
+  label {
+    width: 100%;
+  }
+  
+  form {
+    width: 100%;
+  }
+  @media (min-width: 667px) {
+    width: 80vw;
+    height: 70vh;
+    transform: translate(-50%, -70%);
+  } 
+
+  label {
+    width: 70%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 60vw;
+    height: 80vh;
+    transform: translate(-50%, -70%);
+  }
+  
+  label {
+    width: 80%;
+  }
   `
 
 const CreateRecipeDiv = styled.div`
@@ -136,5 +167,6 @@ const CreateRecipeDiv = styled.div`
 
 const AddNewRecipeButton = styled(StyledButton)`
    text-align: center;
-   padding: 5px;
+   padding: 10px;
+   width: 100%;
   `

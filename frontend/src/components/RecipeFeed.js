@@ -128,6 +128,7 @@ const FeedSection = styled.section`
   margin-top: 4%;
   display: grid;
   width: 80%;
+  position: relative;
 
     @media (min-width: 668px) and (max-width: 1024px) {
       grid-template-columns: 2fr 1fr;
