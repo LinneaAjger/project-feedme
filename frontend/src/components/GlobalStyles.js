@@ -208,11 +208,20 @@ export const OuterWrapper = styled.main`
 `
 
 export const Innerwrapper = styled.div`
+.not-blurred {
   margin: 0 auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.blurred {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 `
 
 export const StyledDiv = styled.div`

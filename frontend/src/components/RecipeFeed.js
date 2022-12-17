@@ -7,11 +7,16 @@ import styled from 'styled-components/macro';
 import AddIcon from './media/AddIcon.png'
 import RecipesInFeed from './feature components/RecipesInFeed';
 import SearchForUser from './feature components/SearchForUser';
+import { useDispatch, useSelector } from 'react-redux'
+import toggle from 'reducers/toggle';
+
 
 const RecipeFeed = () => {
   const navigate = useNavigate()
   const accessToken = localStorage.getItem('accessToken')
-  const [collapsed, setCollapsed] = useState(false)
+  const collapsed = useSelector((store) => store.toggle.collapsed)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if(!accessToken) {
@@ -19,8 +24,8 @@ const RecipeFeed = () => {
     }   
   }, [accessToken])
 
-  const toggle = () => {
-    setCollapsed(!collapsed)
+  const toggleForm = () => {
+    dispatch(toggle.actions.setCollapsed(true))
   }
 
   const useMediaQuery = (width) => {
@@ -56,15 +61,12 @@ const RecipeFeed = () => {
       <ButtonContainer>
           <button  
             type="button"
-            onClick={toggle}>
+            onClick={toggleForm}>
             <img src={AddIcon} />
             <p>add new recipe</p>
           </button>
           {collapsed && 
-          <Form 
-            style={{
-            transition: "all 10s ease"
-            }}/>}
+          <Form />}
       </ButtonContainer>
       <RecipesInFeed />
     </FeedSection>
@@ -74,15 +76,12 @@ const RecipeFeed = () => {
           <ButtonContainer>
             <button  
               type="button"
-              onClick={toggle}>
+              onClick={toggleForm}>
               <img src={AddIcon} />
               <p>add new recipe</p>
             </button>
             {collapsed && 
-            <Form 
-              style={{
-              transition: "all 10s ease"
-              }}/>}
+            <Form />}
             </ButtonContainer>
         <RecipesInFeed />
         </div>
@@ -92,29 +91,26 @@ const RecipeFeed = () => {
         </div>
       </FeedSection>
       ) : (
-        <FeedSection> 
-        <RecentlyLiked />
-        <div>
-          <ButtonContainer>
-            <button  
-              type="button"
-              onClick={toggle}>
-              <img src={AddIcon} />
-              <p>add new recipe</p>
-            </button>
-            {collapsed && 
-            <Form 
-              style={{
-              transition: "all 10s ease"
-              }}/>}
-            </ButtonContainer>
-        <RecipesInFeed />
-        </div>
-        <div>
-          <SearchForUser />
-          <Filter />
-        </div>
-      </FeedSection>
+          <FeedSection> 
+          <RecentlyLiked />
+          <div>
+            <ButtonContainer>
+              <button  
+                type="button"
+                onClick={toggleForm}>
+                <img src={AddIcon} />
+                <p>add new recipe</p>
+              </button>
+              {collapsed && 
+              <Form />}
+              </ButtonContainer>
+          <RecipesInFeed />
+          </div>
+          <div>
+            <SearchForUser />
+            <Filter />
+          </div>
+        </FeedSection>
       )
       }
     </>

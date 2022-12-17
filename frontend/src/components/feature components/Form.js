@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { API_URL } from 'utils/utils'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { StyledButton } from 'components/GlobalStyles'
 import { SrOnly } from 'components/GlobalStyles'
 import { ButtonDiv } from 'components/GlobalStyles'
@@ -13,6 +13,8 @@ const Form = () => {
   const [description, setDescription] = useState('')
   const [instructions, setInstructions] = useState('')
   const [rating, setRating] = useState(0)
+
+  const collapsed = useSelector((store) => store.toggle.collapsed)
 
   const dispatch = useDispatch()
 
@@ -66,7 +68,7 @@ const Form = () => {
   }
 
   return (
-    <FormStyledDiv>
+    <FormStyledDiv className={collapsed ? "show-div" : "hide-div"}>
       <CreateRecipeDiv>
         <h1>Create recipe</h1>
         <button type="button" onClick={closeForm}>
@@ -123,15 +125,22 @@ export default Form
 
 const FormStyledDiv = styled(StyledDiv)`
   position: absolute;
-  top: 50%;  
-  left: 50%;                     
-  z-index: 1;
-  overflow-x: auto;
-  backdrop-filter: blur(20px);
-  width: 95vw;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  padding: 0;
+  
+  .hide-div {
+    opacity: 0;
+  }
+  
+  .show-div {
+    opacity: 1;
+    position: absolute;
+    top: 50%;  
+    left: 50%;                     
+    overflow-x: auto;
+    width: 95vw;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    backdrop-filter: blur(100px);
 
   input, textarea {
     max-width: 1000px;
@@ -145,6 +154,7 @@ const FormStyledDiv = styled(StyledDiv)`
     margin-top: 0px;
     width: 100%;
   }
+
   @media (min-width: 667px) {
     width: 80vw;
     height: 70vh;
@@ -163,6 +173,7 @@ const FormStyledDiv = styled(StyledDiv)`
   
   label {
     width: 80%;
+  }
   }
   `
 
