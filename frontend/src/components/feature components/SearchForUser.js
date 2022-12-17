@@ -29,5 +29,9 @@ padding: 10px;
         width: 100%;
         box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
         padding: 5px 10px;
+
+        @media (max-width: 668px) {
+            width: 50vw;
+    }
     }
 `

@@ -110,6 +110,12 @@ img + img {
     opacity: 0;
     transition: all 0.6s ease-in-out;
 
+    input {
+      @media (min-width: 668px) {
+        display: none;
+    }
+    }
+
     a {
       &:hover {
           color: var(--color-vividBlue);

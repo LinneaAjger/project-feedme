@@ -24,26 +24,26 @@ const RecipeFeed = () => {
   }
 
   const useMediaQuery = (width) => {
-    const [targetReached, setTargetReached] = useState(false);
+    const [pixelWidthReached, setPixelWidthReached] = useState(false);
   
-    const updateTarget = useCallback((event) => {
+    const updateWidth = useCallback((event) => {
       if (event.matches) {
-        setTargetReached(true);
+        setPixelWidthReached(true);
       } else {
-        setTargetReached(false);
+        setPixelWidthReached(false);
       }
     }, []);
   
     useEffect(() => {
       const media = window.matchMedia(`(max-width: ${width}px)`);
-      media.addEventListener("change", updateTarget);
+      media.addEventListener("change", updateWidth);
       if (media.matches) {
-        setTargetReached(true);
+        setPixelWidthReached(true);
       }
-      return () => media.removeEventListener("change", updateTarget);
+      return () => media.removeEventListener("change", updateWidth);
     }, []);
   
-    return targetReached;
+    return pixelWidthReached;
   };
   
   const mobileView = useMediaQuery(668)
