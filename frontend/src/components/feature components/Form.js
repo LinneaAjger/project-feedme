@@ -18,8 +18,7 @@ const Form = () => {
 
   const accessToken = localStorage.getItem('accessToken');
 
-  const onSubmit = (event) => {
-    event.preventDefault()
+  const onSubmit = () => {
     const options = {
       method: "POST",
       headers: {
@@ -143,6 +142,7 @@ const FormStyledDiv = styled(StyledDiv)`
   }
   
   form {
+    margin-top: 0px;
     width: 100%;
   }
   @media (min-width: 667px) {

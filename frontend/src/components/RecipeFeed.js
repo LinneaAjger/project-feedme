@@ -4,7 +4,7 @@ import Form from './feature components/Form';
 import Filter from './feature components/Filter';
 import RecentlyLiked from './feature components/RecentlyLiked';
 import styled from 'styled-components/macro';
-import AddIcon from '../icons/icons8-add-new-100.png'
+import AddIcon from './media/AddIcon.png'
 import RecipesInFeed from './feature components/RecipesInFeed';
 import SearchForUser from './feature components/SearchForUser';
 
