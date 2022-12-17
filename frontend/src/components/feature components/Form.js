@@ -62,10 +62,19 @@ const Form = () => {
     setRating(event.target.value)
   }
 
+  const closeForm = () => {
+    location.reload();
+  }
+
   return (
     <FormStyledDiv>
       <CreateRecipeDiv>
         <h1>Create recipe</h1>
+        <button type="button" onClick={closeForm}>
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L24 24M24 2L2 24" stroke="#F2C19F" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </button>
       </CreateRecipeDiv>
       <form onSubmit={onSubmit}>
         <label> <SrOnly>Name of recipe</SrOnly>
@@ -163,6 +172,13 @@ const CreateRecipeDiv = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  position: relative;
+
+  button {
+    position: absolute;
+    right: 10%;
+    top: -50%;
+  }
 `
 
 const AddNewRecipeButton = styled(StyledButton)`
