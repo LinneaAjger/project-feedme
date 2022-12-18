@@ -141,6 +141,7 @@ const FormStyledDiv = styled(StyledDiv)`
     transform: translate(-50%, -50%);
     padding: 0;
     backdrop-filter: blur(100px);
+    transition: all 1s ease-in-out;
 
   input, textarea {
     max-width: 1000px;
