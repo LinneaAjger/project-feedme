@@ -127,10 +127,10 @@ const FormStyledDiv = styled(StyledDiv)`
   left: 50%;                     
   z-index: 1;
   overflow-x: auto;
-  backdrop-filter: blur(20px);
-  width: 95vw;
+  width: 100vw;
   height: 100%;
   transform: translate(-50%, -50%);
+  border-radius: 0;
   padding: 0;
 
   input, textarea {
@@ -144,6 +144,7 @@ const FormStyledDiv = styled(StyledDiv)`
   form {
     margin-top: 0px;
     width: 100%;
+    justify-content: flex-start;
   }
   @media (min-width: 667px) {
     width: 80vw;
