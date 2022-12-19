@@ -66,6 +66,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-color: var(--color-sand); */
   background: linear-gradient(147deg, rgba(249,218,198,1) 0%, rgba(242,193,159,1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 h1, h2 {
@@ -107,6 +109,12 @@ img + img {
     background: linear-gradient(147deg,rgba(249,218,198,1) 0%,rgba(242,193,159,1) 100%);
     opacity: 0;
     transition: all 0.6s ease-in-out;
+
+    input {
+      @media (min-width: 668px) {
+        display: none;
+    }
+    }
 
     a {
       &:hover {

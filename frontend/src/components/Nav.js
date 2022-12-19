@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { UnstyledBtn } from './styles/ButtonStyles'
+import SearchForUser from './feature components/SearchForUser'
 
 const Nav = () => {
 
@@ -21,14 +22,16 @@ const Nav = () => {
   return (
     <>
     <StyledNav>
-              <UnstyledBtn type="button" className='menu-icon' onClick={handleClick}>
-          {click ? <StyledIcon viewBox="0 0 26 26">
-<path d="M2 2L24 24M24 2L2 24"  strokeWidth="4" strokeLinecap="round"/>
-</StyledIcon> : <StyledIcon viewBox="0 0 26 23">
-<path d="M2 2H24M2 11.2432H24M2 21H24"  strokeWidth="4" strokeLinecap="round"/>
-</StyledIcon>
-}
-        </UnstyledBtn>
+      <UnstyledBtn type="button" className='menu-icon' onClick={handleClick}>
+        {click ?
+          <StyledIcon viewBox="0 0 26 26">
+            <path d="M2 2L24 24M24 2L2 24"  strokeWidth="4" strokeLinecap="round"/>
+          </StyledIcon> : 
+          <StyledIcon viewBox="0 0 26 23">
+            <path d="M2 2H24M2 11.2432H24M2 21H24"  strokeWidth="4" strokeLinecap="round"/>
+          </StyledIcon>
+        }
+      </UnstyledBtn>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li>
             <NavLink to="/" className="navbar-item" onClick={closeMobileMenu}>Feed</NavLink>
@@ -43,9 +46,15 @@ const Nav = () => {
             <NavLink to="/contact" className="navbar-item" onClick={closeMobileMenu}>Contact</NavLink>
           </li>
           {accessToken && (
-          <li>
-            <NavLink to="/login" className="navbar-item" onClick={() => logOut()}>Sign out</NavLink>
-          </li>)}
+          <>
+            <li>
+              <NavLink to="/login" className="navbar-item" onClick={() => logOut()}>Sign out</NavLink>
+            </li>
+            <li>
+              <SearchForUser />
+            </li>
+          </>
+          )}
         </ul>
     </StyledNav>
     </>
@@ -71,6 +80,7 @@ const StyledNav = styled.nav`
   height: 80px;
   display: flex;
   justify-content: center;
+  z-index: 2;
   
   @media (min-width: 1024px) {
     width: 70%;

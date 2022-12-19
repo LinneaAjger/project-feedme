@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { StyledDiv } from 'components/GlobalStyles'
 import styled from 'styled-components'
 import { API_URL } from 'utils/utils'
 import { useDispatch } from 'react-redux'
 import { StyledButton } from 'components/GlobalStyles'
 import { SrOnly } from 'components/GlobalStyles'
 import { ButtonDiv } from 'components/GlobalStyles'
+import { StyledDiv } from 'components/styles/DivStyles'
 
 const Form = () => {
   const [recipeName, setRecipeName] = useState('')
@@ -18,8 +18,7 @@ const Form = () => {
 
   const accessToken = localStorage.getItem('accessToken');
 
-  const onSubmit = (event) => {
-    event.preventDefault()
+  const onSubmit = () => {
     const options = {
       method: "POST",
       headers: {
@@ -62,10 +61,19 @@ const Form = () => {
     setRating(event.target.value)
   }
 
+  const closeForm = () => {
+    location.reload();
+  }
+
   return (
     <FormStyledDiv>
       <CreateRecipeDiv>
         <h1>Create recipe</h1>
+        <button type="button" onClick={closeForm}>
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L24 24M24 2L2 24" stroke="#F2C19F" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </button>
       </CreateRecipeDiv>
       <form onSubmit={onSubmit}>
         <label> <SrOnly>Name of recipe</SrOnly>
@@ -117,13 +125,46 @@ const FormStyledDiv = styled(StyledDiv)`
   position: absolute;
   top: 50%;  
   left: 50%;                     
-  transform: translate(-50%, -50%);
   z-index: 1;
-  max-width: 50vw;
   overflow-x: auto;
-  backdrop-filter: blur(20px);
-  width: 100%;
-  padding: 10%;
+  width: 100vw;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 0;
+  padding: 0;
+
+  input, textarea {
+    max-width: 1000px;
+  }
+
+  label {
+    width: 100%;
+  }
+  
+  form {
+    margin-top: 0px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  @media (min-width: 667px) {
+    width: 80vw;
+    height: 70vh;
+    transform: translate(-50%, -70%);
+  } 
+
+  label {
+    width: 70%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 60vw;
+    height: 80vh;
+    transform: translate(-50%, -70%);
+  }
+  
+  label {
+    width: 80%;
+  }
   `
 
 const CreateRecipeDiv = styled.div`
@@ -132,9 +173,17 @@ const CreateRecipeDiv = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  position: relative;
+
+  button {
+    position: absolute;
+    right: 10%;
+    top: -50%;
+  }
 `
 
 const AddNewRecipeButton = styled(StyledButton)`
    text-align: center;
-   padding: 5px;
+   padding: 10px;
+   width: 100%;
   `

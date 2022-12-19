@@ -164,7 +164,6 @@ li + button {
     @media (min-width: 1024px) {
       background-color: inherit;
       position: initial
-
     }
   }
 
@@ -199,14 +198,13 @@ li + button {
     margin-left: 2.4rem;
   }
 }
-
 `
 
 export const OuterWrapper = styled.main`
-width: 100%;
-height: 100%;
-display: flex;
-flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 export const Innerwrapper = styled.div`

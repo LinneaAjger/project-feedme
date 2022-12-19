@@ -4,7 +4,7 @@ import Form from './feature components/Form';
 import Filter from './feature components/Filter';
 import RecentlyLiked from './feature components/RecentlyLiked';
 import styled from 'styled-components/macro';
-import AddIcon from '../icons/icons8-add-new-100.png'
+import AddIcon from './media/AddIcon.png'
 import RecipesInFeed from './feature components/RecipesInFeed';
 import SearchForUser from './feature components/SearchForUser';
 
@@ -24,26 +24,26 @@ const RecipeFeed = () => {
   }
 
   const useMediaQuery = (width) => {
-    const [targetReached, setTargetReached] = useState(false);
+    const [pixelWidthReached, setPixelWidthReached] = useState(false);
   
-    const updateTarget = useCallback((event) => {
+    const updateWidth = useCallback((event) => {
       if (event.matches) {
-        setTargetReached(true);
+        setPixelWidthReached(true);
       } else {
-        setTargetReached(false);
+        setPixelWidthReached(false);
       }
     }, []);
   
     useEffect(() => {
       const media = window.matchMedia(`(max-width: ${width}px)`);
-      media.addEventListener("change", updateTarget);
+      media.addEventListener("change", updateWidth);
       if (media.matches) {
-        setTargetReached(true);
+        setPixelWidthReached(true);
       }
-      return () => media.removeEventListener("change", updateTarget);
+      return () => media.removeEventListener("change", updateWidth);
     }, []);
   
-    return targetReached;
+    return pixelWidthReached;
   };
   
   const mobileView = useMediaQuery(668)
@@ -128,6 +128,7 @@ const FeedSection = styled.section`
   margin-top: 4%;
   display: grid;
   width: 80%;
+  position: relative;
 
     @media (min-width: 668px) and (max-width: 1024px) {
       grid-template-columns: 2fr 1fr;
