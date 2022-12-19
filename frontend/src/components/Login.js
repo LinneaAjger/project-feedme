@@ -34,9 +34,10 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
           if(data.success) {
             batch(() => {
               dispatch(user.actions.setUsername(data.response.username))
-              dispatch(user.actions.setId(data.response.id))
+              // dispatch(user.actions.setId(data.response.id))
               dispatch(user.actions.setError(null))
               localStorage.setItem("accessToken", data.response.accessToken);
+              localStorage.setItem("userId", data.response.id);
               navigate("/");
             })
           } else {

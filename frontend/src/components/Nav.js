@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { UnstyledBtn } from './styles/ButtonStyles'
 import SearchForUser from './feature components/SearchForUser'
@@ -9,6 +9,10 @@ const Nav = () => {
   const [click, setClick] = useState(false)
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
+  const params = useParams()
+  console.log(params)  
+  const userId = localStorage.getItem('userId');
+
 
   const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
@@ -37,7 +41,7 @@ const Nav = () => {
             <NavLink to="/" className="navbar-item" onClick={closeMobileMenu}>Feed</NavLink>
           </li>
           <li>
-            <NavLink to="/:user-id" className="navbar-item" onClick={closeMobileMenu} >My Page</NavLink>
+            <NavLink  to={`/${userId}`} className="navbar-item" onClick={closeMobileMenu} >My Page</NavLink>
           </li>
           <li>
             <NavLink to="/about" className="navbar-item" onClick={closeMobileMenu}>About us</NavLink>

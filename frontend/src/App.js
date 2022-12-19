@@ -43,10 +43,10 @@ export const App = () => {
           <Route path="/" element={<RecipeFeed />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/:user-id" element={<UserPage />} />
+          <Route path="/:userId" element={<UserPage />} />
           <Route path="/:recipe-id" element={<Recipe />} />
           <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" />} />
+          {/* <Route path="*" element={<Navigate to="/404" />} /> */}
         </Routes>
           </Innerwrapper>    
       </OuterWrapper>
