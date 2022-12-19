@@ -143,14 +143,14 @@ app.get("/:userId", async (req, res) => {
 })
 
 // get single recipe based on id
-app.get("/:userId", authenticateUser)
-app.get("/:userId/:recipeId", async (req, res) => {
-  const { userId, recipeId } = req.params;
+app.get("/recipes/:recipeId", authenticateUser)
+app.get("/recipes/:recipeId", async (req, res) => {
+  const { recipeId } = req.params;
   try {
-    const usersRecipes = await Recipe.find({user: userId, _id: recipeId }).sort({createdAt: 'desc'})
+    const singleRecipe = await Recipe.find({ _id: recipeId }).sort({createdAt: 'desc'})
     res.status(200).json({
      success: true,
-     response: usersRecipes
+     response: singleRecipe
     })
   } catch (error) {
      res.status(400).json({success: false, response: error});
