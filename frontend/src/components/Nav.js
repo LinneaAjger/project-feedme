@@ -41,7 +41,7 @@ const Nav = () => {
             <NavLink to="/" className="navbar-item" onClick={closeMobileMenu}>Feed</NavLink>
           </li>
           <li>
-            <NavLink  to={`/${userId}`} className="navbar-item" onClick={closeMobileMenu} >My Page</NavLink>
+            <NavLink  to="/my-page" className="navbar-item" onClick={closeMobileMenu} >My Page</NavLink>
           </li>
           <li>
             <NavLink to="/about" className="navbar-item" onClick={closeMobileMenu}>About us</NavLink>
