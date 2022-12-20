@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { StyledNonTransparentDiv } from "components/GlobalStyles";
+import { StyledNonTransparentDiv } from "components/styles/DivStyles";
 
 const RecipeDetails = ({ recipeInfo }) => {
     console.log(recipeInfo)

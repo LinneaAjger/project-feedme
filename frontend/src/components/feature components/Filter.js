@@ -1,6 +1,5 @@
 import React from "react";
 import { StyledTransparentDiv } from "../styles/DivStyles"
-import styled from 'styled-components/macro'
 
 const Filter = () => {
     return (
