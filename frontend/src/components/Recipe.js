@@ -26,19 +26,20 @@ const Recipe = ({ recipeId }) => {
       .then(res => res.json())
       .then(data => {
         setRecipe(data.response)
-        console.log(data, recipe)
+        console.log(data.response)
       })
       .catch((error) => {
         console.error('Error:', error)
       })
       }, [])
 
+console.log(recipe)
+
   return (
     <div>
       Recipe name
-      {recipe.map((singleRecipe) => {
-        <p>{singleRecipe.recipe.name}</p>
-      })}
+      {recipe.map((singleRecipe) => 
+      <p>{singleRecipe._id}</p>)}
     </div>
   )
 }

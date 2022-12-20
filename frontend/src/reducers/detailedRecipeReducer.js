@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const detailedRecipeReducer = createSlice({
   name: 'detailedRecipeReducer',
   initialState: {
-    items: {},
+    items: [],
     error: null,
     username: null,
     id: null,
