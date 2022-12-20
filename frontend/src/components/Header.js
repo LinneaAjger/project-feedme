@@ -8,13 +8,15 @@ export const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <StyledHeader>
-      <Nav />
-      <NavLink to="/" className="logo-group">
-        <h1>FEED ME</h1>
-        <StyledLogo src={Logo} />
-      </NavLink>
-    </StyledHeader>
+    <Wrapper>
+      <StyledHeader>
+        <Nav />
+        <NavLink to="/" className="logo-group">
+          <h1>FEED ME</h1>
+          <StyledLogo src={Logo} />
+        </NavLink>
+      </StyledHeader>
+    </Wrapper>
   )
 }
 
@@ -46,6 +48,7 @@ const StyledHeader = styled.header`
     height: 100px;
     align-items: flex-end;
 
+    
       h1 {
         font-size: 3rem;
         z-index: 1;
@@ -74,4 +77,14 @@ const StyledLogo = styled.img`
     left: 30px;
     top: 15px;
     }
+`
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-beige);
+  box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
+  position: fixed;
+  z-index: 99;
 `

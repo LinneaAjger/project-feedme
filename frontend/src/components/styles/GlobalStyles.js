@@ -102,10 +102,10 @@ img + img {
     flex-direction: column;
     position: absolute;
     width: 100%;
-    height: 100%;
-    top: 10%;
+    height: 100vh;
+    top: 0%;
     left: -1000px;
-    padding-top: 5%;
+    padding-top: 15%;
     background: linear-gradient(147deg,rgba(249,218,198,1) 0%,rgba(242,193,159,1) 100%);
     opacity: 0;
     transition: all 0.6s ease-in-out;
@@ -139,10 +139,15 @@ img + img {
     } 
 
     @media (min-width: 668px) {
-      padding-top: 10%;
+      padding-top: 20%;
+
+      input {
+        display: none;
+      }
     }
 
     @media (min-width: 1024px) {
+      height: inherit;
       background: inherit;
       position: initial;
       flex-direction: row;
@@ -243,7 +248,18 @@ export const Innerwrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 100px;
+
+
+  @media (min-width: 667px) {
+    margin-top: 120px
+  }
+
+  @media (min-width: 1024px) {
+    margin-top: 150px
+  }
 `
+
 
 export const SrOnly = styled.div`
   position: absolute;

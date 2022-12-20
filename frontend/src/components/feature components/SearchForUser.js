@@ -1,23 +1,23 @@
 import React from "react";
-import { SrOnly } from "components/GlobalStyles";
+import { SrOnly } from "components/styles/GlobalStyles";
 import styled from "styled-components/macro";
 
 const SearchForUser = () => {
     return (
-        <SearhForUserDiv>
+        <SearchForUserDiv>
             <label> <SrOnly>Search for user</SrOnly>
                 <input
                     type="text"
                     placeholder="Search for user..."/>
             </label>
-        </SearhForUserDiv>
+        </SearchForUserDiv>
     )
 }
 
 
 export default SearchForUser
 
-const SearhForUserDiv = styled.div`
+const SearchForUserDiv = styled.div`
 margin-bottom: 30px;
 padding: 10px;
 

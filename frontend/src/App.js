@@ -28,8 +28,8 @@ export const App = () => {
       <BrowserRouter>
       <GlobalStyles />
       <OuterWrapper>
-      <Innerwrapper>
       <Header />
+        <Innerwrapper>
         <Routes>
           <Route path={"/register"} element={
             <Login
@@ -50,7 +50,7 @@ export const App = () => {
           <Route path="/404" element={<NotFound />} />
           {/* <Route path="*" element={<Navigate to="/404" />} /> */}
         </Routes>
-          </Innerwrapper>    
+        </Innerwrapper>
       </OuterWrapper>
       </BrowserRouter>
     </Provider>

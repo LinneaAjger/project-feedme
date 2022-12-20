@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { API_URL } from 'utils/utils'
 import { useDispatch } from 'react-redux'
-import { StyledButton } from 'components/GlobalStyles'
-import { SrOnly } from 'components/GlobalStyles'
-import { ButtonDiv } from 'components/GlobalStyles'
+import { StyledButton } from 'components/styles/ButtonStyles'
+import { SrOnly } from 'components/styles/GlobalStyles'
+import { ButtonDiv } from 'components/styles/ButtonStyles'
 import { StyledDiv } from 'components/styles/DivStyles'
 
 const Form = () => {
