@@ -98,4 +98,15 @@ export const RecipeCard = styled.div`
   h4 {
     font-weight: 400;
   }
+
+  @media (min-width: 667px) {
+    width: 80%;
+    padding: 30px 30px;
+
+  } 
+  @media (min-width: 1024px) {
+    max-width: 600px;
+    padding: 30px 30px;
+
+  }
   `
