@@ -142,21 +142,6 @@ app.get("/:userId", async (req, res) => {
    }
 })
 
-// get single recipe based on id
-app.get("/recipes/:recipeId", authenticateUser)
-app.get("/recipes/:recipeId", async (req, res) => {
-  const { recipeId } = req.params;
-  try {
-    const singleRecipe = await Recipe.find({ _id: recipeId }).sort({createdAt: 'desc'})
-    res.status(200).json({
-     success: true,
-     response: singleRecipe
-    })
-  } catch (error) {
-     res.status(400).json({success: false, response: error});
-   }
-})
-
 // Posts new recipe to feed
 app.post("/recipes", authenticateUser)
 app.post("/recipes", async (req, res) => {
@@ -176,6 +161,21 @@ app.post("/recipes", async (req, res) => {
       response: error
     })
   }
+})
+
+// get single recipe based on id
+app.get("/recipes/:recipeId", authenticateUser)
+app.get("/recipes/:recipeId", async (req, res) => {
+  const { recipeId } = req.params;
+  try {
+    const singleRecipe = await Recipe.find({ _id: recipeId }).sort({createdAt: 'desc'})
+    res.status(200).json({
+     success: true,
+     response: singleRecipe
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
 })
 
 

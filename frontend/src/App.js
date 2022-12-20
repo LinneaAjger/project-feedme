@@ -13,14 +13,12 @@ import UserPage from 'components/UserPage'
 import Recipe from 'components/Recipe'
 import NotFound from 'components/NotFound'
 import { GlobalStyles, OuterWrapper, Innerwrapper } from 'components/styles/GlobalStyles'
-import detailedRecipeReducer from 'reducers/detailedRecipeReducer'
 
 
 export const App = () => {
   const reducer = combineReducers({ 
     user: user.reducer,
     recipes: recipeReducer.reducer,
-    detailedRecipes : detailedRecipeReducer,
   })
   const store = configureStore({ reducer })
 
