@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const recipeReducer = createSlice({
-  name: 'recipeReducer',
+const detailedRecipeReducer = createSlice({
+  name: 'detailedRecipeReducer',
   initialState: {
-    items: [],
+    items: {},
     error: null,
     username: null,
     id: null,
@@ -11,12 +11,6 @@ const recipeReducer = createSlice({
   reducers: {
     setItems: (store, action) => {
     store.items = action.payload
-    },
-    setNewRecipe: (store, action) => {
-      store.items.unshift(action.payload)
-    },
-    setDetailedRecipe: (store, action) => {
-      store.items = action.payload
     },
     setError: (store, action) => {
     store.error = action.payload
@@ -30,4 +24,4 @@ const recipeReducer = createSlice({
   }
 })
 
-export default recipeReducer
+export default detailedRecipeReducer

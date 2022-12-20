@@ -13,12 +13,14 @@ import UserPage from 'components/UserPage'
 import Recipe from 'components/Recipe'
 import NotFound from 'components/NotFound'
 import { GlobalStyles, OuterWrapper, Innerwrapper } from 'components/styles/GlobalStyles'
+import detailedRecipeReducer from 'reducers/detailedRecipeReducer'
 
 
 export const App = () => {
   const reducer = combineReducers({ 
     user: user.reducer,
-    recipes: recipeReducer.reducer 
+    recipes: recipeReducer.reducer,
+    detailedRecipes : detailedRecipeReducer,
   })
   const store = configureStore({ reducer })
 
@@ -44,9 +46,9 @@ export const App = () => {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/:user-id" element={<UserPage />} />
-          <Route path="/:recipe-id" element={<Recipe />} />
+          <Route path="/:recipeId" element={<Recipe />} />
           <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" />} />
+          {/* <Route path="*" element={<Navigate to="/404" />} /> */}
         </Routes>
           </Innerwrapper>    
       </OuterWrapper>
