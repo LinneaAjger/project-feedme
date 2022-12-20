@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyledDiv } from './styles/DivStyles'
 import { API_URL } from 'utils/utils'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Innerwrapper } from './styles/GlobalStyles'
 
 const UserPage = () => {
@@ -10,6 +10,14 @@ const [myPosts, setMyPosts] = useState([])
 const accessToken = localStorage.getItem('accessToken');
 const userId = localStorage.getItem('userId');
 const [toggle, setToggle]= useState(true)
+
+const navigate = useNavigate()
+
+useEffect(() => {
+  if(!accessToken) {
+    navigate("/login") 
+  }   
+}, [accessToken])
 
 const options = {
   method: "GET",

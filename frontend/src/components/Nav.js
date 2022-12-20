@@ -37,12 +37,14 @@ const Nav = () => {
         }
       </UnstyledBtn>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
+        {accessToken && (
           <li>
             <NavLink to="/" className="navbar-item" onClick={closeMobileMenu}>Feed</NavLink>
-          </li>
+          </li>)}
+          {accessToken && (
           <li>
             <NavLink  to="/my-page" className="navbar-item" onClick={closeMobileMenu} >My Page</NavLink>
-          </li>
+          </li>)}
           <li>
             <NavLink to="/about" className="navbar-item" onClick={closeMobileMenu}>About us</NavLink>
           </li>
