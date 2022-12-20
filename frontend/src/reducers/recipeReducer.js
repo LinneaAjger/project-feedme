@@ -15,6 +15,9 @@ const recipeReducer = createSlice({
     setNewRecipe: (store, action) => {
       store.items.unshift(action.payload)
     },
+    setDetailedRecipe: (store, action) => {
+      store.items = action.payload
+    },
     setError: (store, action) => {
     store.error = action.payload
     },
