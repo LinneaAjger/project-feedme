@@ -272,3 +272,7 @@ export const SrOnly = styled.div`
   white-space: nowrap;
   border-width: 0;
 `
+
+export const SmallP = styled.p`
+  font-size: 14px;
+`

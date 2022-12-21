@@ -17,6 +17,16 @@ const LikeSaveCommentContainer = () => {
 
     return (
         <LikeContainer>
+            {/* Add function to only show this button when post-user-id === user-id */}
+            <button type="button" onClick={'delete'}>
+                <StyledSvg 
+                    width="10" 
+                    height="15" 
+                    viewBox="0 0 26 26"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 2L24 24M24 2L2 24" strokeLinecap="round"/>
+                 </StyledSvg>
+            </button>
             <button type="button" onClick={onSaveClick} className={saved ? "saved" : "notSaved"}>
                 <StyledSvg 
                     width="10" 
@@ -51,9 +61,8 @@ const LikeContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 100%;
   border-left: 2px solid var(--color-darkSand);
-  padding: 1vw;
+  padding: 0px 0px 0px 30px;
 
   button {
         border: none;

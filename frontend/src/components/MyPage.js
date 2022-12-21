@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { StyledDiv } from './styles/DivStyles'
+import { SmallP } from './styles/GlobalStyles'
+import { RecipeList, RecipeContainer } from './styles/DivStyles'
 import { API_URL } from 'utils/utils'
 import styled from 'styled-components/macro'
-import { useNavigate } from 'react-router-dom'
-import { Innerwrapper } from './styles/GlobalStyles'
+import { useNavigate, Link } from 'react-router-dom'
+import LikeSaveCommentContainer from './feature components/LikeSaveCommentContainer'
 
 const UserPage = () => {
 const [myPosts, setMyPosts] = useState([])
@@ -49,14 +50,21 @@ useEffect(() => {
       <h2 className={toggle ? '' : 'active-h2'}>Saved recipes</h2>
       </a>
     </HeadlineDiv>
-
+    <RecipeList>
       {myPosts.map((singleRecipe) =>
-      <RecipeCard key={singleRecipe._id}>
-        <h3>{singleRecipe.recipe.name}</h3>
-        <h4>"{singleRecipe.recipe.description}"</h4>
-        <p>Rating: {singleRecipe.recipe.userRating}/5</p>
+         <Link to={`/recipes/${singleRecipe._id}`} recipeId={singleRecipe._id}>
+            <RecipeContainer key={singleRecipe._id}>
+              <div>
+                  <SmallP>user, XX ago</SmallP>
+                  <h3>{singleRecipe.recipe.name}</h3>
+                  <p>"{singleRecipe.recipe.description}"</p>
+                  <p>Rating: {singleRecipe.recipe.userRating}/5</p>
+                </div>
+            <LikeSaveCommentContainer/>
+            </RecipeContainer>
+          </Link>)}
       
-      </RecipeCard>)}
+    </RecipeList>
 
     </>
   )
@@ -85,36 +93,3 @@ const HeadlineDiv = styled.div`
     color: var(--color-darkGrey);
   }
 `
-
-export const RecipeCard = styled.div`
-  border-radius: 30px;
-  width: 80%;
-  min-height: 160px;
-  padding: 30px 30px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-beige);
-  box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
-  margin-top: 5%;
-
-  h3 {
-    text-transform: uppercase;
-  }
-  h4 {
-    font-weight: 400;
-  }
-
-  @media (min-width: 667px) {
-    width: 80%;
-    padding: 30px 30px;
-
-  } 
-  @media (min-width: 1024px) {
-    max-width: 600px;
-    padding: 30px 30px;
-
-  }
-  `

@@ -157,30 +157,60 @@ export const StyledDiv = styled.div`
 
   }
   `
-  export const RecipeContainer = styled.div`
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-  background-color: var(--color-beige);
-  margin-top: 10px;
-  width: 100%;
-  height: 20vh;
-  overflow-x: auto;
 
-  div {
-    padding: 10px;
+export const RecipeContainer = styled.div`
+display: flex;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.10);
+border-radius: 15px;
+background-color: var(--color-beige);
+width: 100%;
+height: 100%;
+padding: 30px;
+justify-content: space-between;
+min-height: 150px;
+
+svg {
+  width: 15px;
+  height: 15px;
+  stroke: black;
+}
+
+h3 {
+  text-transform: uppercase;
+}
+
+@media (min-width: 668px) and (max-width: 1024px) {
+  min-height: 175px;
   }
 
-  @media (min-width: 668px) and (max-width: 1024px) {
-    div {
-    padding: 20px;
-    }
-    }
+  @media (min-width: 1025px) {
+    min-height: 200px
+  }
+`
 
-    @media (min-width: 1025px) {
-      div {
-        padding: 30px;
-      }
-    }
+export const RecipeList = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+
+  a {
+    width: 90%;
+  }
+  a + a {
+    margin-top: 10px;
+  }
+  @media (min-width: 668px) and (max-width: 1024px) {
+    a {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1025px) {
+  a {
+    max-width: 600px;
+  }
+}
 `

@@ -5,6 +5,9 @@ import recipeReducer from 'reducers/recipeReducer';
 import { API_URL } from 'utils/utils';
 import LikeSaveCommentContainer from "./LikeSaveCommentContainer";
 import { Link, useParams } from "react-router-dom";
+import { RecipeContainer } from "../styles/DivStyles"
+import { SmallP } from "../styles/GlobalStyles"
+import { RecipeList } from "../styles/DivStyles";
 
 const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
@@ -44,9 +47,9 @@ const RecipesInFeed = () => {
     
     
   return (
-    <>
+    <RecipeList>
       {recipeList.map((singleRecipe) => 
-      <Link to={`/${singleRecipe._id}`} recipeId={singleRecipe._id}>
+      <Link to={`/recipes/${singleRecipe._id}`} recipeId={singleRecipe._id}>
         <RecipeContainer>
           {singleRecipe.recipe && (
             <div>
@@ -59,40 +62,9 @@ const RecipesInFeed = () => {
           </RecipeContainer>
         </Link>
         )}
-    </>
+    </RecipeList>
     )
 }
+ export default RecipesInFeed
 
-export default RecipesInFeed
 
-const RecipeContainer = styled.div`
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-  background-color: var(--color-beige);
-  margin-top: 10px;
-  width: 100%;
-  height: 20vh;
-  overflow-x: auto;
-
-  div {
-    padding: 10px;
-  }
-
-  @media (min-width: 668px) and (max-width: 1024px) {
-    div {
-    padding: 20px;
-    }
-    }
-
-    @media (min-width: 1025px) {
-      div {
-        padding: 30px;
-      }
-    }
-`
-
-const SmallP = styled.p`
-  font-size: 14px;
-`

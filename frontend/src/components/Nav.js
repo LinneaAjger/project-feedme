@@ -18,8 +18,6 @@ const Nav = () => {
     localStorage.removeItem('accessToken')
     navigate("/login")
   }
-
-
   return (
     <>
     <StyledNav>
@@ -63,6 +61,7 @@ const Nav = () => {
   )
 }
 
+
 export default Nav
 
 const StyledIcon = styled.svg`
@@ -86,9 +85,10 @@ const StyledNav = styled.nav`
   
   @media (min-width: 1024px) {
     width: 70%;
+
+    input {
+      display: none;
+    }
   }
 
-  .mobile+tablet {
-    display: none;
-  }
 `
