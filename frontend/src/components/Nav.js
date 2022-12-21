@@ -9,9 +9,6 @@ const Nav = () => {
   const [click, setClick] = useState(false)
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-  const params = useParams()
-  console.log(params)  
-  const userId = localStorage.getItem('userId');
 
 
   const handleClick = () => setClick(!click)
@@ -38,11 +35,12 @@ const Nav = () => {
       </UnstyledBtn>
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li>
-            <NavLink to="/" className="navbar-item" onClick={closeMobileMenu}>Feed</NavLink>
+            <NavLink to="/" className="navbar-item" onClick={closeMobileMenu}>{accessToken ? 'Feed' : 'Log in'}</NavLink>
           </li>
+          {accessToken && (
           <li>
             <NavLink  to="/my-page" className="navbar-item" onClick={closeMobileMenu} >My Page</NavLink>
-          </li>
+          </li>)}
           <li>
             <NavLink to="/about" className="navbar-item" onClick={closeMobileMenu}>About us</NavLink>
           </li>

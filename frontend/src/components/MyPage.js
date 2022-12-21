@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyledDiv } from './styles/DivStyles'
 import { API_URL } from 'utils/utils'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Innerwrapper } from './styles/GlobalStyles'
 
 const UserPage = () => {
@@ -10,6 +10,14 @@ const [myPosts, setMyPosts] = useState([])
 const accessToken = localStorage.getItem('accessToken');
 const userId = localStorage.getItem('userId');
 const [toggle, setToggle]= useState(true)
+
+const navigate = useNavigate()
+
+useEffect(() => {
+  if(!accessToken) {
+    navigate("/login") 
+  }   
+}, [accessToken])
 
 const options = {
   method: "GET",
@@ -43,7 +51,7 @@ useEffect(() => {
     </HeadlineDiv>
 
       {myPosts.map((singleRecipe) =>
-      <RecipeCard>
+      <RecipeCard key={singleRecipe._id}>
         <h3>{singleRecipe.recipe.name}</h3>
         <h4>"{singleRecipe.recipe.description}"</h4>
         <p>Rating: {singleRecipe.recipe.userRating}/5</p>
@@ -97,5 +105,16 @@ export const RecipeCard = styled.div`
   }
   h4 {
     font-weight: 400;
+  }
+
+  @media (min-width: 667px) {
+    width: 80%;
+    padding: 30px 30px;
+
+  } 
+  @media (min-width: 1024px) {
+    max-width: 600px;
+    padding: 30px 30px;
+
   }
   `

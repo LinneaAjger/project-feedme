@@ -19,7 +19,7 @@ import { GlobalStyles, OuterWrapper, Innerwrapper } from 'components/styles/Glob
 export const App = () => {
   const reducer = combineReducers({ 
     user: user.reducer,
-    recipes: recipeReducer.reducer 
+    recipes: recipeReducer.reducer,
   })
   const store = configureStore({ reducer })
 
@@ -45,8 +45,8 @@ export const App = () => {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/my-page" element={<MyPage />} />
-          <Route path="/:userId" element={<UserPage />} />
-          <Route path="/:recipe-id" element={<Recipe />} />
+          <Route path="/:user-id" element={<UserPage />} />
+          <Route path="/recipes/:recipeId" element={<Recipe />} />
           <Route path="/404" element={<NotFound />} />
           {/* <Route path="*" element={<Navigate to="/404" />} /> */}
         </Routes>

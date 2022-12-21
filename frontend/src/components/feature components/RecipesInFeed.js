@@ -4,12 +4,15 @@ import { useDispatch, useSelector, batch } from 'react-redux'
 import recipeReducer from 'reducers/recipeReducer';
 import { API_URL } from 'utils/utils';
 import LikeSaveCommentContainer from "./LikeSaveCommentContainer";
+import { Link, useParams } from "react-router-dom";
 
 const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
   const dispatch = useDispatch()
   const recipeList = useSelector((store) => store.recipes.items)
 
+
+  //Fetch all recipes
   useEffect(() => {
     const options = {
       method: "GET",
@@ -39,9 +42,11 @@ const RecipesInFeed = () => {
       }))
       }, [])
     
+    
   return (
     <>
       {recipeList.map((singleRecipe) => 
+      <Link to={`/${singleRecipe._id}`} recipeId={singleRecipe._id}>
         <RecipeContainer>
           {singleRecipe.recipe && (
             <div>
@@ -50,8 +55,9 @@ const RecipesInFeed = () => {
               <p>"{singleRecipe.recipe.description}"</p>
             </div>
           )}
-        <LikeSaveCommentContainer/>
-        </RecipeContainer> 
+          <LikeSaveCommentContainer/>
+          </RecipeContainer>
+        </Link>
         )}
     </>
     )
