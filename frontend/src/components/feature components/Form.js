@@ -130,7 +130,7 @@ const FormStyledDiv = styled(StyledDiv)`
   width: 100vw;
   height: 100%;
   transform: translate(-50%, -50%);
-  border-radius: 0;
+  border-radius: 20px;
   padding: 0;
 
   input, textarea {
@@ -185,5 +185,4 @@ const CreateRecipeDiv = styled.div`
 const AddNewRecipeButton = styled(StyledButton)`
    text-align: center;
    padding: 10px;
-   width: 100%;
   `
