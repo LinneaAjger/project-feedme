@@ -46,7 +46,7 @@ export const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/my-page" element={<MyPage />} />
           <Route path="/:user-id" element={<UserPage />} />
-          <Route path="/recipes/:recipeId" element={<Recipe />} />
+          <Route path="/:recipeId" element={<Recipe />} />
           <Route path="/404" element={<NotFound />} />
           {/* <Route path="*" element={<Navigate to="/404" />} /> */}
         </Routes>

@@ -102,7 +102,6 @@ const RecipeSchema = new mongoose.Schema({
 
 const Recipe = mongoose.model("Recipe", RecipeSchema);
 
-
 // Start defining your routes here
 app.get("/", (req, res) => {
   res.json({
@@ -176,6 +175,16 @@ app.get("/recipes/:recipeId", async (req, res) => {
   } catch (error) {
      res.status(400).json({success: false, response: error});
    }
+})
+
+// Delete recipe
+app.delete("/recipes/:recipeId", async (req, res) => {
+  const { recipeId } = req.params
+  Recipe.findByIdAndRemove({_id: recipeId}, (error, deletedRecipe) => {
+    if(!error) {
+      console.log(deletedRecipe)
+    }
+  })
 })
 
 
