@@ -180,13 +180,19 @@ app.get("/recipes/:recipeId", async (req, res) => {
 // Delete recipe
 app.delete("/recipes/:recipeId", async (req, res) => {
   const { recipeId } = req.params
-  Recipe.findByIdAndRemove({_id: recipeId}, (error, deletedRecipe) => {
-    if(!error) {
-      console.log(deletedRecipe)
-    }
-  })
+  try {
+    const recipeToDelete = await Recipe.findByIdAndRemove({_id: recipeId})
+    res.status(200).json({
+      sucess: true,
+      response: "Recipe deleted", recipeToDelete
+    })
+  } catch (error) {
+    res.status(400).json({
+      sucess: false,
+      response: error
+    })
+  }
 })
-
 
 // Register new user
 app.post("/register", async (req, res) => {
