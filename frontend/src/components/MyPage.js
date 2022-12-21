@@ -51,7 +51,7 @@ useEffect(() => {
     </HeadlineDiv>
 
       {myPosts.map((singleRecipe) =>
-      <RecipeCard>
+      <RecipeCard key={singleRecipe._id}>
         <h3>{singleRecipe.recipe.name}</h3>
         <h4>"{singleRecipe.recipe.description}"</h4>
         <p>Rating: {singleRecipe.recipe.userRating}/5</p>

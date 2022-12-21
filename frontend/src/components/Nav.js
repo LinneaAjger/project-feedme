@@ -9,9 +9,6 @@ const Nav = () => {
   const [click, setClick] = useState(false)
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-  const params = useParams()
-  console.log(params)  
-  const userId = localStorage.getItem('userId');
 
 
   const handleClick = () => setClick(!click)
