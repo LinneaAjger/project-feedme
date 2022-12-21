@@ -6,13 +6,17 @@ import { StyledButton } from 'components/styles/ButtonStyles'
 import { SrOnly } from 'components/styles/GlobalStyles'
 import { ButtonDiv } from 'components/styles/ButtonStyles'
 import { StyledDiv } from 'components/styles/DivStyles'
+import Tags from './Tags'
 
 const Form = () => {
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [description, setDescription] = useState('')
-  const [instructions, setInstructions] = useState('')
+  const [instructions, setInstructions] = useState('')  
   const [rating, setRating] = useState(0)
+  const [mealTag, setMealTag] = useState([])
+  const [difficultyTag, setDifficultyTag] = useState([])
+  const [timeTag, setTimeTag] = useState([])
 
   const dispatch = useDispatch()
 
@@ -111,6 +115,32 @@ const Form = () => {
             value={rating}
             onChange={handleRating} />
         </label>
+        <TagsDiv>
+          <Tags 
+            h2="Meal"
+            Option1="Breakfast"
+            Option2="Lunch"
+            Option3="Dinner"
+            Option4="Snack"
+            value={mealTag}
+            />
+          <Tags 
+            h2="Difficulty"
+            Option1="Easy"
+            Option2="Medium"
+            Option3="Difficult"
+            Option4="Snack"
+            value={difficultyTag}
+            />
+          <Tags 
+            h2="Time"
+            Option1="<30"
+            Option2=">30"
+            Option3=">60"
+            Option4=">24h"
+            value={timeTag}
+            />
+          </TagsDiv>
         <ButtonDiv>
           <AddNewRecipeButton type="submit">Add recipe</AddNewRecipeButton>
         </ButtonDiv>
@@ -185,4 +215,11 @@ const CreateRecipeDiv = styled.div`
 const AddNewRecipeButton = styled(StyledButton)`
    text-align: center;
    padding: 10px;
+  `
+
+const TagsDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-around;
   `

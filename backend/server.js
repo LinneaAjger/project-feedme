@@ -82,6 +82,15 @@ const RecipeDetails = new mongoose.Schema({
   }
 })
 
+const RecipeTags = new mongoose.Schema({
+  meal: {
+    type: Array,
+  },
+  difficulty: {
+    type: Array,
+  }
+})
+
 const RecipeSchema = new mongoose.Schema({
   recipe: {
     type: RecipeDetails
@@ -97,6 +106,9 @@ const RecipeSchema = new mongoose.Schema({
   user: {
     type: String,
     required: true
+  }, 
+  tags: {
+    type: RecipeTags
   }
 })
 
