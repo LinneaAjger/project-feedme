@@ -6,7 +6,7 @@ import { StyledButton } from 'components/styles/ButtonStyles'
 import { SrOnly } from 'components/styles/GlobalStyles'
 import { ButtonDiv } from 'components/styles/ButtonStyles'
 import { StyledDiv } from 'components/styles/DivStyles'
-import Tags from './Tags'
+// import Tags from './Tags'
 
 const Form = () => {
   const [recipeName, setRecipeName] = useState('')
@@ -15,8 +15,10 @@ const Form = () => {
   const [instructions, setInstructions] = useState('')  
   const [rating, setRating] = useState(0)
   const [mealTag, setMealTag] = useState([])
-  const [difficultyTag, setDifficultyTag] = useState([])
-  const [timeTag, setTimeTag] = useState([])
+  const [checked, setChecked] = useState(false);
+
+  // const [difficultyTag, setDifficultyTag] = useState([])
+  // const [timeTag, setTimeTag] = useState([])
 
   const dispatch = useDispatch()
 
@@ -61,6 +63,18 @@ const Form = () => {
     setDescription(event.target.value)
   }
 
+  const handleMealTag = (event) =>  {
+    setMealTag(event.target.value)
+  }
+
+  // const handleDifficultyTag = (event) =>  {
+  //   setDifficultyTag(event.target.value)
+  // }
+
+  // const handleTimeTag = (event) =>  {
+  //   setTimeTag(event.target.value)
+  // }
+  
   const handleRating = (event) => {
     setRating(event.target.value)
   }
@@ -116,13 +130,55 @@ const Form = () => {
             onChange={handleRating} />
         </label>
         <TagsDiv>
-          <Tags 
+        <Tag>
+            <h2>Meal</h2>
+            <div>
+                <label> "Breakfeast"
+                    <input 
+                        type="checkbox"
+                        name="breakfeast"
+                        value={mealTag}
+                        checked={setMealTag}
+                        />
+                    </label>
+                <label> "Lunch"
+                    <input
+                        type="checkbox"
+                        name="lunch"
+                        value={mealTag}
+                        onChange={() => {handleMealTag}}
+                        // checked={}
+                        />
+                    </label>
+                <label> "Dinner"
+                    <input
+                        type="checkbox"
+                        name="dinner"
+                        value={mealTag}
+                        onChange={() => {handleMealTag}}
+                        // checked={}
+                        />
+                    </label>
+                <label> "Snack"
+                    <input
+                        type="checkbox"
+                        name="snack"
+                        value={mealTag}
+                        onChange={() => {handleMealTag}}
+                        // checked={}
+                        />
+                    </label>  
+            </div>     
+          </Tag>
+          {/* <Tags 
             h2="Meal"
             Option1="Breakfast"
             Option2="Lunch"
             Option3="Dinner"
             Option4="Snack"
             value={mealTag}
+            state={mealTag}
+            setState={setMealTag}
             />
           <Tags 
             h2="Difficulty"
@@ -130,7 +186,9 @@ const Form = () => {
             Option2="Medium"
             Option3="Difficult"
             Option4="Snack"
+            state={difficultyTag}
             value={difficultyTag}
+            setState={setDifficultyTag}
             />
           <Tags 
             h2="Time"
@@ -138,8 +196,10 @@ const Form = () => {
             Option2=">30"
             Option3=">60"
             Option4=">24h"
+            state={timeTag}
             value={timeTag}
-            />
+            setState={setTimeTag}
+            /> */}
           </TagsDiv>
         <ButtonDiv>
           <AddNewRecipeButton type="submit">Add recipe</AddNewRecipeButton>
@@ -223,3 +283,21 @@ const TagsDiv = styled.div`
   width: 80%;
   justify-content: space-around;
   `
+
+const Tag = styled.div`
+margin: 5px;
+
+h2 {
+    font-size: 16px;
+}
+div {
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+
+    label {
+        font-size: 14px;
+        display: grid;
+        flex-direction: row;
+    }
+}
+`

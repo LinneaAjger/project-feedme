@@ -17,8 +17,9 @@ const LikeSaveCommentContainer = () => {
 
     return (
         <LikeContainer>
+            {/* Jag har tillfälligt tagit bort "onClick='delete' från button:en nedan */}
             {/* Add function to only show this button when post-user-id === user-id */}
-            <button type="button" onClick={'delete'}>
+            <button type="button">
                 <StyledSvg 
                     width="10" 
                     height="15" 
