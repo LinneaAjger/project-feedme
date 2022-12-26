@@ -58,26 +58,30 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
-const MealTags = new mongoose.Schema({
-  breakfeast: {
-    type: Boolean
-  },
-  lunch: {
-    type: Boolean
-  }, 
-  dinner: {
-    type: Boolean
-  },
-  snack: {
-    type: Boolean
-  }
-})
+// const MealTags = new mongoose.Schema({
+//   breakfeast: {
+//     type: Boolean,
+//     default: false
+//   },
+//   lunch: {
+//     type: Boolean,
+//     default: false
+//   }, 
+//   dinner: {
+//     type: Boolean, 
+//     default: false
+//   },
+//   snack: {
+//     type: Boolean,
+//     default: false
+//   }
+// })
 
-const RecipeTags = new mongoose.Schema({
-  meal: {
-    type: MealTags
-  }
-})
+// const RecipeTags = new mongoose.Schema({
+//   meal: {
+//     type: MealTags
+//   }
+// })
 
 // Recipe-schema
 const RecipeDetails = new mongoose.Schema({
@@ -101,9 +105,9 @@ const RecipeDetails = new mongoose.Schema({
     type: Number,
     max: 5,
   },
-  tags: {
-    type: RecipeTags
-    }
+  tags: [{
+    type: String
+    }]
 })
 
 const RecipeSchema = new mongoose.Schema({
