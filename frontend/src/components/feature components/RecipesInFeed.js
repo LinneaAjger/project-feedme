@@ -8,6 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import { RecipeContainer } from "../styles/DivStyles"
 import { SmallP } from "../styles/GlobalStyles"
 import { RecipeList } from "../styles/DivStyles";
+import TagsVisual from "./TagsVisual";
 
 const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
@@ -53,9 +54,14 @@ const RecipesInFeed = () => {
         <RecipeContainer>
           {singleRecipe.recipe && (
             <div>
-              <SmallP>user, XX ago</SmallP>
+              <SmallP>{singleRecipe.user}, XX ago</SmallP>
               <h3>{singleRecipe.recipe.name}</h3>
               <p>"{singleRecipe.recipe.description}"</p>
+              <TagContainer>
+              {singleRecipe.recipe.tags.map((tag) => {
+                return <TagsVisual tag={tag} /> 
+              })}
+              </TagContainer>
             </div>
           )}
           <LikeSaveCommentContainer/>
@@ -68,3 +74,9 @@ const RecipesInFeed = () => {
  export default RecipesInFeed
 
 
+ const TagContainer = styled.div`
+ display: flex;
+ flex-direction: row;
+ gap: 0.8vw;
+ padding-top: 20px;
+`
