@@ -14,14 +14,11 @@ const Form = () => {
   const [description, setDescription] = useState('')
   const [instructions, setInstructions] = useState('')  
   const [rating, setRating] = useState(0)
-  const [mealTag, setMealTag] = useState([])
-  const [checked, setChecked] = useState(false);
-
-  // const [difficultyTag, setDifficultyTag] = useState([])
-  // const [timeTag, setTimeTag] = useState([])
+  const [tags, setTags] = useState([])
+  const [checked, setChecked] = useState(false)
+  const MealArray = [{value: 'breakfast', title: 'breakfeast'}, {value: 'lunch', title: 'lunch'}, {value: 'dinner', title: 'dinner'}, {value: 'snack', title: 'snack'}]
 
   const dispatch = useDispatch()
-
   const accessToken = localStorage.getItem('accessToken');
 
   const onSubmit = () => {
@@ -36,7 +33,8 @@ const Form = () => {
         description,
         ingredients,
         instructions,
-        userRating: rating
+        userRating: rating,
+        tags
       }})
     }
     fetch(API_URL("recipes"), options)
@@ -62,18 +60,6 @@ const Form = () => {
   const handleDescription = (event) => {
     setDescription(event.target.value)
   }
-
-  const handleMealTag = (event) =>  {
-    setMealTag(event.target.value)
-  }
-
-  // const handleDifficultyTag = (event) =>  {
-  //   setDifficultyTag(event.target.value)
-  // }
-
-  // const handleTimeTag = (event) =>  {
-  //   setTimeTag(event.target.value)
-  // }
   
   const handleRating = (event) => {
     setRating(event.target.value)
@@ -82,6 +68,16 @@ const Form = () => {
   const closeForm = () => {
     location.reload();
   }
+
+  const toggleChecked = () => {
+    setChecked(!checked)
+  }
+
+const handleOnChange = (event) => {
+    setTags(event.target.value)
+    toggleChecked()
+    console.log("toggeling")
+}
 
   return (
     <FormStyledDiv>
@@ -133,41 +129,54 @@ const Form = () => {
         <Tag>
             <h2>Meal</h2>
             <div>
-                <label> "Breakfeast"
+              {MealArray.map(meal => {
+                return (
+                  <label>{meal.title}
+                    <input 
+                      type="checkbox"
+                      value={meal.value}
+                      onChange={event => handleOnChange(event)}
+                      checked={meal.value === checked}
+                      />
+                  </label>
+                )
+              })}
+                {/* <label> Breakfeast
                     <input 
                         type="checkbox"
                         name="breakfeast"
-                        value={mealTag}
-                        checked={setMealTag}
+                        value="breakfeast"
+                        checked={checked && "breakfeast"}
+                        onChange={event => handleOnChange(event)}
                         />
                     </label>
-                <label> "Lunch"
+                <label> Lunch
                     <input
                         type="checkbox"
                         name="lunch"
-                        value={mealTag}
-                        onChange={() => {handleMealTag}}
-                        // checked={}
+                        value="lunch"
+                        onChange={event => handleOnChange(event)}
+                        checked={checked && "lunch"}
                         />
                     </label>
-                <label> "Dinner"
+                <label> Dinner
                     <input
                         type="checkbox"
                         name="dinner"
-                        value={mealTag}
-                        onChange={() => {handleMealTag}}
-                        // checked={}
+                        value="dinner"
+                        onChange={event => handleOnChange(event)}
+                        checked={checked && "dinner"}
                         />
                     </label>
-                <label> "Snack"
+                <label> Snack
                     <input
                         type="checkbox"
                         name="snack"
-                        value={mealTag}
-                        onChange={() => {handleMealTag}}
-                        // checked={}
+                        value="snack"
+                        onChange={event => handleOnChange(event)}
+                        checked={checked && "snack"}
                         />
-                    </label>  
+                    </label>   */}
             </div>     
           </Tag>
           {/* <Tags 
@@ -176,11 +185,11 @@ const Form = () => {
             Option2="Lunch"
             Option3="Dinner"
             Option4="Snack"
-            value={mealTag}
-            state={mealTag}
-            setState={setMealTag}
-            />
-          <Tags 
+            value={tags}
+            tags={tags}
+            setTags={setTags}
+            /> */}
+          {/* <Tags 
             h2="Difficulty"
             Option1="Easy"
             Option2="Medium"
@@ -221,7 +230,7 @@ const FormStyledDiv = styled(StyledDiv)`
   height: 100%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  padding: 0;
+  padding: 30px;
 
   input, textarea {
     max-width: 1000px;
@@ -240,21 +249,23 @@ const FormStyledDiv = styled(StyledDiv)`
     width: 80vw;
     height: 70vh;
     transform: translate(-50%, -70%);
+
+    label {
+    width: 70%;
+    }
   } 
 
-  label {
-    width: 70%;
-  }
-
   @media (min-width: 1024px) {
-    width: 60vw;
+    width: 100vw;
     height: 80vh;
-    transform: translate(-50%, -70%);
+    transform: translate(-50%, -80%);
+
+    label {
+    width: 80%;
+    }
   }
   
-  label {
-    width: 80%;
-  }
+
   `
 
 const CreateRecipeDiv = styled.div`

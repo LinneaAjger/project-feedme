@@ -105,9 +105,9 @@ const RecipeDetails = new mongoose.Schema({
     type: Number,
     max: 5,
   },
-  tags: [{
-    type: String
-    }]
+  tags: {
+    type: [String]
+    }
 })
 
 const RecipeSchema = new mongoose.Schema({

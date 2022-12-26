@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-const Tags = ({ h2, Option1, Option2, Option3, Option4, value, state, setState }) => {
+const Tags = ({ h2, Option1, Option2, Option3, Option4, setTags, tags }) => {
+    const [checked, setChecked] = useState(false)
+    
+    const toggleChecked = () => {
+        setChecked(!checked)
+      }
 
-    const handleStateChange = (event) => {
-        {setState}(event.target.value)
+    const handleOnChange = (event) => {
+        setTags(event.target.value)
+        toggleChecked()
+        console.log("hello")
     }
 
     return (
@@ -14,38 +21,39 @@ const Tags = ({ h2, Option1, Option2, Option3, Option4, value, state, setState }
             <div>
                 <label> {Option1}
                     <input 
-                        type="radio"
+                        type="checkbox"
                         name={Option1}
-                        value={value}
-                        onChange={() => {handleStateChange}}
-                        checked={value === Option1}
+                        value={Option1}
+                        onChange={event => handleOnChange(event)}
+                        checked={checked}
                         />
                     </label>
                 <label> {Option2}
                     <input
-                        type="radio"
+                        type="checkbox"
                         name={Option2}
-                        value={value}
-                        onChange={() => {handleStateChange}}
-                        checked={value === Option2}
+                        value={Option2}
+                        onChange={event => handleOnChange(event)}
+                        checked={checked}
                         />
                     </label>
                 <label> {Option3}
                     <input
-                        type="radio"
+                        type="checkbox"
                         name={Option3}
-                        value={value}
-                        onChange={() => {handleStateChange}}
-                        checked={value === Option3}
+                        value={Option3}
+                        onChange={event => handleOnChange(event)}
+
+                        checked={checked}
                         />
                     </label>
                 <label> {Option4}
                     <input
-                        type="radio"
+                        type="checkbox"
                         name={Option4}
-                        value={value}
-                        onChange={() => {handleStateChange}}
-                        checked={value === Option4}
+                        value={Option4}
+                        onChange={event => handleOnChange(event)}
+                        checked={checked}
                         />
                     </label>  
             </div>     
