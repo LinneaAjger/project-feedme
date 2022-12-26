@@ -34,7 +34,7 @@ const Form = () => {
         ingredients,
         instructions,
         userRating: rating,
-        tags
+        tags: tags
       }})
     }
     fetch(API_URL("recipes"), options)
@@ -136,47 +136,10 @@ const handleOnChange = (event) => {
                       type="checkbox"
                       value={meal.value}
                       onChange={event => handleOnChange(event)}
-                      checked={meal.value === checked}
                       />
                   </label>
                 )
               })}
-                {/* <label> Breakfeast
-                    <input 
-                        type="checkbox"
-                        name="breakfeast"
-                        value="breakfeast"
-                        checked={checked && "breakfeast"}
-                        onChange={event => handleOnChange(event)}
-                        />
-                    </label>
-                <label> Lunch
-                    <input
-                        type="checkbox"
-                        name="lunch"
-                        value="lunch"
-                        onChange={event => handleOnChange(event)}
-                        checked={checked && "lunch"}
-                        />
-                    </label>
-                <label> Dinner
-                    <input
-                        type="checkbox"
-                        name="dinner"
-                        value="dinner"
-                        onChange={event => handleOnChange(event)}
-                        checked={checked && "dinner"}
-                        />
-                    </label>
-                <label> Snack
-                    <input
-                        type="checkbox"
-                        name="snack"
-                        value="snack"
-                        onChange={event => handleOnChange(event)}
-                        checked={checked && "snack"}
-                        />
-                    </label>   */}
             </div>     
           </Tag>
           {/* <Tags 
