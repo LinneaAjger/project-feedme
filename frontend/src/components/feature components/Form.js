@@ -201,7 +201,6 @@ const FormStyledDiv = styled(StyledDiv)`
   transform: translate(-50%, -50%);
   border-radius: 20px;
   padding: 30px;
-  z-index: 4;
 
   input, textarea {
     max-width: 1000px;
@@ -229,7 +228,8 @@ const FormStyledDiv = styled(StyledDiv)`
   @media (min-width: 1024px) {
     width: 100vw;
     height: 80vh;
-    transform: translate(-50%, -80%);
+    transform: translate(-50%, -83%);
+    max-width: 900px;
 
     label {
     width: 80%;
@@ -261,7 +261,7 @@ const TagsDiv = styled.div`
   display: flex;
   flex-direction: row;
   width: 80%;
-  justify-content: space-around;
+  justify-content: space-around  
   `
 
 const Tag = styled.div`
