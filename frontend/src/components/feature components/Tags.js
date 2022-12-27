@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-const Tags = ({ h2, Option1, Option2, Option3, Option4, setTags, tags }) => {
+const Tags = ({ h2, Option1, Option2, Option3, Option4, setTags, tags, meal }) => {
     const [checked, setChecked] = useState(false)
     
     const toggleChecked = () => {
@@ -25,7 +25,6 @@ const Tags = ({ h2, Option1, Option2, Option3, Option4, setTags, tags }) => {
                         name={Option1}
                         value={Option1}
                         onChange={event => handleOnChange(event)}
-                        checked={checked}
                         />
                     </label>
                 <label> {Option2}
@@ -34,7 +33,6 @@ const Tags = ({ h2, Option1, Option2, Option3, Option4, setTags, tags }) => {
                         name={Option2}
                         value={Option2}
                         onChange={event => handleOnChange(event)}
-                        checked={checked}
                         />
                     </label>
                 <label> {Option3}
@@ -43,8 +41,6 @@ const Tags = ({ h2, Option1, Option2, Option3, Option4, setTags, tags }) => {
                         name={Option3}
                         value={Option3}
                         onChange={event => handleOnChange(event)}
-
-                        checked={checked}
                         />
                     </label>
                 <label> {Option4}
@@ -53,7 +49,6 @@ const Tags = ({ h2, Option1, Option2, Option3, Option4, setTags, tags }) => {
                         name={Option4}
                         value={Option4}
                         onChange={event => handleOnChange(event)}
-                        checked={checked}
                         />
                     </label>  
             </div>     

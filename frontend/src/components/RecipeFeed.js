@@ -11,7 +11,9 @@ import SearchForUser from './feature components/SearchForUser';
 const RecipeFeed = () => {
   const navigate = useNavigate()
   const accessToken = localStorage.getItem('accessToken')
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(true)
+
+  console.log(collapsed)
 
   useEffect(() => {
     if(!accessToken) {
@@ -60,11 +62,7 @@ const RecipeFeed = () => {
             <img src={AddIcon} />
             <p>add new recipe</p>
           </button>
-          {collapsed && 
-          <Form 
-            style={{
-            transition: "all 10s ease"
-            }}/>}
+          {!collapsed && <Form collapsed={collapsed} setCollapsed={setCollapsed} />}
       </ButtonContainer>
       <RecipesInFeed />
     </FeedSection>
@@ -78,11 +76,7 @@ const RecipeFeed = () => {
               <img src={AddIcon} />
               <p>add new recipe</p>
             </button>
-            {collapsed && 
-            <Form 
-              style={{
-              transition: "all 10s ease"
-              }}/>}
+            {!collapsed && <Form collapsed={collapsed} setCollapsed={setCollapsed} />}
             </ButtonContainer>
         <RecipesInFeed />
         </div>
@@ -102,11 +96,7 @@ const RecipeFeed = () => {
               <img src={AddIcon} />
               <p>add new recipe</p>
             </button>
-            {collapsed && 
-            <Form 
-              style={{
-              transition: "all 10s ease"
-              }}/>}
+            {!collapsed && <Form collapsed={collapsed} setCollapsed={setCollapsed} />}
             </ButtonContainer>
         <RecipesInFeed />
         </div>

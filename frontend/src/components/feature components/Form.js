@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { API_URL } from 'utils/utils'
-import { useDispatch } from 'react-redux'
 import { StyledButton } from 'components/styles/ButtonStyles'
 import { SrOnly } from 'components/styles/GlobalStyles'
 import { ButtonDiv } from 'components/styles/ButtonStyles'
-import { StyledDiv } from 'components/styles/DivStyles'
-// import Tags from './Tags'
+import { StyledDiv, StyledFlexDiv } from 'components/styles/DivStyles'
+import Tags from './Tags'
+import Input from './Input'
 
-const Form = () => {
+const Form = ({ collapsed, setCollapsed }) => {
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [description, setDescription] = useState('')
@@ -16,9 +16,11 @@ const Form = () => {
   const [rating, setRating] = useState(0)
   const [tags, setTags] = useState([])
   const [checked, setChecked] = useState(false)
+  
   const MealArray = [{value: 'breakfast', title: 'breakfeast'}, {value: 'lunch', title: 'lunch'}, {value: 'dinner', title: 'dinner'}, {value: 'snack', title: 'snack'}]
+  const DietaryRestrictionsArray = [{value: 'vegan', title: 'Vegan'}, {value: 'vegetarian', title: 'Vegetarian'}, {value: 'Gluten free', title: 'Gluten free'}, {value: 'lactose free', title: 'Lactose free'}]
+  const TimeArray = [{value: '<30min', title: '<30min'}, {value: '>30min', title: '>30min'}, {value: '>1h', title: '>1h'}]
 
-  const dispatch = useDispatch()
   const accessToken = localStorage.getItem('accessToken');
 
   const onSubmit = () => {
@@ -66,18 +68,18 @@ const Form = () => {
   }
 
   const closeForm = () => {
-    location.reload();
-  }
+    setCollapsed(true)
+    }
 
   const toggleChecked = () => {
     setChecked(!checked)
   }
 
-const handleOnChange = (event) => {
+  const handleOnChange = (event) => {
     setTags(event.target.value)
     toggleChecked()
     console.log("toggeling")
-}
+  }
 
   return (
     <FormStyledDiv>
@@ -90,88 +92,93 @@ const handleOnChange = (event) => {
         </button>
       </CreateRecipeDiv>
       <form onSubmit={onSubmit}>
-        <label> <SrOnly>Name of recipe</SrOnly>
-          <input 
-            placeholder="My recipe is called..."
-            type="text"
-            value={recipeName}
-            onChange={handleRecipeName} />
-        </label>
-        <label> <SrOnly>Description</SrOnly>
-          <textarea
-            placeholder="Description"
-            type="text" 
-            value={description} 
-            onChange={handleDescription} />
-        </label>
-        <label> <SrOnly>Ingredients</SrOnly>
-          <textarea
-            placeholder="Ingredients"
-            type="array"
-            value={ingredients}
-            onChange={handleIngredients} />
-        </label>
-        <label> <SrOnly>Instructions</SrOnly>
-          <textarea
-            placeholder="Instructions"
-            type="text"
-            value={instructions}
-            onChange={handleInstructions} />
-        </label>
-        <label> <SrOnly>Rating</SrOnly>
-          <input 
-            placeholder="Rating, 1-5"
-            type="number"
-            value={rating}
-            onChange={handleRating} />
-        </label>
+        <Input 
+          type="text"
+          srOnly="Name of recipe"
+          placeholder="My recipe is called..."
+          value={recipeName}
+          onChange={handleRecipeName}
+          />
+        <Input 
+          type="text"
+          srOnly="Description"
+          placeholder="Description"
+          value={description} 
+          onChange={handleDescription}
+          />
+        <Input 
+          type="text"
+          srOnly="Ingredients"
+          placeholder="Ingredients"
+          value={ingredients}
+          onChange={handleIngredients}
+          />
+        <Input 
+          type="text"
+          srOnly="Instructions"
+          placeholder="Instructions"
+          value={instructions}
+          onChange={handleInstructions}
+          />
+        <Input 
+          type="number"
+          srOnly="Rating"
+          placeholder="Rating 1-5"
+          value={rating}
+          onChange={handleRating}
+          />
         <TagsDiv>
-        <Tag>
-            <h2>Meal</h2>
-            <div>
-              {MealArray.map(meal => {
-                return (
-                  <label>{meal.title}
-                    <input 
-                      type="checkbox"
-                      value={meal.value}
-                      onChange={event => handleOnChange(event)}
-                      />
-                  </label>
-                )
-              })}
-            </div>     
-          </Tag>
-          {/* <Tags 
-            h2="Meal"
-            Option1="Breakfast"
-            Option2="Lunch"
-            Option3="Dinner"
-            Option4="Snack"
-            value={tags}
-            tags={tags}
-            setTags={setTags}
-            /> */}
-          {/* <Tags 
-            h2="Difficulty"
-            Option1="Easy"
-            Option2="Medium"
-            Option3="Difficult"
-            Option4="Snack"
-            state={difficultyTag}
-            value={difficultyTag}
-            setState={setDifficultyTag}
-            />
-          <Tags 
-            h2="Time"
-            Option1="<30"
-            Option2=">30"
-            Option3=">60"
-            Option4=">24h"
-            state={timeTag}
-            value={timeTag}
-            setState={setTimeTag}
-            /> */}
+          <Tag>
+              <h2>Meal</h2>
+              <div>
+                {MealArray.map(meal => {
+                  return (
+                    <label>
+                      <input 
+                        type="checkbox"
+                        value={meal.value}
+                        onChange={event => handleOnChange(event)}
+                        />
+                        {meal.title}
+                    </label>
+                  )
+                })}
+              </div>     
+            </Tag>
+            <Tag>
+              <h2>Difficulty</h2>
+              <div>
+                {DietaryRestrictionsArray.map(restriction => {
+                  return (
+                    <label>
+                      <input 
+                        type="checkbox"
+                        value={restriction.value}
+                        onChange={event => handleOnChange(event)}
+                        />
+                        {restriction.title}
+                    </label>
+                  )
+                })}
+              </div>     
+            </Tag>
+            <Tag>
+              <h2>Time</h2>
+              <div>
+                {TimeArray.map(time => {
+                  return (
+                    <label>
+                      <input 
+                        type="checkbox"
+                        value={time.value}
+                        onChange={event => handleOnChange(event)}
+                        />
+                        {time.title}
+                    </label>
+                  )
+                })}
+              </div>     
+            </Tag>
           </TagsDiv>
         <ButtonDiv>
           <AddNewRecipeButton type="submit">Add recipe</AddNewRecipeButton>
@@ -194,6 +201,7 @@ const FormStyledDiv = styled(StyledDiv)`
   transform: translate(-50%, -50%);
   border-radius: 20px;
   padding: 30px;
+  z-index: 4;
 
   input, textarea {
     max-width: 1000px;
@@ -227,8 +235,6 @@ const FormStyledDiv = styled(StyledDiv)`
     width: 80%;
     }
   }
-  
-
   `
 
 const CreateRecipeDiv = styled.div`
@@ -263,6 +269,7 @@ margin: 5px;
 
 h2 {
     font-size: 16px;
+    text-align: center;
 }
 div {
     display: grid; 
@@ -270,8 +277,15 @@ div {
 
     label {
         font-size: 14px;
-        display: grid;
+        display: flex;
         flex-direction: row;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        
+        input {
+          vertical-align: middle;
+        }
     }
 }
 `
