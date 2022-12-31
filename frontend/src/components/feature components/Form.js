@@ -8,18 +8,29 @@ import { StyledDiv, StyledFlexDiv } from 'components/styles/DivStyles'
 import Tags from './Tags'
 import Input from './Input'
 
-const Form = ({ collapsed, setCollapsed }) => {
+const Checkbox = ({ tags, title, value, handleOnChange }) => (
+  <label>
+    <input
+      type="checkbox"
+      name={value}
+      checked={!!tags[value]}
+      onChange={event => handleOnChange(event)}
+    />
+    {title}
+  </label>
+);
+
+const Form = ({ setCollapsed }) => {
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [description, setDescription] = useState('')
-  const [instructions, setInstructions] = useState('')  
+  const [instructions, setInstructions] = useState('')
   const [rating, setRating] = useState(0)
-  const [tags, setTags] = useState([])
-  const [checked, setChecked] = useState(false)
-  
-  const MealArray = [{value: 'breakfast', title: 'breakfeast'}, {value: 'lunch', title: 'lunch'}, {value: 'dinner', title: 'dinner'}, {value: 'snack', title: 'snack'}]
-  const DietaryRestrictionsArray = [{value: 'vegan', title: 'Vegan'}, {value: 'vegetarian', title: 'Vegetarian'}, {value: 'Gluten free', title: 'Gluten free'}, {value: 'lactose free', title: 'Lactose free'}]
-  const TimeArray = [{value: '<30min', title: '<30min'}, {value: '>30min', title: '>30min'}, {value: '>1h', title: '>1h'}]
+  const [tags, setTags] = useState({})
+
+  const MealArray = [{ value: 'breakfast', title: 'breakfeast' }, { value: 'lunch', title: 'lunch' }, { value: 'dinner', title: 'dinner' }, { value: 'snack', title: 'snack' }]
+  const DietaryRestrictionsArray = [{ value: 'vegan', title: 'Vegan' }, { value: 'vegetarian', title: 'Vegetarian' }, { value: 'Gluten free', title: 'Gluten free' }, { value: 'lactose free', title: 'Lactose free' }]
+  const TimeArray = [{ value: '<30min', title: '<30min' }, { value: '>30min', title: '>30min' }, { value: '>1h', title: '>1h' }]
 
   const accessToken = localStorage.getItem('accessToken');
 
@@ -30,14 +41,16 @@ const Form = ({ collapsed, setCollapsed }) => {
         "Content-Type": "application/json",
         "Authorization": accessToken
       },
-      body: JSON.stringify({recipe: {
-        name: recipeName,
-        description,
-        ingredients,
-        instructions,
-        userRating: rating,
-        tags: tags
-      }})
+      body: JSON.stringify({
+        recipe: {
+          name: recipeName,
+          description,
+          ingredients,
+          instructions,
+          userRating: rating,
+          tags: convertTagsToArray(tags)
+        }
+      })
     }
     fetch(API_URL("recipes"), options)
       .then(res => res.json())
@@ -45,6 +58,16 @@ const Form = ({ collapsed, setCollapsed }) => {
         console.log(data)
         dispatch(recipes.actions.setNewRecipe(data.response))
       })
+  }
+
+  const convertTagsToArray = (tagsObject) => {
+    const tagsArray = [];
+    Object.keys(tagsObject).forEach(key => {
+      if (tagsObject[key] === true) {
+        tagsArray.push(key);
+      }
+    })
+    return tagsArray;
   }
 
   const handleRecipeName = (event) => {
@@ -62,129 +85,96 @@ const Form = ({ collapsed, setCollapsed }) => {
   const handleDescription = (event) => {
     setDescription(event.target.value)
   }
-  
+
   const handleRating = (event) => {
     setRating(event.target.value)
   }
 
   const closeForm = () => {
     setCollapsed(true)
-    }
-
-  const toggleChecked = () => {
-    setChecked(!checked)
   }
 
   const handleOnChange = (event) => {
-    setTags(event.target.value)
-    toggleChecked()
-    console.log("toggeling")
+    const key = event.target.name;
+    const currentValue = tags[key];
+    setTags((tags) => ({
+      ...tags,
+      [key]: !currentValue
+    }));
   }
-
+  
+  console.log(tags);
   return (
     <FormStyledDiv>
       <CreateRecipeDiv>
         <h1>Create recipe</h1>
         <button type="button" onClick={closeForm}>
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L24 24M24 2L2 24" stroke="#F2C19F" stroke-width="4" stroke-linecap="round"/>
+            <path d="M2 2L24 24M24 2L2 24" stroke="#F2C19F" strokeWidth="4" strokeLinecap="round" />
           </svg>
         </button>
       </CreateRecipeDiv>
       <form onSubmit={onSubmit}>
-        <Input 
+        <Input
           type="text"
           srOnly="Name of recipe"
           placeholder="My recipe is called..."
           value={recipeName}
           onChange={handleRecipeName}
-          />
-        <Input 
+        />
+        <Input
           type="text"
           srOnly="Description"
           placeholder="Description"
-          value={description} 
+          value={description}
           onChange={handleDescription}
-          />
-        <Input 
+        />
+        <Input
           type="text"
           srOnly="Ingredients"
           placeholder="Ingredients"
           value={ingredients}
           onChange={handleIngredients}
-          />
-        <Input 
+        />
+        <Input
           type="text"
           srOnly="Instructions"
           placeholder="Instructions"
           value={instructions}
           onChange={handleInstructions}
-          />
-        <Input 
+        />
+        <Input
           type="number"
           srOnly="Rating"
           placeholder="Rating 1-5"
           value={rating}
           onChange={handleRating}
-          />
+        />
         <TagsDiv>
           <Tag>
-              <h2>Meal</h2>
-              <div>
-                {MealArray.map(meal => {
-                  return (
-                    <label>
-                      <input 
-                        type="checkbox"
-                        value={meal.value}
-                        onChange={event => handleOnChange(event)}
-                        />
-                        {meal.title}
-                    </label>
-                  )
-                })}
-              </div>     
-            </Tag>
-            <Tag>
-              <h2>Difficulty</h2>
-              <div>
-                {DietaryRestrictionsArray.map(restriction => {
-                  return (
-                    <label>
-                      <input 
-                        type="checkbox"
-                        value={restriction.value}
-                        onChange={event => handleOnChange(event)}
-                        />
-                        {restriction.title}
-                    </label>
-                  )
-                })}
-              </div>     
-            </Tag>
-            <Tag>
-              <h2>Time</h2>
-              <div>
-                {TimeArray.map(time => {
-                  return (
-                    <label>
-                      <input 
-                        type="checkbox"
-                        value={time.value}
-                        onChange={event => handleOnChange(event)}
-                        />
-                        {time.title}
-                    </label>
-                  )
-                })}
-              </div>     
-            </Tag>
-          </TagsDiv>
+            <h2>Meal</h2>
+            <div>
+              {MealArray.map(({ title, value }) => <Checkbox key={value} title={title} value={value} handleOnChange={handleOnChange} tags={tags} />)}
+            </div>
+          </Tag>
+          <Tag>
+            <h2>Preferences</h2>
+            <div>
+              {DietaryRestrictionsArray.map(({ title, value }) => <Checkbox key={value} title={title} value={value} handleOnChange={handleOnChange} tags={tags} />)}
+            </div>
+          </Tag>
+          <Tag>
+            <h2>Time</h2>
+            <div>
+              {TimeArray.map(({ title, value }) => <Checkbox key={value} title={title} value={value} handleOnChange={handleOnChange} tags={tags} />)}
+            </div>
+          </Tag>
+        </TagsDiv>
         <ButtonDiv>
           <AddNewRecipeButton type="submit">Add recipe</AddNewRecipeButton>
         </ButtonDiv>
       </form>
-  </FormStyledDiv>
+    </FormStyledDiv>
   )
 }
 
@@ -276,12 +266,14 @@ div {
     grid-template-columns: 1fr 1fr;
 
     label {
+        width: 100%;
+        justify-self: start;
         font-size: 14px;
-        display: flex;
+        /* display: flex;
         flex-direction: row;
         text-align: center;
         align-items: center;
-        justify-content: center;
+        justify-content: center; */
         
         input {
           vertical-align: middle;
