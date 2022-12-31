@@ -2,23 +2,10 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import { API_URL } from 'utils/utils'
 import { StyledButton } from 'components/styles/ButtonStyles'
-import { SrOnly } from 'components/styles/GlobalStyles'
 import { ButtonDiv } from 'components/styles/ButtonStyles'
-import { StyledDiv, StyledFlexDiv } from 'components/styles/DivStyles'
-import Tags from './Tags'
+import { StyledDiv } from 'components/styles/DivStyles'
 import Input from './Input'
-
-const Checkbox = ({ tags, title, value, handleOnChange }) => (
-  <label>
-    <input
-      type="checkbox"
-      name={value}
-      checked={!!tags[value]}
-      onChange={event => handleOnChange(event)}
-    />
-    {title}
-  </label>
-);
+import Checkbox from './Checkbox'
 
 const Form = ({ setCollapsed }) => {
   const [recipeName, setRecipeName] = useState('')
