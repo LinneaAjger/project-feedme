@@ -4,20 +4,20 @@ import styled from "styled-components/macro";
 
 const SearchForUser = () => {
     return (
-        <SearchForUserDiv>
+        <SearchForUserForm>
             <label> <SrOnly>Search for user</SrOnly>
                 <input
                     type="text"
                     placeholder="Search for user..."/>
             </label>
-        </SearchForUserDiv>
+        </SearchForUserForm>
     )
 }
 
 
 export default SearchForUser
 
-const SearchForUserDiv = styled.div`
+const SearchForUserForm = styled.form`
 margin-bottom: 30px;
 padding: 10px;
 
