@@ -1,27 +1,68 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { SrOnly } from "components/styles/GlobalStyles";
 import styled from "styled-components/macro";
 import { BsSearch } from 'react-icons/bs';
+import { API_URL } from "utils/utils";
 
 const SearchForUser = () => {
-    const handleSubmit = (event) => event.preventDefault()
+    const [users, setUsers] = useState([])
+    const [searchedUsers, setSearchedUsers] = useState([])
+    const accessToken = localStorage.getItem('accessToken')
+
+    useEffect (() => {
+            const options = {
+                method: "GET",
+                headers: {
+                "Content-Type": "application/json",
+                "Authorization": accessToken
+                }
+            }
+             fetch(API_URL("users"), options)
+                .then(res => res.json())
+                .then(data => {
+                console.log(data.response)
+                if(data.success) {
+                setUsers(data.response)
+                setSearchedUsers(data.response)
+                }
+                })
+                .catch((error => {
+                console.error('Error:', error)
+                }))
+                console.log(users)
+    }, [])
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+    }
+
     const handleSearchChange = (event) => {
         if(!event.target.value)
         return (null)
+
+        const usersArray = users.filter(user => user.username.includes(event.target.value))
+
+
     }
 
     return (
-        <SearchForUserForm onSubmit={handleSubmit}>
-            <label> <SrOnly>Search for user</SrOnly>
-                <input
-                    type="text"
-                    placeholder="Search for user..."
-                    onChange={handleSearchChange}/>
-                <button>
-                    <BsSearch />
-                </button>
-            </label>
-        </SearchForUserForm>
+        <>
+            <SearchForUserForm onSubmit={handleSubmit}>
+                <label> <SrOnly>Search for user</SrOnly>
+                    <input
+                        type="text"
+                        placeholder="Search for user..."
+                        onChange={handleSearchChange}/>
+                    <button>
+                        <BsSearch />
+                    </button>
+                </label>
+            </SearchForUserForm>
+            {/* <div>
+            {users.map(singleUser =>
+                <p>{singleUser.username}</p>)}
+            </div> */}
+        </>
     )
 }
 
