@@ -3,6 +3,7 @@ import { SrOnly } from "components/styles/GlobalStyles";
 import styled from "styled-components/macro";
 import { BsSearch } from 'react-icons/bs';
 import { API_URL } from "utils/utils";
+import { Link } from "react-router-dom";
 
 const SearchForUser = () => {
     const [users, setUsers] = useState([])
@@ -23,13 +24,11 @@ const SearchForUser = () => {
                 console.log(data.response)
                 if(data.success) {
                 setUsers(data.response)
-                setSearchedUsers(data.response)
                 }
                 })
                 .catch((error => {
                 console.error('Error:', error)
                 }))
-                console.log(users)
     }, [])
 
     const handleSubmit = (event) => {
@@ -37,12 +36,13 @@ const SearchForUser = () => {
     }
 
     const handleSearchChange = (event) => {
-        if(!event.target.value)
-        return (null)
-
-        const usersArray = users.filter(user => user.username.includes(event.target.value))
-
-
+        const filteredUsers = users.filter(user => user.username.toLowerCase().includes(event.target.value.toLowerCase()))
+        if(event.target.value === '') {
+            setSearchedUsers('')
+        }
+        else {
+            setSearchedUsers(filteredUsers)
+        }
     }
 
     return (
@@ -58,10 +58,11 @@ const SearchForUser = () => {
                     </button>
                 </label>
             </SearchForUserForm>
-            {/* <div>
-            {users.map(singleUser =>
-                <p>{singleUser.username}</p>)}
-            </div> */}
+            {searchedUsers.length !== 0 && (
+            <SearchResultsDiv>
+            {searchedUsers.map(singleUser =>
+                <Link to={`/users/${singleUser._id}`}>{singleUser.username}</Link>)}
+            </SearchResultsDiv>)}
         </>
     )
 }
@@ -101,5 +102,16 @@ min-width: 300px;
         border: none;
         background-color: inherit;
     }
+
+`
+
+const SearchResultsDiv = styled.div`
+    margin-top: 5px;
+    padding: 10px 20px 13px 20px;
+    width: 300px;
+    height: 100px;
+    background-color: white;
+    overflow: hidden;
+    overflow-y: auto;
 
 `

@@ -3,7 +3,7 @@ import { SmallP } from './styles/GlobalStyles'
 import { RecipeList, RecipeContainer } from './styles/DivStyles'
 import { API_URL } from 'utils/utils'
 import styled from 'styled-components/macro'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useParams } from 'react-router-dom'
 import LikeSaveCommentContainer from './feature components/LikeSaveCommentContainer'
 
 const UserPage = () => {
