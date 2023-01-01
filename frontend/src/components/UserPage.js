@@ -7,9 +7,8 @@ import { useNavigate, Link, useParams } from 'react-router-dom'
 import LikeSaveCommentContainer from './feature components/LikeSaveCommentContainer'
 
 const UserPage = () => {
-const [myPosts, setMyPosts] = useState([])
+const [posts, setPosts] = useState([])
 const accessToken = localStorage.getItem('accessToken');
-const userId = localStorage.getItem('userId');
 const [toggle, setToggle]= useState(true)
 
 const params = useParams()
@@ -32,10 +31,10 @@ const options = {
 }
 
 useEffect(() => {
-  fetch(API_URL(params), options)
+  fetch(API_URL(toggle ? `users/${params.userId}` : 'savedPosts'), options)
   .then((response) => response.json())
   .then((data) => {
-    setMyPosts(data.response);
+    setPosts(data.response);
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -54,7 +53,7 @@ useEffect(() => {
       </a>
     </HeadlineDiv>
     <RecipeList>
-      {myPosts.map((singleRecipe) =>
+      {posts.map((singleRecipe) =>
          <Link to={`/recipes/${singleRecipe._id}`} recipeId={singleRecipe._id}>
             <RecipeContainer key={singleRecipe._id}>
               <div>
