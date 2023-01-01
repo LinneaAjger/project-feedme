@@ -123,6 +123,7 @@ img + img {
     }
     li {
       margin-left: -40px;
+      margin-top: 10px;
     }
 
     a, button {
@@ -139,11 +140,13 @@ img + img {
     } 
 
     @media (min-width: 668px) {
-      padding-top: 20%;
+      /* padding-top: 20%; */
 
-      input {
+
+    form {
         display: none;
       }
+
     }
 
     @media (min-width: 1024px) {
@@ -171,6 +174,10 @@ img + img {
       li {
         margin-left: -40px;
     }
+
+    form {
+        display: none;
+      }
 
     }
   }
@@ -262,7 +269,8 @@ export const Innerwrapper = styled.div`
 
 
 export const SrOnly = styled.div`
-  position: absolute;
+  display: none;
+  /* position: absolute;
    width: 1px;
   height: 1px;
   padding: 0;
@@ -270,7 +278,7 @@ export const SrOnly = styled.div`
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border-width: 0;
+  border-width: 0; */
 `
 
 export const SmallP = styled.p`
