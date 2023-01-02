@@ -4,7 +4,7 @@ import { useDispatch, useSelector, batch } from 'react-redux'
 import recipeReducer from 'reducers/recipeReducer';
 import { API_URL } from 'utils/utils';
 import LikeSaveCommentContainer from "./LikeSaveCommentContainer";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RecipeContainer } from "../styles/DivStyles"
 import { SmallP } from "../styles/GlobalStyles"
 import { RecipeList } from "../styles/DivStyles";

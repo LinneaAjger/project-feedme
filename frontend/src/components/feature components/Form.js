@@ -7,6 +7,10 @@ import { StyledDiv } from 'components/styles/DivStyles'
 import Input from './Input'
 import Checkbox from './Checkbox'
 
+export const MealArray = [{ value: 'breakfast', title: 'Breakfast' }, { value: 'lunch', title: 'Lunch' }, { value: 'dinner', title: 'Dinner' }, { value: 'snack', title: 'Snack' }]
+export const PreferencesArray = [{ value: 'vegan', title: 'Vegan' }, { value: 'vegetarian', title: 'Vegetarian' }, { value: 'Gluten free', title: 'Gluten free' }, { value: 'lactose free', title: 'Lactose free' }]
+export const TimeArray = [{ value: '<30min', title: '<30min' }, { value: '>30min', title: '>30min' }, { value: '>1h', title: '>1h' }]
+
 const Form = ({ setCollapsed }) => {
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState([])
@@ -14,10 +18,6 @@ const Form = ({ setCollapsed }) => {
   const [instructions, setInstructions] = useState('')
   const [rating, setRating] = useState(0)
   const [tags, setTags] = useState({})
-
-  const MealArray = [{ value: 'breakfast', title: 'breakfeast' }, { value: 'lunch', title: 'lunch' }, { value: 'dinner', title: 'dinner' }, { value: 'snack', title: 'snack' }]
-  const DietaryRestrictionsArray = [{ value: 'vegan', title: 'Vegan' }, { value: 'vegetarian', title: 'Vegetarian' }, { value: 'Gluten free', title: 'Gluten free' }, { value: 'lactose free', title: 'Lactose free' }]
-  const TimeArray = [{ value: '<30min', title: '<30min' }, { value: '>30min', title: '>30min' }, { value: '>1h', title: '>1h' }]
 
   const accessToken = localStorage.getItem('accessToken');
 
@@ -147,7 +147,7 @@ const Form = ({ setCollapsed }) => {
           <Tag>
             <h2>Preferences</h2>
             <div>
-              {DietaryRestrictionsArray.map(({ title, value }) => <Checkbox key={value} title={title} value={value} handleOnChange={handleOnChange} tags={tags} />)}
+              {PreferencesArray.map(({ title, value }) => <Checkbox key={value} title={title} value={value} handleOnChange={handleOnChange} tags={tags} />)}
             </div>
           </Tag>
           <Tag>
