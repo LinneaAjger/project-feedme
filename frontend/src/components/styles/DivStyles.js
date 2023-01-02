@@ -4,8 +4,8 @@ export const StyledTransparentDiv = styled.div`
   padding: 20px;
   border-radius: 10px;
   background-color: inherit;
-  border: solid 2px var(--color-darkSand);
-  filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
+  border: solid 4px var(--color-darkSand);
+  filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.25));
 `
 
 export const StyledNonTransparentDiv = styled.div`
