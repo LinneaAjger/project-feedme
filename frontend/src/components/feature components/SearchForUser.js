@@ -5,7 +5,7 @@ import { BsSearch } from 'react-icons/bs';
 import { API_URL } from "utils/utils";
 import { Link } from "react-router-dom";
 
-const SearchForUser = () => {
+const SearchForUser = ( ) => {
     const [users, setUsers] = useState([])
     const [searchedUsers, setSearchedUsers] = useState([])
     const accessToken = localStorage.getItem('accessToken')
@@ -48,7 +48,7 @@ const SearchForUser = () => {
     return (
         <>
             <SearchForUserForm onSubmit={handleSubmit}>
-                <label> <SrOnly>Search for user</SrOnly>
+                <label><SrOnly>Search for user</SrOnly>
                     <input
                         type="text"
                         placeholder="Search for user..."
@@ -71,9 +71,6 @@ const SearchForUser = () => {
 export default SearchForUser
 
 const SearchForUserForm = styled.form`
-margin-bottom: 30px;
-padding: 10px 20px 13px 20px;
-min-width: 300px;
 
     label {
         display: flex;
@@ -85,17 +82,7 @@ min-width: 300px;
 
     input {
         border: none;
-        /* border-radius: 10px;
-        display: flex;
-        justify-content: space-between;
         width: 100%;
-        box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
-        padding: 5px 10px;
-
-        @media (max-width: 668px) {
-            width: 50vw;
-    } */
-
     }
 
     button {
@@ -103,15 +90,29 @@ min-width: 300px;
         background-color: inherit;
     }
 
+    @media (min-width: 1024px) {
+        position: absolute;
+        right: 2.5%;
+        top: 20px;
+    }
+
 `
 
 const SearchResultsDiv = styled.div`
     margin-top: 5px;
-    padding: 10px 20px 13px 20px;
-    width: 300px;
-    height: 100px;
+    height: 200px;
     background-color: white;
     overflow: hidden;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
 
+    @media (min-width: 1024px) {
+        position: absolute;
+        right: 2.5%;
+        top: 80px;
+        width: 340px;
+        align-items: flex-start;
+    }
 `

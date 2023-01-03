@@ -37,7 +37,7 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   width: 80%;
-  height: 10%;
+  height: 100px;
 
 
   h1 {
@@ -45,7 +45,7 @@ const StyledHeader = styled.header`
   }
 
   @media (min-width: 668px) {
-    height: 15%;
+    height: 140px;
 
     h1 {
     font-size: 3rem;
@@ -54,9 +54,10 @@ const StyledHeader = styled.header`
   }
   @media (min-width: 1024px) {
     flex-direction: row-reverse;
-    width: 95%;
-    height: 100px;
     align-items: flex-end;
+    width: 95%;
+    height: 160px;
+
 
     
       h1 {

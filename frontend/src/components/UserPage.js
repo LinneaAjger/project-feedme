@@ -39,7 +39,7 @@ useEffect(() => {
     .catch((error) => {
       console.error('Error:', error);
     });
-}, [toggle]);
+}, [toggle, params]);
 
 
   return (

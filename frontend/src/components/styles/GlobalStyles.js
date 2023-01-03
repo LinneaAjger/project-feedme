@@ -110,12 +110,6 @@ img + img {
     opacity: 0;
     transition: all 0.6s ease-in-out;
 
-    input {
-      @media (min-width: 668px) {
-        display: none;
-    }
-    }
-
     a {
       &:hover {
           color: var(--color-vividBlue);
@@ -142,11 +136,6 @@ img + img {
     @media (min-width: 668px) {
       /* padding-top: 20%; */
 
-
-    form {
-        display: none;
-      }
-
     }
 
     @media (min-width: 1024px) {
@@ -162,21 +151,13 @@ img + img {
 
       a, button {
         padding: 10px 20px 13px 20px;
-        margin-left: 2rem;
+        margin-left: 2.5rem;
 
           &:hover {
           color: var(--color-vividBlue);
           background-color: var(--color-darkSand);
           border-radius: 20px;
         }
-      }
-
-      li {
-        margin-left: -40px;
-    }
-
-    form {
-        display: none;
       }
 
     }
@@ -233,10 +214,10 @@ img + img {
   }
 
   li + li {
-      margin-left: 2rem;
+      margin-left: 2.5rem;
   }
   li + button {
-      margin-left: 2rem;
+      margin-left: 2.5rem;
   }
 }
 `
@@ -259,18 +240,17 @@ export const Innerwrapper = styled.div`
 
 
   @media (min-width: 667px) {
-    margin-top: 120px
+    margin-top: 160px;  
   }
 
   @media (min-width: 1024px) {
-    margin-top: 150px
+    margin-top: 180px
   }
 `
 
 
 export const SrOnly = styled.div`
-  display: none;
-  /* position: absolute;
+  position: absolute;
    width: 1px;
   height: 1px;
   padding: 0;
@@ -278,7 +258,7 @@ export const SrOnly = styled.div`
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border-width: 0; */
+  border-width: 0;
 `
 
 export const SmallP = styled.p`
