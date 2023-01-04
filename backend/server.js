@@ -58,31 +58,6 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
-// const MealTags = new mongoose.Schema({
-//   breakfeast: {
-//     type: Boolean,
-//     default: false
-//   },
-//   lunch: {
-//     type: Boolean,
-//     default: false
-//   }, 
-//   dinner: {
-//     type: Boolean, 
-//     default: false
-//   },
-//   snack: {
-//     type: Boolean,
-//     default: false
-//   }
-// })
-
-// const RecipeTags = new mongoose.Schema({
-//   meal: {
-//     type: MealTags
-//   }
-// })
-
 // Recipe-schema
 const RecipeDetails = new mongoose.Schema({
   name: {
@@ -143,8 +118,15 @@ app.get("/", (req, res) => {
 // Shows feed when logged in
 app.get("/recipes", authenticateUser)
 app.get("/recipes", async (req, res) => {
+  // const { tags } = req.query
+  // const matchAllRegex = new RegExp(".*")
+  // const tagsQuery = new RegExp(tags, 'i')
+
   try {
-    const recipes = await Recipe.find().sort({createdAt: 'desc'}).limit(20).exec()
+    const recipes = await Recipe.find(
+    //   {recipe: {tags: tagsQuery}
+    // }
+    ).sort({createdAt: 'desc'}).limit(20).exec()
     res.status(200).json({
      success: true,
      response: recipes
@@ -170,7 +152,7 @@ app.get("/:userId", async (req, res) => {
 })
 
 // Posts new recipe to feed
-app.post("/recipes", authenticateUser)
+// app.post("/recipes", authenticateUser)
 app.post("/recipes", async (req, res) => {
   const { recipe } = req.body
   const accessToken = req.header("Authorization")
