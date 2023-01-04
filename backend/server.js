@@ -187,7 +187,7 @@ app.post("/recipes", async (req, res) => {
   const user = await User.findOne({accessToken: accessToken})
 
   try {
-    const newRecipe = await new Recipe({recipe, user: user._id}).save()
+    const newRecipe = await new Recipe({recipe, user: user.username}).save()
     res.status(201).json({
       success: true,
       response: newRecipe
