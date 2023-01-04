@@ -97,7 +97,11 @@ const RecipeSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  user: {
+  userId: {
+    type: String,
+    required: true
+  },
+  username: {
     type: String,
     required: true
   }
@@ -187,7 +191,7 @@ app.post("/recipes", async (req, res) => {
   const user = await User.findOne({accessToken: accessToken})
 
   try {
-    const newRecipe = await new Recipe({recipe, user: user.username}).save()
+    const newRecipe = await new Recipe({recipe, userId: user._id, username: user.username}).save()
     res.status(201).json({
       success: true,
       response: newRecipe
