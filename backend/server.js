@@ -149,9 +149,23 @@ app.get("/users", async (req, res) => {
    }
 })
 
-//show all posts from a specific user
+//show data from a specific user
 app.get("/users/:userId", authenticateUser)
 app.get("/users/:userId", async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const userData = await User.find({_id: userId})
+    res.status(200).json({
+     success: true,
+     response: userData
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
+})
+//show recipes from a specific user
+app.get("/users/:userId/posts", authenticateUser)
+app.get("/users/:userId/posts", async (req, res) => {
   const { userId } = req.params;
   try {
     const usersRecipes = await Recipe.find({user: userId}).sort({createdAt: 'desc'})
@@ -166,6 +180,7 @@ app.get("/users/:userId", async (req, res) => {
 
 // Posts new recipe to feed
 // app.post("/recipes", authenticateUser)
+
 app.post("/recipes", async (req, res) => {
   const { recipe } = req.body
   const accessToken = req.header("Authorization")
