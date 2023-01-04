@@ -31,7 +31,7 @@ const options = {
 }
 
 useEffect(() => {
-  fetch(API_URL(toggle ? `users/${params.userId}` : 'savedPosts'), options)
+  fetch(API_URL(toggle ? `users/${params.userId}/posts` : 'savedPosts'), options)
   .then((response) => response.json())
   .then((data) => {
     setPosts(data.response);

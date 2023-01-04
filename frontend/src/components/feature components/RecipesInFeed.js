@@ -54,7 +54,9 @@ const RecipesInFeed = () => {
         <RecipeContainer>
           {singleRecipe.recipe && (
             <div>
-              <SmallP>{singleRecipe.user}, XX ago</SmallP>
+              <SmallP>
+                <Link to={`/users/${singleRecipe.userId}`}>{singleRecipe.username}</Link>, {`${new Date(singleRecipe.createdAt).toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric',   hour: '2-digit',
+  minute: '2-digit', hour12: false })}`} </SmallP>
               <h3>{singleRecipe.recipe.name}</h3>
               <p>"{singleRecipe.recipe.description}"</p>
               <TagContainer>
