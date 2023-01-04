@@ -2,16 +2,14 @@ import { UnstyledBtn } from "components/styles/ButtonStyles";
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-const SingleFilter = ({ svg, title, array }) => {
+const SingleFilter = ({ svg, title, array, selectFilter }) => {
     const [click, setClick] = useState(false)
     const [selected, setSelected] = useState(false)
 
-    const selectFilter = () => {
-        setSelected(true)
+    const handleClick = () => {
+        setClick(!click)
     }
-
-    const handleClick = () => setClick(!click)
-
+    
     return (
         <SingleFilterDiv>
                 {svg}
@@ -24,7 +22,11 @@ const SingleFilter = ({ svg, title, array }) => {
                 <TagBtnContainer className={click ? "" : "tags-hidden"}>
                     {array.map((item) => 
                         <TagBtn
-                        onClick={selectFilter}>{item.title}</TagBtn>
+                            onClick={() => selectFilter(item.value)}
+                            value={item.value}
+                            className={selected ? "selected": ""}>
+                                {item.title}
+                        </TagBtn>
                     )}
                 </TagBtnContainer>
             </SingleFilterDiv>
@@ -63,7 +65,7 @@ const TagBtnContainer = styled.div`
     `
 
 const TagBtn = styled.button`
-  background-color: var(--color-sand);
+  background-color: var(--color-beige);
   color: black;
   font-size: 12px;
   padding: 5px; 
@@ -75,7 +77,7 @@ const TagBtn = styled.button`
     background-color: white;
   }
 
-  &:active {
-    background-color: blue;
+  &.selected {
+    background-color: var(--color-sand);
   }
   `

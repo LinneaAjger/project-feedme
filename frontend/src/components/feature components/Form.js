@@ -90,7 +90,6 @@ const Form = ({ setCollapsed }) => {
     }));
   }
   
-  console.log(tags);
   return (
     <FormStyledDiv>
       <CreateRecipeDiv>

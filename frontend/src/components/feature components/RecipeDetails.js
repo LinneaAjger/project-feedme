@@ -15,9 +15,11 @@ const RecipeDetails = ({ recipeInfo }) => {
                     </div>
                     <RecipeInstructionsDiv>
                         <Ingredients>
+                            <h2>Ingredients</h2>
                             <p>{recipe.ingredients}</p>
                         </Ingredients>
                         <Instructions>
+                            <h2>Instructions</h2>
                             <p>{recipe.instructions}</p>
                         </Instructions>
                     </RecipeInstructionsDiv>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledTransparentDiv } from "../styles/DivStyles"
 import SingleFilter from "./SingleFilter";
 import { useSelector } from "react-redux";
@@ -8,34 +8,42 @@ import { TimeArray } from "./Form"
 
 const Filter = () => {
     const recipeList = useSelector((store) => store.recipes.items)
-    // const BreakfeastFilter = recipeList.recipe.filter((meal) => meal.includes("breakfeast").map(filteredBreakfeast => (
-    //     <p>{filteredBreakfeast.tags}</p>
-    // )))
-    // console.log(BreakfeastFilter)
-
-    //     const BreakfeastFilter = recipeList.map(recipe => (
-//         recipe.map(tags => (
-//             tags.filter((tags) => tags.includes("breakfeast"))
-//         ))
-//     ))
-// console.log(BreakfeastFilter)
-
-{/* <div>
-  {people.filter(person => person.age < 60).map(filteredPerson => (
-    <li>
-      {filteredPerson.name}
-    </li>
-  ))}
-</div> */}
-
-    // const breakfeast = recipeList.map((singleRecipe) => {
-    //     singleRecipe.recipe.tags.map((tag) => {
-    //         tag.filter((tag) => tag.includes("breakfeast"))
-    //     })
-    // })
-    // console.log(breakfeast)
+    const [selected, setSelected] = useState(false)
 
 
+    const FilteredBreakfast = recipeList.map((recipe) => {
+        return recipe.recipe.tags.filter((meal) => meal.includes("breakfast"))
+    })
+
+    const FilteredLunch = recipeList.map((recipe) => {
+        return recipe.recipe.tags.filter((meal) => meal.includes("lunch"))
+    })
+
+    const FilteredDinner = recipeList.map((recipe) => {
+        return recipe.recipe.tags.filter((meal) => meal.includes("dinner"))
+    })
+    
+    const FilteredSnack = recipeList.map((recipe) => {
+        return (
+            recipe.recipe.tags.filter((meal) => meal.includes("snack"))
+        )
+    })
+
+    console.log("breakfast:", FilteredBreakfast)
+    console.log("lucnh:", FilteredLunch)
+    console.log("dinner:",FilteredDinner)
+    console.log("snack:", FilteredSnack)
+
+
+    const selectFilter = (event) => {
+        const key = event.target.item.value
+        const currentValue = selected(key)
+        setSelected((selected) => ({
+            ...selected,
+            [key]: !currentValue
+        }))
+
+    }
     return (
         <StyledTransparentDiv>
             <h1>Pick your meal</h1>
@@ -45,14 +53,16 @@ const Filter = () => {
                     <path d="M16.0002 21.2552V1.74382C16.0002 1.42922 15.647 1.24394 15.3881 1.42273C15.3421 1.4545 15.303 1.49662 15.2744 1.54463C13.5305 4.47062 12.7198 6.15243 12.6052 8.47789C12.5889 8.80788 12.7537 9.11829 13.0255 9.30606L13.6996 9.77167C13.8657 9.88641 14.0628 9.94786 14.2647 9.94786C14.8365 9.94786 15.2905 10.4289 15.2574 10.9997L14.6657 21.2166C14.6485 21.5152 14.8318 21.7888 15.1144 21.8864C15.5481 22.0362 16.0002 21.714 16.0002 21.2552Z" fill="black" stroke="black"/>
                 </svg>}
             title="Meal"
-            array={MealArray}/>
+            array={MealArray}
+            selectFilter={selectFilter}/>
             
             <SingleFilter 
             svg={<svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1.53845L9 11.0192M17 20.5L9 11.0192M9 11.0192L17 1.53845L1 20.5" stroke="black" stroke-width="2"/>
                 </svg>}
             title="Preferences"
-            array={PreferencesArray}/>
+            array={PreferencesArray}
+            selectFilter={selectFilter}/>
             
             <SingleFilter 
             svg={<svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +70,8 @@ const Filter = () => {
                     <path d="M5 5.65387C5 5.65387 10.2398 10.0614 10.4124 10.6898C10.585 11.3183 9.32682 12.1196 8.86602 11.4646C8.40522 10.8096 5 5.65387 5 5.65387Z" fill="#1F1B19"/>
                 </svg>}
             title="Cooking Time"
-            array={TimeArray}/>
+            array={TimeArray}
+            selectFilter={selectFilter}/>
             
         </StyledTransparentDiv>
     )
