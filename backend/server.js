@@ -135,10 +135,23 @@ app.get("/recipes", async (req, res) => {
      res.status(400).json({success: false, response: error});
    }
 })
+// Lists all users
+app.get("/users", authenticateUser)
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find()
+    res.status(200).json({
+     success: true,
+     response: users
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
+})
 
 //show all posts from a specific user
-app.get("/:userId", authenticateUser)
-app.get("/:userId", async (req, res) => {
+app.get("/users/:userId", authenticateUser)
+app.get("/users/:userId", async (req, res) => {
   const { userId } = req.params;
   try {
     const usersRecipes = await Recipe.find({user: userId}).sort({createdAt: 'desc'})

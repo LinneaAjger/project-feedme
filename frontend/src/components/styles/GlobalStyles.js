@@ -110,12 +110,6 @@ img + img {
     opacity: 0;
     transition: all 0.6s ease-in-out;
 
-    input {
-      @media (min-width: 668px) {
-        display: none;
-    }
-    }
-
     a {
       &:hover {
           color: var(--color-vividBlue);
@@ -123,6 +117,7 @@ img + img {
     }
     li {
       margin-left: -40px;
+      margin-top: 10px;
     }
 
     a, button {
@@ -139,11 +134,8 @@ img + img {
     } 
 
     @media (min-width: 668px) {
-      padding-top: 20%;
+      /* padding-top: 20%; */
 
-      input {
-        display: none;
-      }
     }
 
     @media (min-width: 1024px) {
@@ -159,7 +151,7 @@ img + img {
 
       a, button {
         padding: 10px 20px 13px 20px;
-        margin-left: 2rem;
+        margin-left: 2.5rem;
 
           &:hover {
           color: var(--color-vividBlue);
@@ -167,10 +159,6 @@ img + img {
           border-radius: 20px;
         }
       }
-
-      li {
-        margin-left: -40px;
-    }
 
     }
   }
@@ -226,10 +214,10 @@ img + img {
   }
 
   li + li {
-      margin-left: 2rem;
+      margin-left: 2.5rem;
   }
   li + button {
-      margin-left: 2rem;
+      margin-left: 2.5rem;
   }
 }
 `
@@ -252,11 +240,11 @@ export const Innerwrapper = styled.div`
 
 
   @media (min-width: 667px) {
-    margin-top: 120px
+    margin-top: 160px;  
   }
 
   @media (min-width: 1024px) {
-    margin-top: 150px
+    margin-top: 180px
   }
 `
 

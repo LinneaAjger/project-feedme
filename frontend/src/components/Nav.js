@@ -86,9 +86,6 @@ const StyledNav = styled.nav`
   @media (min-width: 1024px) {
     width: 70%;
 
-    input {
-      display: none;
-    }
   }
 
 `

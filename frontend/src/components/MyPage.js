@@ -6,7 +6,7 @@ import styled from 'styled-components/macro'
 import { useNavigate, Link } from 'react-router-dom'
 import LikeSaveCommentContainer from './feature components/LikeSaveCommentContainer'
 
-const UserPage = () => {
+const MyPage = () => {
 const [myPosts, setMyPosts] = useState([])
 const accessToken = localStorage.getItem('accessToken');
 const userId = localStorage.getItem('userId');
@@ -29,7 +29,7 @@ const options = {
 }
 
 useEffect(() => {
-  fetch(API_URL(toggle ? userId : 'savedPosts'), options)
+  fetch(API_URL(toggle ? `users/${userId}` : 'savedPosts'), options)
   .then((response) => response.json())
   .then((data) => {
     setMyPosts(data.response);
@@ -70,7 +70,7 @@ useEffect(() => {
   )
 }
 
-export default UserPage
+export default MyPage
 
 const HeadlineDiv = styled.div`
   display: flex;
