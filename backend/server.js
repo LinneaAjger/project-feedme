@@ -116,25 +116,29 @@ app.get("/", (req, res) => {
   })
 });
 // Shows feed when logged in
-app.get("/recipes", authenticateUser)
-app.get("/recipes", async (req, res) => {
-  // const { tags } = req.query
-  // const matchAllRegex = new RegExp(".*")
-  // const tagsQuery = new RegExp(tags, 'i')
+// app.get("/recipes", authenticateUser)
+  app.get("/recipes", async (req, res) => {
+    const { tags } = req.query
 
-  try {
-    const recipes = await Recipe.find(
-    //   {recipe: {tags: tagsQuery}
-    // }
-    ).sort({createdAt: 'desc'}).limit(20).exec()
-    res.status(200).json({
-     success: true,
-     response: recipes
-    })
-  } catch (error) {
-     res.status(400).json({success: false, response: error});
-   }
-})
+    if (tags) {
+      const filteredRecipes = await Recipe.find({'recipe.tags': tags})
+      res.status(200).json({
+        success: true,
+        response: filteredRecipes
+      })
+    }
+    else {
+      try {
+        const recipes = await Recipe.find().sort({createdAt: 'desc'}).limit(20).exec()
+        res.status(200).json({
+        success: true,
+        response: recipes
+        })
+      } catch (error) {
+        res.status(400).json({success: false, response: error});
+      }
+    }
+  })
 
 //show all posts from a specific user
 app.get("/:userId", authenticateUser)

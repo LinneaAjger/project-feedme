@@ -1,14 +1,56 @@
 import { UnstyledBtn } from "components/styles/ButtonStyles";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, batch } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components/macro";
+import { API_URL } from "utils/utils";
+import recipeReducer from "reducers/recipeReducer";
 
 const SingleFilter = ({ svg, title, array, selectFilter }) => {
     const [click, setClick] = useState(false)
     const [selected, setSelected] = useState(false)
+    const [filtering, setFiltering] = useState(false)
+    const accessToken = localStorage.getItem('accessToken')
+    const { value } = useParams()
+    const dispatch = useDispatch()
 
     const handleClick = () => {
         setClick(!click)
     }
+
+    const filterTags = () => {
+        setFiltering(!filtering)
+    }
+    console.log(filtering)
+
+        useEffect(() => {
+            const options = {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": accessToken
+              }
+            }
+            fetch(API_URL(`recipes?tags=${value}`), options)
+              .then(res => res.json())
+              .then(data => {
+                console.log(data)
+              if(data.success) {
+                batch (() => {
+                  dispatch(recipeReducer.actions.setItems(data.response))
+                  dispatch(recipeReducer.actions.setError(null))
+                })
+              } else {
+                batch(() => {
+                  dispatch(recipeReducer.actions.setItems([]))
+                  dispatch(recipeReducer.actions.setError(data.response))
+                })
+              }
+              })
+              .catch((error => {
+                console.error('Error:', error)
+              }))
+              }, [filterTags])
     
     return (
         <SingleFilterDiv>
@@ -20,12 +62,12 @@ const SingleFilter = ({ svg, title, array, selectFilter }) => {
                     </DropdownSvg>
                 </UnstyledBtn>
                 <TagBtnContainer className={click ? "" : "tags-hidden"}>
-                    {array.map((item) => 
+                    {array.map(({value, title}) => 
                         <TagBtn
-                            onClick={() => selectFilter(item.value)}
-                            value={item.value}
+                            onClick={() => filterTags()}
+                            value={value}
                             className={selected ? "selected": ""}>
-                                {item.title}
+                                {title}
                         </TagBtn>
                     )}
                 </TagBtnContainer>
