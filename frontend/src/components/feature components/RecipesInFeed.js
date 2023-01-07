@@ -15,7 +15,6 @@ const RecipesInFeed = () => {
   const dispatch = useDispatch()
   const recipeList = useSelector((store) => store.recipes.items)
 
-
   //Fetch all recipes
   useEffect(() => {
     const options = {

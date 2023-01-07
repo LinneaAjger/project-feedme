@@ -1,25 +1,25 @@
 import { UnstyledBtn } from "components/styles/ButtonStyles";
 import React, { useState, useEffect } from "react";
 import { useDispatch, batch } from "react-redux";
-import { useParams } from "react-router-dom";
 import styled from "styled-components/macro";
 import { API_URL } from "utils/utils";
 import recipeReducer from "reducers/recipeReducer";
 
-const SingleFilter = ({ svg, title, array, selectFilter }) => {
+const SingleFilter = ({ svg, title, array }) => {
     const [click, setClick] = useState(false)
     const [selected, setSelected] = useState(false)
     const [filtering, setFiltering] = useState(false)
     const accessToken = localStorage.getItem('accessToken')
-    const { value } = useParams()
+    const [value, setValue] = useState()
     const dispatch = useDispatch()
 
     const handleClick = () => {
         setClick(!click)
     }
 
-    const filterTags = () => {
-        setFiltering(!filtering)
+    const filterTags = ({value}) => {
+        dispatch(recipeReducer.actions.setFiltering(true))
+        setValue(value)
     }
     console.log(filtering)
 
@@ -42,7 +42,6 @@ const SingleFilter = ({ svg, title, array, selectFilter }) => {
                 })
               } else {
                 batch(() => {
-                  dispatch(recipeReducer.actions.setItems([]))
                   dispatch(recipeReducer.actions.setError(data.response))
                 })
               }
@@ -51,6 +50,8 @@ const SingleFilter = ({ svg, title, array, selectFilter }) => {
                 console.error('Error:', error)
               }))
               }, [filterTags])
+
+              console.log(value)
     
     return (
         <SingleFilterDiv>
@@ -64,7 +65,7 @@ const SingleFilter = ({ svg, title, array, selectFilter }) => {
                 <TagBtnContainer className={click ? "" : "tags-hidden"}>
                     {array.map(({value, title}) => 
                         <TagBtn
-                            onClick={() => filterTags()}
+                            onClick={() => filterTags({value})}
                             value={value}
                             className={selected ? "selected": ""}>
                                 {title}
