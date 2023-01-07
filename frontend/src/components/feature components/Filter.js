@@ -1,49 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyledTransparentDiv } from "../styles/DivStyles"
 import SingleFilter from "./SingleFilter";
-import { useSelector } from "react-redux";
+import { useSelector, batch, useDispatch } from "react-redux";
 import { MealArray } from "./Form"
 import { PreferencesArray } from "./Form"
 import { TimeArray } from "./Form"
+import { API_URL } from 'utils/utils';
+import recipeReducer from "reducers/recipeReducer";
+
 
 const Filter = () => {
-    const recipeList = useSelector((store) => store.recipes.items)
     const [selected, setSelected] = useState(false)
+    const accessToken = localStorage.getItem('accessToken')
+    const dispatch = useDispatch()
 
 
-    const FilteredBreakfast = recipeList.map((recipe) => {
-        return recipe.recipe.tags.filter((meal) => meal.includes("breakfast"))
-    })
-
-    const FilteredLunch = recipeList.map((recipe) => {
-        return recipe.recipe.tags.filter((meal) => meal.includes("lunch"))
-    })
-
-    const FilteredDinner = recipeList.map((recipe) => {
-        return recipe.recipe.tags.filter((meal) => meal.includes("dinner"))
-    })
-    
-    const FilteredSnack = recipeList.map((recipe) => {
-        return (
-            recipe.recipe.tags.filter((meal) => meal.includes("snack"))
-        )
-    })
-
-    console.log("breakfast:", FilteredBreakfast)
-    console.log("lucnh:", FilteredLunch)
-    console.log("dinner:",FilteredDinner)
-    console.log("snack:", FilteredSnack)
 
 
-    const selectFilter = (event) => {
-        const key = event.target.item.value
-        const currentValue = selected(key)
-        setSelected((selected) => ({
-            ...selected,
-            [key]: !currentValue
-        }))
+    // const selectFilter = (event) => {
+    //     const key = event.target.item.value
+    //     const currentValue = selected(key)
+    //     setSelected((selected) => ({
+    //         ...selected,
+    //         [key]: !currentValue
+    //     }))
 
-    }
+    // }
     return (
         <StyledTransparentDiv>
             <h1>Pick your meal</h1>
@@ -54,7 +36,7 @@ const Filter = () => {
                 </svg>}
             title="Meal"
             array={MealArray}
-            selectFilter={selectFilter}/>
+            />
             
             <SingleFilter 
             svg={<svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +44,7 @@ const Filter = () => {
                 </svg>}
             title="Preferences"
             array={PreferencesArray}
-            selectFilter={selectFilter}/>
+            />
             
             <SingleFilter 
             svg={<svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,10 +53,39 @@ const Filter = () => {
                 </svg>}
             title="Cooking Time"
             array={TimeArray}
-            selectFilter={selectFilter}/>
+            />
             
         </StyledTransparentDiv>
     )
 }
 
 export default Filter
+
+
+
+
+
+// const FilteredBreakfast = recipeList.map((recipe) => {
+    //     return recipe.recipe.tags.filter((meal) => meal.includes("breakfast"))
+    // })
+
+    // const FilteredLunch = recipeList.map((recipe) => {
+    //     return recipe.recipe.tags.filter((meal) => meal.includes("lunch"))
+    // })
+
+    // const FilteredDinner = recipeList.map((recipe) => {
+    //     return recipe.recipe.tags.filter((meal) => meal.includes("dinner"))
+    // })
+    
+    // const FilteredSnack = recipeList.map((recipe) => {
+    //     return (
+    //         recipe.recipe.tags.filter((meal) => meal.includes("snack"))
+    //     )
+    // })
+
+    // console.log("breakfast:", FilteredBreakfast)
+    // console.log("lucnh:", FilteredLunch)
+    // console.log("dinner:",FilteredDinner)
+    // console.log("snack:", FilteredSnack)
+
+        // const recipeList = useSelector((store) => store.recipes.items)
