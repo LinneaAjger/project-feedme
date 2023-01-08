@@ -14,18 +14,6 @@ const Filter = () => {
     const accessToken = localStorage.getItem('accessToken')
     const dispatch = useDispatch()
 
-
-
-
-    // const selectFilter = (event) => {
-    //     const key = event.target.item.value
-    //     const currentValue = selected(key)
-    //     setSelected((selected) => ({
-    //         ...selected,
-    //         [key]: !currentValue
-    //     }))
-
-    // }
     return (
         <StyledTransparentDiv>
             <h1>Pick your meal</h1>

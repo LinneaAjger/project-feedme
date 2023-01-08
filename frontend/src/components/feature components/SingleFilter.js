@@ -18,8 +18,9 @@ const SingleFilter = ({ svg, title, array }) => {
     }
 
     const filterTags = ({value}) => {
-        dispatch(recipeReducer.actions.setFiltering(true))
+        setFiltering(true)
         setValue(value)
+        setSelected(true[value])
     }
     console.log(filtering)
 
@@ -35,7 +36,7 @@ const SingleFilter = ({ svg, title, array }) => {
               .then(res => res.json())
               .then(data => {
                 console.log(data)
-              if(data.success) {
+              if(filtering) {
                 batch (() => {
                   dispatch(recipeReducer.actions.setItems(data.response))
                   dispatch(recipeReducer.actions.setError(null))
@@ -121,6 +122,6 @@ const TagBtn = styled.button`
   }
 
   &.selected {
-    background-color: var(--color-sand);
+    background-color: blue;
   }
   `

@@ -7,7 +7,6 @@ const recipeReducer = createSlice({
     error: null,
     username: null,
     id: null,
-    filtering: false,
   },
   reducers: {
     setItems: (store, action) => {
@@ -27,15 +26,8 @@ const recipeReducer = createSlice({
     },
     setId: (store, action) => {
       store.id = action.payload
-    },
-    setFiltering: (store, action) => {
-      store.filtering = action.payload
     }
   }
 })
 
 export default recipeReducer
-
-const filter = () => {
-  
-}
