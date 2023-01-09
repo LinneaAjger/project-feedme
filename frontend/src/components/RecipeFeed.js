@@ -54,16 +54,17 @@ const RecipeFeed = () => {
     <>
     {mobileView ? ( 
       <FeedSection>
-      <ButtonContainer>
-          <button  
-            type="button"
-            onClick={toggle}>
-            <img src={AddIcon} />
-            <p>add new recipe</p>
-          </button>
-          {!collapsed && <Form collapsed={collapsed} setCollapsed={setCollapsed} />}
-      </ButtonContainer>
-      <RecipesInFeed />
+        <ButtonContainer>
+            <button  
+              type="button"
+              onClick={toggle}>
+              <img src={AddIcon} />
+              <p>add new recipe</p>
+            </button>
+            {!collapsed && <Form collapsed={collapsed} setCollapsed={setCollapsed} />}
+        </ButtonContainer>
+        <Filter />
+        <RecipesInFeed />
     </FeedSection>
     ) : tabletView ? (
       <FeedSection> 
@@ -114,17 +115,19 @@ const FeedSection = styled.section`
   height: 100%;
   margin-top: 4%;
   display: grid;
-  width: 80%;
+  width: 100%;
   position: relative;
 
     @media (min-width: 668px) and (max-width: 1024px) {
       grid-template-columns: 2fr 1fr;
       gap: 2%;
+      width: 80%
     }
 
     @media (min-width: 1025px) {
       grid-template-columns: 1fr 2fr 1fr;
       column-gap: 2vw;    
+      width: 80%;
     }
 `
 
