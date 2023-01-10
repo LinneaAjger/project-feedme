@@ -19,6 +19,7 @@ const SingleFilter = ({ svg, title, array }) => {
 
     const filterTags = ({value}) => {
         setFiltering(true)
+        setValue(current => [...current, value])
         setSelected(true[value])
     }
 
