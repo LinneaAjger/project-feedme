@@ -10,7 +10,7 @@ const SingleFilter = ({ svg, title, array }) => {
     const [selected, setSelected] = useState(false)
     const [filtering, setFiltering] = useState(false)
     const accessToken = localStorage.getItem('accessToken')
-    const [value, setValue] = useState()
+    const [value, setValue] = useState([])
     const dispatch = useDispatch()
 
     const handleClick = () => {
@@ -19,10 +19,8 @@ const SingleFilter = ({ svg, title, array }) => {
 
     const filterTags = ({value}) => {
         setFiltering(true)
-        setValue(value)
         setSelected(true[value])
     }
-    console.log(filtering)
 
         useEffect(() => {
             const options = {
@@ -35,7 +33,7 @@ const SingleFilter = ({ svg, title, array }) => {
             fetch(API_URL(`recipes?tags=${value}`), options)
               .then(res => res.json())
               .then(data => {
-                console.log(data)
+                // console.log(data)
               if(filtering) {
                 batch (() => {
                   dispatch(recipeReducer.actions.setItems(data.response))
