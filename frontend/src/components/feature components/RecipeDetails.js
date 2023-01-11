@@ -85,7 +85,6 @@ const Instructions = styled(StyledNonTransparentDiv)`
     background-color: inherit;
     
     ol {
-        list-style: inside;
         li {
             margin-left: 0rem;
         }
