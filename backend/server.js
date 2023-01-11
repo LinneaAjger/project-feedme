@@ -258,6 +258,7 @@ app.delete("/recipes/:recipeId", async (req, res) => {
 })
 
 // Like recipe & add to user DB
+app.patch("/recipes/:recipeId", authenticateUser)
 app.patch("/recipes/:recipeId", async (req, res) => {
   const { recipeId } = req.params
   const accessToken = req.header("Authorization")
