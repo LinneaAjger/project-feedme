@@ -10,17 +10,17 @@ const SingleFilter = ({ svg, title, array }) => {
     const [selected, setSelected] = useState(false)
     const [filtering, setFiltering] = useState(false)
     const accessToken = localStorage.getItem('accessToken')
-    const [value, setValue] = useState([])
+    const [value, setValue] = useState()
     const dispatch = useDispatch()
 
     const handleClick = () => {
         setClick(!click)
     }
 
-    const filterTags = ({value}) => {
+    const filterTags = (value) => {
         setFiltering(true)
-        setValue(current => [...current, value])
-        setSelected(true[value])
+        setValue(value)
+        setSelected(true)
     }
 
         useEffect(() => {
@@ -34,7 +34,6 @@ const SingleFilter = ({ svg, title, array }) => {
             fetch(API_URL(`recipes?tags=${value}`), options)
               .then(res => res.json())
               .then(data => {
-                // console.log(data)
               if(filtering) {
                 batch (() => {
                   dispatch(recipeReducer.actions.setItems(data.response))
@@ -52,8 +51,8 @@ const SingleFilter = ({ svg, title, array }) => {
               }, [filterTags])
 
               console.log(value)
-    
     return (
+      <>
         <SingleFilterDiv>
                 {svg}
                 <p> {title}</p>
@@ -63,16 +62,17 @@ const SingleFilter = ({ svg, title, array }) => {
                     </DropdownSvg>
                 </UnstyledBtn>
                 <TagBtnContainer className={click ? "" : "tags-hidden"}>
-                    {array.map(({value, title}) => 
+                    {array.map((recipe) => 
                         <TagBtn
-                            onClick={() => filterTags({value})}
-                            value={value}
+                            onClick={() => filterTags(recipe.value)}
+                            value={recipe.value}
                             className={selected ? "selected": ""}>
-                                {title}
+                                {recipe.title}
                         </TagBtn>
                     )}
                 </TagBtnContainer>
             </SingleFilterDiv>
+        </>
     )
 }
 
@@ -121,6 +121,6 @@ const TagBtn = styled.button`
   }
 
   &.selected {
-    background-color: blue;
+    background-color: var(--color-beige);
   }
   `

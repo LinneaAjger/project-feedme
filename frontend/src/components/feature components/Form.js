@@ -175,8 +175,8 @@ const FormStyledDiv = styled(StyledDiv)`
   height: 100%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  padding: 30px;
   z-index: 99;
+  padding-top: 50px;
 
   input, textarea {
     max-width: 1000px;
@@ -240,7 +240,7 @@ const TagsDiv = styled.div`
   `
 
 const Tag = styled.div`
-margin: 5px;
+margin: 20px;
 
 h2 {
     font-size: 16px;

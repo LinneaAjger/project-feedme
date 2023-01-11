@@ -4,6 +4,13 @@ import { StyledNonTransparentDiv } from "components/styles/DivStyles";
 
 const RecipeDetails = ({ recipeInfo }) => {
     console.log(recipeInfo)
+
+    const IngredientsIntoList = recipeInfo.map((recipe) => {
+        return (
+            recipe.ingredients[0].split(' ')
+        )
+    })
+    console.log(IngredientsIntoList)
     return (
         <>
             {recipeInfo.map((recipe) => {
@@ -16,7 +23,13 @@ const RecipeDetails = ({ recipeInfo }) => {
                     <RecipeInstructionsDiv>
                         <Ingredients>
                             <h2>Ingredients</h2>
-                            <p>{recipe.ingredients}</p>
+                            <ul>
+                                {IngredientsIntoList[0].map((li) => {
+                                    return (
+                                        <li>{li}</li>
+                                    )
+                                })}
+                            </ul>
                         </Ingredients>
                         <Instructions>
                             <h2>Instructions</h2>
@@ -45,6 +58,13 @@ const RecipeInstructionsDiv = styled.div`
 const Ingredients = styled(StyledNonTransparentDiv)`
     border-radius: 3px;
     margin: 10px;
+
+    ul {
+        list-style: inside;
+        li {
+            margin-left: 0rem;
+        }
+    }
 `
 const Instructions = styled(StyledNonTransparentDiv)`
     margin: 10px;

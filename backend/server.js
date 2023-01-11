@@ -122,41 +122,28 @@ app.get("/", (req, res) => {
 
 // Shows feed when logged in
 // app.get("/recipes", authenticateUser)
-  app.get("/recipes", async (req, res) => {
-    const { tags } = req.query
-      console.log(tags.length)
-      console.log(tags)
+app.get("/recipes", async (req, res) => {
+  const { tags } = req.query
 
-    if (tags) {
-      const filteredRecipes = await Recipe.find({'recipe.tags': tags})
-        res.status(200).json({
-        success: true,
-        response: filteredRecipes
-      })
-    } 
-    else if (tags.length>=2) {
-      const filteredMultipleRecipes = await Recipe.find({'recipe.tags': tags}.splice(0,1))
-      console.log(filteredMultipleRecipes)
-
+  if (tags) {
+    const filteredRecipes = await Recipe.find({'recipe.tags': tags})
+    res.status(200).json({
+      success: true,
+      response: filteredRecipes
+    })
+  }
+  else {
+    try {
+      const recipes = await Recipe.find().sort({createdAt: 'desc'}).limit(20).exec()
       res.status(200).json({
-        success: true,
-        respose: filteredMultipleRecipes
-
+      success: true,
+      response: recipes
       })
+    } catch (error) {
+      res.status(400).json({success: false, response: error});
     }
-    else {
-      try {
-        const recipes = await Recipe.find().sort({createdAt: 'desc'}).limit(20).exec()
-        res.status(200).json({
-        success: true,
-        response: recipes
-        })
-      } catch (error) {
-        res.status(400).json({success: false, response: error});
-      }
-    }
-
-  })
+  }
+})
 
 // Lists all users
 app.get("/users", authenticateUser)
