@@ -86,7 +86,6 @@ const Instructions = styled(StyledNonTransparentDiv)`
     padding: 40px;
     
     ol {
-        list-style: inside;
         li {
             margin-left: 0rem;
         }
