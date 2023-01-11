@@ -29,7 +29,7 @@ const options = {
 }
 
 useEffect(() => {
-  fetch(API_URL(toggle ? `users/${userId}/posts` : 'savedPosts'), options)
+  fetch(API_URL(toggle ? `users/${userId}/posts` : `users/${userId}/likedposts`), options)
   .then((response) => response.json())
   .then((data) => {
     setMyPosts(data.response);
@@ -44,10 +44,10 @@ useEffect(() => {
     <>
     <HeadlineDiv>
       <a onClick={() => setToggle(true)}>
-        <h2 className={toggle ? 'active-h2' : ''}>Posted recipes</h2>
+        <h2 className={toggle ? 'active-h2' : ''}>Posted</h2>
       </a>
       <a onClick={() => setToggle(false) }>
-      <h2 className={toggle ? '' : 'active-h2'}>Saved recipes</h2>
+      <h2 className={toggle ? '' : 'active-h2'}>Liked</h2>
       </a>
     </HeadlineDiv>
     <RecipeList>

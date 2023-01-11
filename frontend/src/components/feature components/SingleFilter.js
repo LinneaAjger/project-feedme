@@ -10,7 +10,7 @@ const SingleFilter = ({ svg, title, array }) => {
     const [selected, setSelected] = useState(false)
     const [filtering, setFiltering] = useState(false)
     const accessToken = localStorage.getItem('accessToken')
-    const [value, setValue] = useState()
+    const [value, setValue] = useState([])
     const dispatch = useDispatch()
 
     const handleClick = () => {

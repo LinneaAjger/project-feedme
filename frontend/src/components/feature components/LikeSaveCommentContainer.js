@@ -1,13 +1,25 @@
 import React, { useState} from "react";
 import styled from "styled-components/macro";
+import { API_URL } from "utils/utils";
 
-const LikeSaveCommentContainer = () => {
+const LikeSaveCommentContainer = ({recipeId}) => {
+    console.log(recipeId)
     const [liked, setLiked] = useState(false)
     const [saved, setSaved] = useState(false)
     
     const onLikeClick = () => {
-        setLiked
-        console.log("like")
+        const options = {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+          fetch(API_URL(`recipes/${recipeId}`), options)
+            .then((response) => response.json())
+            .then(() => {
+                setLiked
+                console.log("like")
+            })
     }
 
     const onSaveClick = () => {
@@ -28,7 +40,7 @@ const LikeSaveCommentContainer = () => {
                     <path d="M2 2L24 24M24 2L2 24" strokeLinecap="round"/>
                  </StyledSvg>
             </button>
-            <button type="button" onClick={onSaveClick} className={saved ? "saved" : "notSaved"}>
+            {/* <button type="button" onClick={onSaveClick} className={saved ? "saved" : "notSaved"}>
                 <StyledSvg 
                     width="10" 
                     height="15" 
@@ -37,7 +49,7 @@ const LikeSaveCommentContainer = () => {
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 13.7433V2C1 1.44772 1.44849 1 2.00077 1H8.49923C9.05151 1 9.5 1.44771 9.5 2V13.7433C9.66646 15.6549 8.14323 13.9101 5.83878 11.2704L5.82321 11.2526C5.40202 10.7701 4.64272 10.8052 4.26142 11.3198C2.05598 14.296 1.11371 15.2128 1 13.7433Z" stroke="black" strokeWidth="0.7"/>
                 </StyledSvg>
-            </button>
+            </button> */}
             <button type="button" onClick={onLikeClick} className={liked ? "liked" : "notLiked"}>
                 <StyledSvg 
                     width="17" 
@@ -64,10 +76,12 @@ const LikeContainer = styled.div`
   align-items: center;
   border-left: 2px solid var(--color-darkSand);
   padding: 0px 0px 0px 30px;
+  z-index: 1;
 
   button {
         border: none;
         background-color: inherit;
+        cursor: pointer;
     &:hover {
         transform: scale(1.2);
         transition: 0.3s ease-in-out;
