@@ -16,8 +16,7 @@ const RecipeDetails = ({ recipeInfo }) => {
             recipe.instructions[0].split('\n')
         )
     })
-    console.log(InstructionsIntoList)
-    console.log(IngredientsIntoList)
+
     return (
         <>
             {recipeInfo.map((recipe) => {
@@ -71,6 +70,7 @@ const RecipeInstructionsDiv = styled.div`
 const Ingredients = styled(StyledNonTransparentDiv)`
     border-radius: 3px;
     margin: 10px;
+    padding: 40px;
 
     ul {
         list-style: inside;
@@ -83,6 +83,7 @@ const Instructions = styled(StyledNonTransparentDiv)`
     margin: 10px;
     border-radius: 3px;
     background-color: inherit;
+    padding: 40px;
     
     ol {
         list-style: inside;
