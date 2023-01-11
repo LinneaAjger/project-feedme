@@ -168,6 +168,7 @@ height: 100%;
 padding: 30px;
 justify-content: space-between;
 min-height: 150px;
+margin-bottom: 20px;
 
 svg {
   width: 15px;
