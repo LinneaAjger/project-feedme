@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { StyledNonTransparentDiv } from "components/styles/DivStyles";
+import { Tag } from "./TagsVisual";
 
 const RecipeDetails = ({ recipeInfo }) => {
     console.log(recipeInfo)
@@ -27,6 +28,13 @@ const RecipeDetails = ({ recipeInfo }) => {
                     <div>
                         <h1>{recipe.name}</h1>
                         <p>"{recipe.description}"</p>
+                        <TagDiv>
+                            {recipe.tags.map((tag) => {
+                                return (
+                                <TagRecipe>{tag}</TagRecipe>
+                                )
+                            })}
+                        </TagDiv>
                     </div>
                     <RecipeInstructionsDiv>
                         <Ingredients>
@@ -62,23 +70,33 @@ export default RecipeDetails
 const MainRecipeDiv = styled.div`
     display: flex;
     flex-direction: column;
+    padding: 50px;
 `
 const RecipeInstructionsDiv = styled.div`
     display: flex;
-    flex-direction: row;
-    margin: 20px;
+    flex-direction: column;
+    margin: 10px;
+    
+    @media (min-width: 668px) {
+        flex-direction: row;
+        margin: 30px;
+    }
 `
 
 const Ingredients = styled(StyledNonTransparentDiv)`
     border-radius: 3px;
-    margin: 10px;
-    padding: 40px;
+    padding: 10px;
 
     ul {
         list-style: inside;
         li {
             margin-left: 0rem;
         }
+    }
+
+    @media (min-width: 668px) {
+        margin: 10px;
+
     }
 `
 const Instructions = styled(StyledNonTransparentDiv)`
@@ -93,4 +111,17 @@ const Instructions = styled(StyledNonTransparentDiv)`
         }
     }
 
+`
+const TagRecipe = styled(Tag)`
+  background-color: var(--color-beige);
+  color: black;
+  font-size: 12px;
+  padding: 5px; 
+  border-radius: 10px;
+  margin: 5px;
+`
+
+const TagDiv = styled.div`
+    display: flex;
+    flex-direction: row;
 `

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { API_URL } from 'utils/utils'
 import { useParams } from 'react-router-dom'
 import RecipeDetails from './feature components/RecipeDetails'
+import styled from 'styled-components/macro'
 
 const Recipe = ({ recipeId }) => {
   const [recipe, setRecipe] = useState([])
@@ -30,7 +31,7 @@ const Recipe = ({ recipeId }) => {
 console.log(recipe)
 
   return (
-    <div>
+    <RecipeDiv>
       {recipe.map((recipeInfo) => 
       <>
         <p>{recipeInfo.username}</p>
@@ -39,8 +40,11 @@ console.log(recipe)
         <RecipeDetails recipeInfo={[recipeInfo.recipe]}/>
       </>
       )}
-    </div>
+    </RecipeDiv>
   )
 }
 
 export default Recipe
+
+const RecipeDiv = styled.div`
+  padding: 80px;`
