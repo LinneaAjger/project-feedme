@@ -170,13 +170,13 @@ const FormStyledDiv = styled(StyledDiv)`
   position: absolute;
   top: 50%;  
   left: 50%;                     
-  z-index: 1;
   overflow-x: auto;
   width: 100vw;
   height: 100%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
   padding: 30px;
+  z-index: 99;
 
   input, textarea {
     max-width: 1000px;

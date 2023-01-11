@@ -118,17 +118,30 @@ app.get("/", (req, res) => {
       "/recipes": "use with GET & POST to send a request to get the feed and to post recipes to it"
     }
   })
-});
+})
+
 // Shows feed when logged in
 // app.get("/recipes", authenticateUser)
   app.get("/recipes", async (req, res) => {
     const { tags } = req.query
+      console.log(tags.length)
+      console.log(tags)
 
     if (tags) {
       const filteredRecipes = await Recipe.find({'recipe.tags': tags})
-      res.status(200).json({
+        res.status(200).json({
         success: true,
         response: filteredRecipes
+      })
+    } 
+    else if (tags.length>=2) {
+      const filteredMultipleRecipes = await Recipe.find({'recipe.tags': tags}.splice(0,1))
+      console.log(filteredMultipleRecipes)
+
+      res.status(200).json({
+        success: true,
+        respose: filteredMultipleRecipes
+
       })
     }
     else {
@@ -142,7 +155,9 @@ app.get("/", (req, res) => {
         res.status(400).json({success: false, response: error});
       }
     }
+
   })
+
 // Lists all users
 app.get("/users", authenticateUser)
 app.get("/users", async (req, res) => {
@@ -171,6 +186,7 @@ app.get("/users/:userId", async (req, res) => {
      res.status(400).json({success: false, response: error});
    }
 })
+
 //show recipes from a specific user
 app.get("/users/:userId/posts", authenticateUser)
 app.get("/users/:userId/posts", async (req, res) => {
@@ -188,7 +204,6 @@ app.get("/users/:userId/posts", async (req, res) => {
 
 // Posts new recipe to feed
 // app.post("/recipes", authenticateUser)
-
 app.post("/recipes", async (req, res) => {
   const { recipe } = req.body
   const accessToken = req.header("Authorization")
