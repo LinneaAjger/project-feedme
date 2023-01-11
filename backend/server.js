@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
     default: () => crypto.randomBytes(128).toString("hex")
   },
   likedRecipes: {
-    type: [RecipeSchema]
+    type: []
   }
 })
 
@@ -262,13 +262,16 @@ app.patch("/recipes/:recipeId", authenticateUser)
 app.patch("/recipes/:recipeId", async (req, res) => {
   const { recipeId } = req.params
   const accessToken = req.header("Authorization")
-  const user = await User.findOne({accessToken: accessToken})
+
   try {
     const LikedRecipe = await Recipe.findByIdAndUpdate({_id: recipeId}, {$inc: {likes: 1}})
 
+    const user = await User.findOne({accessToken: accessToken},{"likedRecipes.LikedRecipe._id": recipeId})
+    console.log('user:', user)
+
     if (LikedRecipe) {
       const addLikedRecipe = await User.findByIdAndUpdate({ _id: user._id}, { 
-        $push: {likedRecipes: {LikedRecipe}}
+        $push: {likedRecipes: LikedRecipe}
       })
 
       res.status(200).json({
