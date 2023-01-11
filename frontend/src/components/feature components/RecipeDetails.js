@@ -5,12 +5,14 @@ import { StyledNonTransparentDiv } from "components/styles/DivStyles";
 const RecipeDetails = ({ recipeInfo }) => {
     console.log(recipeInfo)
 
+    // Turning ingredients string into array (to be able to display the ingredients in a list). The string is split at each comma.
     const IngredientsIntoList = recipeInfo.map((recipe) => {
         return (
             recipe.ingredients[0].split(',')
         )
     })
 
+    // Turning the instructions string into an array (to be able to display the ingredients in a list). The string is split at each line-break.
     const InstructionsIntoList = recipeInfo.map((recipe) => {
         return (
             recipe.instructions[0].split('\n')
