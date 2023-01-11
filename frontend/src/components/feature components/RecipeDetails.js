@@ -13,7 +13,7 @@ const RecipeDetails = ({ recipeInfo }) => {
 
     const InstructionsIntoList = recipeInfo.map((recipe) => {
         return (
-            recipe.instructions[0].split('/n')
+            recipe.instructions[0].split('\n')
         )
     })
     console.log(InstructionsIntoList)
@@ -83,5 +83,12 @@ const Instructions = styled(StyledNonTransparentDiv)`
     margin: 10px;
     border-radius: 3px;
     background-color: inherit;
+    
+    ol {
+        list-style: inside;
+        li {
+            margin-left: 0rem;
+        }
+    }
 
 `
