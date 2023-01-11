@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
     default: () => crypto.randomBytes(128).toString("hex")
   },
   likedRecipes: {
-    type: []
+    type: [String]
   }
 })
 
@@ -262,28 +262,10 @@ app.patch("/recipes/:recipeId", authenticateUser)
 app.patch("/recipes/:recipeId", async (req, res) => {
   const { recipeId } = req.params
   const accessToken = req.header("Authorization")
+  const user = await User.findOne({accessToken: accessToken})
 
   try {
-    const LikedRecipe = await Recipe.findByIdAndUpdate({_id: recipeId}, {$inc: {likes: 1}})
-
-    const user = await User.findOne({accessToken: accessToken},{"likedRecipes.LikedRecipe._id": recipeId})
-    console.log('user:', user)
-
-    if (LikedRecipe) {
-      const addLikedRecipe = await User.findByIdAndUpdate({ _id: user._id}, { 
-        $push: {likedRecipes: LikedRecipe}
-      })
-
-      res.status(200).json({
-        response: "Updated",
-        data: addLikedRecipe
-      })
-
-       } else {
-        res.status(500).json({
-        response: "Could not update"
-        })
-      }
+    await Recipe.findByIdAndUpdate({_id: recipeId}, {$inc: {likes: 1}})
 
   } catch (error) {
     res.status(400).json({
@@ -291,6 +273,24 @@ app.patch("/recipes/:recipeId", async (req, res) => {
       response: error
     })
   }
+  const recipeAlreadySaved = await User.find({"likedRecipes": recipeId})
+  console.log('recipe saved', recipeAlreadySaved)
+
+  if (recipeAlreadySaved.length === 0) {
+  const addLikedRecipe = await User.findByIdAndUpdate({ _id: user._id}, { 
+      $push: {likedRecipes: recipeId}
+    })
+
+    res.status(200).json({
+      response: "Updated",
+      data: addLikedRecipe
+    })
+
+     } else {
+      res.status(500).json({
+      response: "Recipe already liked"
+      })
+    }
 })
 
 // Register new user
