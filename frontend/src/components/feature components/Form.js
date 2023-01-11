@@ -167,16 +167,16 @@ const Form = ({ setCollapsed }) => {
 export default Form
 
 const FormStyledDiv = styled(StyledDiv)`
-  position: absolute;
+  position: fixed;
   top: 50%;  
   left: 50%;                     
-  z-index: 1;
   overflow-x: auto;
   width: 100vw;
   height: 100%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  padding: 30px;
+  z-index: 99;
+  padding-top: 50px;
 
   input, textarea {
     max-width: 1000px;
@@ -191,10 +191,10 @@ const FormStyledDiv = styled(StyledDiv)`
     width: 100%;
     justify-content: flex-start;
   }
+
   @media (min-width: 667px) {
     width: 80vw;
-    height: 70vh;
-    transform: translate(-50%, -70%);
+    height: 80vh;
 
     label {
     width: 70%;
@@ -204,7 +204,6 @@ const FormStyledDiv = styled(StyledDiv)`
   @media (min-width: 1024px) {
     width: 100vw;
     height: 80vh;
-    transform: translate(-50%, -83%);
     max-width: 900px;
 
     label {
@@ -241,7 +240,7 @@ const TagsDiv = styled.div`
   `
 
 const Tag = styled.div`
-margin: 5px;
+margin: 20px;
 
 h2 {
     font-size: 16px;

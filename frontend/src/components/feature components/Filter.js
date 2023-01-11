@@ -15,15 +15,26 @@ const Filter = () => {
         setClick(!click)
     }
 
+    const removeFilter = () => {
+        location.reload()
+    }
+
     return (
         <FilterDiv>
-            <FilterBtn onClick={handleClick}>
-                <h1 className={click ? "hidden" : ""}>Pick your meal</h1>
-                <svg className={click ? "hidden" : ""} width="32px" fill="gray" height="25px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <title>filter</title>
-                    <path d="M30.646 1.62c-0.133-0.223-0.372-0.37-0.646-0.37h-28c-0.414 0-0.75 0.336-0.75 0.75 0 0.134 0.035 0.259 0.096 0.368l-0.002-0.004 9.905 17.831v5.805c0 0.292 0.167 0.545 0.411 0.668l0.004 0.002 7.999 4c0.096 0.050 0.211 0.080 0.332 0.080 0.002 0 0.003 0 0.005 0h-0c0.001 0 0.001 0 0.002 0 0.413 0 0.748-0.335 0.748-0.748 0-0.001 0-0.001 0-0.002v0-9.805l9.906-17.831c0.059-0.105 0.094-0.23 0.094-0.364 0-0.14-0.039-0.272-0.106-0.384l0.002 0.003zM19.344 19.637c-0.059 0.105-0.093 0.23-0.094 0.363v8.787l-6.5-3.25v-5.537c0-0 0-0 0-0.001 0-0.133-0.035-0.258-0.097-0.366l0.002 0.004-9.381-16.887h25.45z"></path>
-                </svg>
-            </FilterBtn>
+            <H1andBtnDiv>
+                <FilterBtn onClick={handleClick}>
+                    <h1 className={click ? "hidden" : ""}>Pick your meal</h1>
+                    <svg className={click ? "hidden" : ""} width="32px" fill="gray" height="25px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <title>filter</title>
+                        <path d="M30.646 1.62c-0.133-0.223-0.372-0.37-0.646-0.37h-28c-0.414 0-0.75 0.336-0.75 0.75 0 0.134 0.035 0.259 0.096 0.368l-0.002-0.004 9.905 17.831v5.805c0 0.292 0.167 0.545 0.411 0.668l0.004 0.002 7.999 4c0.096 0.050 0.211 0.080 0.332 0.080 0.002 0 0.003 0 0.005 0h-0c0.001 0 0.001 0 0.002 0 0.413 0 0.748-0.335 0.748-0.748 0-0.001 0-0.001 0-0.002v0-9.805l9.906-17.831c0.059-0.105 0.094-0.23 0.094-0.364 0-0.14-0.039-0.272-0.106-0.384l0.002 0.003zM19.344 19.637c-0.059 0.105-0.093 0.23-0.094 0.363v8.787l-6.5-3.25v-5.537c0-0 0-0 0-0.001 0-0.133-0.035-0.258-0.097-0.366l0.002 0.004-9.381-16.887h25.45z"></path>
+                    </svg>
+                </FilterBtn>
+                <UnstyledBtn type="button" onClick={removeFilter}>
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L24 24M24 2L2 24" stroke="#F2C19F" strokeWidth="4" strokeLinecap="round" />
+                    </svg>
+                </UnstyledBtn>
+            </H1andBtnDiv>
             <div className={click ? "" : "filter-hidden"}>
                 <SingleFilter 
                 svg={<svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,6 +106,9 @@ const FilterBtn = styled(UnstyledBtn)`
             display: none;
         }
     }
+`
 
-
+const H1andBtnDiv = styled.div`
+display: flex;
+flex-direction: row;
 `

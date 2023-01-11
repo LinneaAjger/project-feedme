@@ -10,7 +10,7 @@ const recipeReducer = createSlice({
   },
   reducers: {
     setItems: (store, action) => {
-    store.items = action.payload
+      store.items = action.payload
     },
     setNewRecipe: (store, action) => {
       store.items.unshift(action.payload)
@@ -19,7 +19,7 @@ const recipeReducer = createSlice({
       store.items = action.payload
     },
     setError: (store, action) => {
-    store.error = action.payload
+      store.error = action.payload
     },
     setUsername: (store, action) => {
       store.username = action.payload
