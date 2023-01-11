@@ -141,6 +141,7 @@ const ButtonContainer = styled.div`
     border: none;
     display: flex;
     transition: 0.3s ease-in-out;
+    z-index: 98;
 
     &:hover {
     transform: scale(1.2);
