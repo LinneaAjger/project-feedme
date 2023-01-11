@@ -5,6 +5,7 @@ import { StyledButton } from 'components/styles/ButtonStyles'
 import { ButtonDiv } from 'components/styles/ButtonStyles'
 import { StyledDiv } from 'components/styles/DivStyles'
 import Input from './Input'
+import InputTextArea from './InputTextArea'
 import Checkbox from './Checkbox'
 
 export const MealArray = [{ value: 'breakfast', title: 'Breakfast' }, { value: 'lunch', title: 'Lunch' }, { value: 'dinner', title: 'Dinner' }, { value: 'snack', title: 'Snack' }]
@@ -15,7 +16,7 @@ const Form = ({ setCollapsed }) => {
   const [recipeName, setRecipeName] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [description, setDescription] = useState('')
-  const [instructions, setInstructions] = useState('')
+  const [instructions, setInstructions] = useState([])
   const [rating, setRating] = useState(0)
   const [tags, setTags] = useState({})
 
@@ -115,15 +116,13 @@ const Form = ({ setCollapsed }) => {
           value={description}
           onChange={handleDescription}
         />
-        <Input
-          type="text"
+        <InputTextArea
           srOnly="Ingredients"
           placeholder="Ingredients"
           value={ingredients}
           onChange={handleIngredients}
         />
-        <Input
-          type="text"
+        <InputTextArea
           srOnly="Instructions"
           placeholder="Instructions"
           value={instructions}

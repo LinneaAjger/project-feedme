@@ -7,9 +7,16 @@ const RecipeDetails = ({ recipeInfo }) => {
 
     const IngredientsIntoList = recipeInfo.map((recipe) => {
         return (
-            recipe.ingredients[0].split(' ')
+            recipe.ingredients[0].split(',')
         )
     })
+
+    const InstructionsIntoList = recipeInfo.map((recipe) => {
+        return (
+            recipe.instructions[0].split('/n')
+        )
+    })
+    console.log(InstructionsIntoList)
     console.log(IngredientsIntoList)
     return (
         <>
@@ -33,7 +40,13 @@ const RecipeDetails = ({ recipeInfo }) => {
                         </Ingredients>
                         <Instructions>
                             <h2>Instructions</h2>
-                            <p>{recipe.instructions}</p>
+                            <ol>
+                            {InstructionsIntoList[0].map((li) => {
+                                    return (
+                                        <li>{li}</li>
+                                    )
+                                })}
+                            </ol>
                         </Instructions>
                     </RecipeInstructionsDiv>
                 </MainRecipeDiv>
