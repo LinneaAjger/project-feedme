@@ -68,6 +68,22 @@ const RecipesInFeed = () => {
           })
       }
     }
+
+  //Delete recipes
+    const onDeleteClick = async (recipeId) => {
+      const options = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": accessToken
+          }
+        }
+        await fetch(API_URL(`recipes/${recipeId}`), options)
+          .then((response) => response.json())
+          .then(() => {
+            location.reload()    
+          })
+    }
     
   return (
       <RecipeList>
@@ -89,6 +105,17 @@ const RecipesInFeed = () => {
             )}
           </Link>
           <LikeContainer>
+          {singleRecipe.userId === userId &&
+            <button type="button" onClick={() => onDeleteClick(singleRecipe._id)} recipeId={singleRecipe._id}>
+              <StyledSvg 
+                width="10" 
+                height="15" 
+                viewBox="0 0 26 26"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2L24 24M24 2L2 24" strokeLinecap="round"/>
+              </StyledSvg>
+            </button>
+            }
             <button type="button" onClick={() => onLikeClick(singleRecipe._id)} className={liked ? "liked" : "notLiked"}>
                 <StyledSvg 
                     width="17" 
