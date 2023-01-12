@@ -285,24 +285,6 @@ app.patch("/recipes/:recipeId", async (req, res) => {
       response: error
     })
   }
-  // const recipeAlreadySaved = await User.find({_id: user._id, "likedRecipes": recipeId})
-  // console.log('recipe saved', recipeAlreadySaved)
-
-  // if (recipeAlreadySaved.length === 0) {
-  // const addLikedRecipe = await User.findByIdAndUpdate({ _id: user._id}, { 
-  //     $push: {likedRecipes: recipeId}
-  //   })
-  //   console.log(addLikedRecipe)
-  //   res.status(200).json({
-  //     response: "Updated",
-  //     data: addLikedRecipe
-  //   })
-
-  //    } else {
-  //     res.status(500).json({
-  //     response: "Recipe already liked"
-  //     })
-  //   }
 })
 
 // Register new user
