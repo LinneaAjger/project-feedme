@@ -178,14 +178,15 @@ app.get("/users/:userId", async (req, res) => {
 })
 
 //show recipes from a specific user
-app.get("/users/:userId/posts", authenticateUser)
+// app.get("/users/:userId/posts", authenticateUser)
 app.get("/users/:userId/posts", async (req, res) => {
   const { userId } = req.params;
   try {
     const usersRecipes = await Recipe.find({userId: userId}).sort({createdAt: 'desc'})
+    const user = await User.findById({_id: userId})
     res.status(200).json({
      success: true,
-     response: usersRecipes
+     response: usersRecipes, user
     })
   } catch (error) {
      res.status(400).json({success: false, response: error});

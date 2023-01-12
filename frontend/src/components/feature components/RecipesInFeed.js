@@ -5,9 +5,10 @@ import recipeReducer from 'reducers/recipeReducer';
 import { API_URL } from 'utils/utils';
 import { Link } from "react-router-dom";
 import { RecipeContainer } from "../styles/DivStyles"
-import { SmallP } from "../styles/GlobalStyles"
+import { SmallP, TagContainer, StyledSvg } from "../styles/GlobalStyles"
 import { RecipeList } from "../styles/DivStyles";
 import TagsVisual from "./TagsVisual";
+import { LikeContainer } from "../styles/DivStyles";
 
 const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
@@ -136,36 +137,3 @@ const RecipesInFeed = () => {
 }
  export default RecipesInFeed
 
- const TagContainer = styled.div`
- display: flex;
- flex-direction: row;
- gap: 0.8vw;
- padding-top: 20px;
-`
-
-const LikeContainer = styled.div`                  
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  border-left: 2px solid var(--color-darkSand);
-  padding: 0px 0px 0px 30px;
-  z-index: 1;
-
-  button {
-        border: none;
-        background-color: inherit;
-        cursor: pointer;
-    &:hover {
-        transform: scale(1.2);
-        transition: 0.3s ease-in-out;
-
-    }
-  }
-`
-
-const StyledSvg = styled.svg`
-    &.liked {
-        fill:"red";
-    }
-`
