@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
     default: () => crypto.randomBytes(128).toString("hex")
   },
   likedRecipes: {
-    type: [String]
+    type: [String],
   }
 })
 
@@ -149,7 +149,7 @@ app.get("/recipes", async (req, res) => {
 })
 
 // Lists all users
-app.get("/users", authenticateUser)
+// app.get("/users", authenticateUser)
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find()
@@ -167,7 +167,7 @@ app.get("/users/:userId", authenticateUser)
 app.get("/users/:userId", async (req, res) => {
   const { userId } = req.params;
   try {
-    const userData = await User.find({_id: userId})
+    const userData = await User.findById({_id: userId})
     res.status(200).json({
      success: true,
      response: userData
@@ -277,14 +277,14 @@ app.patch("/recipes/:recipeId", async (req, res) => {
       response: error
     })
   }
-  const recipeAlreadySaved = await User.find({"likedRecipes": recipeId})
+  const recipeAlreadySaved = await User.find({_id: user._id, "likedRecipes": recipeId})
   console.log('recipe saved', recipeAlreadySaved)
 
   if (recipeAlreadySaved.length === 0) {
   const addLikedRecipe = await User.findByIdAndUpdate({ _id: user._id}, { 
       $push: {likedRecipes: recipeId}
     })
-
+    console.log(addLikedRecipe)
     res.status(200).json({
       response: "Updated",
       data: addLikedRecipe
