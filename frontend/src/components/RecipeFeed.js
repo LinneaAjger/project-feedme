@@ -51,7 +51,7 @@ const RecipeFeed = () => {
   const tabletView = useMediaQuery(1024)
 
   return (
-    <>
+    <SectionAroundFeed>
     {mobileView ? ( 
       <FeedSection>
         <ButtonContainer>
@@ -105,17 +105,24 @@ const RecipeFeed = () => {
       </FeedSection>
       )
       }
-    </>
+    </SectionAroundFeed>
     )
   }
 
 export default RecipeFeed
 
+const SectionAroundFeed = styled.section`
+width: 100%;
+display: flex; 
+flex-direction: column;
+align-items: center;
+`
+
 const FeedSection = styled.section`
   height: 100%;
   margin-top: 4%;
   display: grid;
-  width: 100%;
+  width: 97%;
   position: relative;
 
     @media (min-width: 668px) and (max-width: 1024px) {
