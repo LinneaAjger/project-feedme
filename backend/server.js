@@ -182,7 +182,7 @@ app.get("/users/:userId/posts", authenticateUser)
 app.get("/users/:userId/posts", async (req, res) => {
   const { userId } = req.params;
   try {
-    const usersRecipes = await Recipe.find({username: userId}).sort({createdAt: 'desc'})
+    const usersRecipes = await Recipe.find({userId: userId}).sort({createdAt: 'desc'})
     res.status(200).json({
      success: true,
      response: usersRecipes
@@ -191,19 +191,6 @@ app.get("/users/:userId/posts", async (req, res) => {
      res.status(400).json({success: false, response: error});
    }
 })
-// app.get("/users/:userId/likedposts", authenticateUser)
-// app.get("/users/:userId/", async (req, res) => {
-//   const { userId } = req.params
-//   try {
-//     const usersRecipes = await Recipe.find({user: userId}).sort({createdAt: 'desc'})
-//     res.status(200).json({
-//      success: true,
-//      response: usersRecipes
-//     })
-//   } catch (error) {
-//      res.status(400).json({success: false, response: error});
-//    }
-// })
 
 // //show liked recipes from a specific user
 // app.get("/users/:userId/likedposts", authenticateUser)
