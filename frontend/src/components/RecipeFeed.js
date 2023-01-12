@@ -12,8 +12,6 @@ const RecipeFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
   const [collapsed, setCollapsed] = useState(true)
 
-  console.log(collapsed)
-
   useEffect(() => {
     if(!accessToken) {
       navigate("/login") 

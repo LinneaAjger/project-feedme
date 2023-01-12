@@ -43,7 +43,6 @@ const Form = ({ setCollapsed }) => {
     fetch(API_URL("recipes"), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         dispatch(recipes.actions.setNewRecipe(data.response))
       })
   }

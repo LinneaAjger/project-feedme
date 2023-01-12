@@ -16,6 +16,7 @@ const Nav = () => {
 
   const logOut = () => {
     localStorage.removeItem('accessToken')
+    localStorage.removeItem('username')
     navigate("/login")
   }
   return (

@@ -30,7 +30,6 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
       fetch(API_URL(loginType), options)
         .then(res => res.json())
         .then(data => {
-          console.log(data)
           if(data.success) {
             batch(() => {
               dispatch(user.actions.setUsername(data.response.username))
