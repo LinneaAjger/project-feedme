@@ -70,16 +70,18 @@ export default RecipeDetails
 const MainRecipeDiv = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    width: 100%;
+    margin-top: 10px;
+
+    @media (min-width: 668px) {
+    }
 `
 const RecipeInstructionsDiv = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 10px;
     
     @media (min-width: 668px) {
         flex-direction: row;
-        margin: 30px;
     }
 `
 
@@ -100,10 +102,9 @@ const Ingredients = styled(StyledNonTransparentDiv)`
     }
 `
 const Instructions = styled(StyledNonTransparentDiv)`
-    margin: 10px;
     border-radius: 3px;
     background-color: inherit;
-    padding: 40px;
+    padding: 10px;
     
     ol {
         li {
@@ -124,4 +125,6 @@ const TagRecipe = styled(Tag)`
 const TagDiv = styled.div`
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
 `

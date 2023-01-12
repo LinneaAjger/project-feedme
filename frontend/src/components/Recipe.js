@@ -33,12 +33,14 @@ console.log(recipe)
   return (
     <RecipeDiv>
       {recipe.map((recipeInfo) => 
-      <>
-        <p>{recipeInfo.username}</p>
-        <p>{`${new Date(recipeInfo.createdAt).toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric',   hour: '2-digit',
-  minute: '2-digit', hour12: false })}`}</p>
+      <div>
+        <UserInfoDiv>
+          <p>{recipeInfo.username}</p>
+          <p>{`${new Date(recipeInfo.createdAt).toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric',   hour: '2-digit',
+              minute: '2-digit', hour12: false })}`}</p>
+        </UserInfoDiv>
         <RecipeDetails recipeInfo={[recipeInfo.recipe]}/>
-      </>
+      </div>
       )}
     </RecipeDiv>
   )
@@ -47,4 +49,31 @@ console.log(recipe)
 export default Recipe
 
 const RecipeDiv = styled.div`
-  padding: 80px;`
+  margin-top: 50px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 668px) {
+      margin-top: 70px;
+      width: 60%;
+    }
+
+  @media (min-width: 1024px) {
+    margin-top: 70px;
+    width: 50%;
+  }
+`
+
+const UserInfoDiv = styled.div`
+  div {
+    margin-top: 10px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    
+    @media (min-width: 668px) {
+      margin-top: 40px;
+      margin-left: 40px;
+    }
+  }`
