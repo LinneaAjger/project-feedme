@@ -9,6 +9,7 @@ import { SmallP, TagContainer, StyledSvg } from "../styles/GlobalStyles"
 import { RecipeList } from "../styles/DivStyles";
 import TagsVisual from "./TagsVisual";
 import { LikeContainer } from "../styles/DivStyles";
+import { RecipeFeed } from "../styles/DivStyles";
 
 const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
@@ -87,6 +88,7 @@ const RecipesInFeed = () => {
     }
     
   return (
+    <RecipeFeed>
       <RecipeList>
         {recipeList.map((singleRecipe) => 
         <RecipeContainer>
@@ -134,6 +136,7 @@ const RecipesInFeed = () => {
           </RecipeContainer>
         )}
     </RecipeList>
+    </RecipeFeed>
     )
 }
  export default RecipesInFeed
