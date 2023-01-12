@@ -38,6 +38,7 @@ useEffect(() => {
   fetch(API_URL(toggle ? `users/${params.userId}/posts` : `users/${params.userId}`), options)
   .then((response) => response.json())
   .then((data) => {
+    setUsername(toggle ? data.response[0].username: data.response.username )
     setPosts(toggle ? data.response : data.response.likedRecipes);
     })
     .catch((error) => {
@@ -48,7 +49,7 @@ useEffect(() => {
     <RecipeFeed>
     <HeadlineDiv>
       <div>
-        <h1>{username}</h1>
+        <h1>{username}'s recipes</h1>
       </div>
       <PostsToggle>
         <a onClick={() => setToggle(true)}>

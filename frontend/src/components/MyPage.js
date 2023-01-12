@@ -19,7 +19,6 @@ const [liked, setLiked] = useState([])
 console.log(myPosts)
 console.log()
 const navigate = useNavigate()
-const username = localStorage.getItem('username');
 
 
 useEffect(() => {
@@ -52,7 +51,7 @@ useEffect(() => {
     <RecipeFeed>
     <HeadlineDiv>
       <div>
-        <h1>{username}'s' RECIPES</h1>
+        <h1>my recipes</h1>
       </div>
       <PostsToggle>
         <a onClick={() => setToggle(true)}>

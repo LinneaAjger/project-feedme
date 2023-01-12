@@ -5,7 +5,7 @@ import Logo from './media/Logo.svg'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 export const Header = () => {
-  const navigate = useNavigate();
+  const username = localStorage.getItem('username');
 
   return (
     <Wrapper>
@@ -23,8 +23,8 @@ export const Header = () => {
             <path d="M132.6 189.527C124.785 192.874 115.7 206.794 115.7 209.672M155.133 182.127C163.255 180.825 177.667 180.072 182 184.593" stroke="black" strokeWidth="7"/>
             <path d="M146.312 167.208C142.049 171.26 137.587 172.826 131.011 172.442C129.805 172.372 129.899 171.735 131.105 171.793C133.298 171.898 135.522 171.756 138 171C141.599 170.017 143.632 168.359 145.655 166.53C146.498 165.768 147.136 166.426 146.312 167.208Z" stroke="black" strokeWidth="5"/>
           </StyledLogo>
-
         </NavLink>
+        <StyledP>Logged in as: {username}</StyledP>
       </StyledHeader>
     </Wrapper>
   )
@@ -88,7 +88,7 @@ const StyledLogo = styled.svg`
     height: 220px;
     position: absolute;
     margin-left: 0px;
-    left: 30px;
+    left: 20px;
     top: 15px;
     }
 `
@@ -101,4 +101,22 @@ const Wrapper = styled.div`
   box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
   position: fixed;
   z-index: 97;
+`
+
+const StyledP = styled.p`
+  
+  margin-left: 10px;
+
+  @media (min-width: 668px) {
+    left: 30px;
+    top: 285px;
+  }
+  @media (min-width: 1024px) {
+    position:absolute;
+    font-size: 1.2rem;
+    left: 60px;
+    top: 310px;
+  }
+  
+  
 `
