@@ -247,7 +247,25 @@ export const Innerwrapper = styled.div`
     margin-top: 180px
   }
 `
+export const FeedSection = styled.section`
+  height: 100%;
+  margin-top: 4%;
+  display: grid;
+  width: 100%;
+  position: relative;
 
+    @media (min-width: 668px) and (max-width: 1024px) {
+      grid-template-columns: 2fr 1fr;
+      gap: 2%;
+      width: 80%
+    }
+
+    @media (min-width: 1025px) {
+      grid-template-columns: 1fr 2fr 1fr;
+      column-gap: 2vw;    
+      width: 80%;
+    }
+`
 
 export const SrOnly = styled.div`
   position: absolute;
@@ -264,3 +282,17 @@ export const SrOnly = styled.div`
 export const SmallP = styled.p`
   font-size: 14px;
 `
+
+export const TagContainer = styled.div`
+display: flex;
+flex-direction: row;
+gap: 0.8vw;
+padding-top: 20px;
+`
+
+export const StyledSvg = styled.svg`
+   &.liked {
+       fill:"red";
+   }
+`
+

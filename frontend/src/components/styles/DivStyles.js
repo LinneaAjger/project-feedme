@@ -195,23 +195,70 @@ export const RecipeList = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+`
 
+
+export const LikeContainer = styled.div`                  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-left: 2px solid var(--color-darkSand);
+  padding: 0px 0px 0px 30px;
+  z-index: 1;
+
+  button {
+        border: none;
+        background-color: inherit;
+        cursor: pointer;
+    &:hover {
+        transform: scale(1.2);
+        transition: 0.3s ease-in-out;
+
+    }
+  }
+`
+export const HeadlineDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 5%;
+  flex-direction: column;
+  align-items: center;
 
   a {
-    width: 90%;
+    cursor: pointer;
   }
-  a + a {
-    margin-top: 10px;
-  }
-  @media (min-width: 668px) and (max-width: 1024px) {
-    a {
-    width: 90%;
-  }
-}
 
-@media (min-width: 1025px) {
-  a {
-    max-width: 600px;
+  .active-h2 {
+    color: var(--color-beige);
+    background-color: var(--color-darkSand);
   }
-}
+  h2 {
+    font-size: 1rem;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: var(--color-darkGrey);
+  }
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin: 10px 0px
+  }
+`
+
+export const PostsToggle = styled.div`
+  display:flex;
+`
+export const RecipeFeed = styled.div`
+width: 95%;
+
+  @media (min-width: 668px) {
+      width: 90%;
+  }
+
+  @media (min-width: 1024px) {
+      width: 600px;
+    }
 `

@@ -38,6 +38,7 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
               dispatch(user.actions.setError(null))
               localStorage.setItem("accessToken", data.response.accessToken);
               localStorage.setItem("userId", data.response.id);
+              localStorage.setItem("username", data.response.username);
               navigate("/");
             })
           } else {
