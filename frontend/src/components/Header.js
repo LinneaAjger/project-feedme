@@ -11,6 +11,7 @@ export const Header = () => {
     <Wrapper>
       <StyledHeader>
         <Nav />
+        <StyledP>Logged in as: {username}</StyledP>
         <NavLink to="/" className="logo-group">
           <h1>FEED ME</h1>
           <StyledLogo viewBox="0 0 221 218" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +25,6 @@ export const Header = () => {
             <path d="M146.312 167.208C142.049 171.26 137.587 172.826 131.011 172.442C129.805 172.372 129.899 171.735 131.105 171.793C133.298 171.898 135.522 171.756 138 171C141.599 170.017 143.632 168.359 145.655 166.53C146.498 165.768 147.136 166.426 146.312 167.208Z" stroke="black" strokeWidth="5"/>
           </StyledLogo>
         </NavLink>
-        <StyledP>Logged in as: {username}</StyledP>
       </StyledHeader>
     </Wrapper>
   )
@@ -115,7 +115,7 @@ const StyledP = styled.p`
     position:absolute;
     font-size: 1.2rem;
     left: 60px;
-    top: 310px;
+    top: 30px;
   }
   
   

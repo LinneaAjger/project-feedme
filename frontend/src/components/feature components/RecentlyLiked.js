@@ -19,6 +19,6 @@ const RecentlyLiked = () => {
 export default RecentlyLiked
 
 const MarginTopDiv = styled(StyledNonTransparentDiv)`
-    margin-top: 50%;
-    height: 50vh;
+    margin-top: 160px;
+    height: fit-content;
 `
