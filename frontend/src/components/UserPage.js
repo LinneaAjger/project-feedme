@@ -8,11 +8,11 @@ import LikeSaveCommentContainer from './feature components/LikeSaveCommentContai
 
 const UserPage = () => {
 const [posts, setPosts] = useState([])
+const [userData, setUserData] = useState([])
 const accessToken = localStorage.getItem('accessToken');
 const [toggle, setToggle]= useState(true)
 
 const params = useParams()
-console.log(params)
 
 const navigate = useNavigate()
 
@@ -22,6 +22,8 @@ useEffect(() => {
   }   
 }, [accessToken])
 
+
+// get posted recipes from user
 const options = {
   method: "GET",
   headers: {
@@ -29,27 +31,65 @@ const options = {
     "Authorization": accessToken
   }
 }
-
 useEffect(() => {
   fetch(API_URL(toggle ? `users/${params.userId}/posts` : 'savedPosts'), options)
   .then((response) => response.json())
   .then((data) => {
-    setPosts(data.response);
+    setPosts(data.response)
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}, [toggle, params]);
+console.log(posts);
+
+//get liked recipes from user
+useEffect(() => {
+  fetch(API_URL(`users/${params.userId}`), options)
+  .then((response) => response.json())
+  .then((data) => {
+    setUserData(data.response)
     })
     .catch((error) => {
       console.error('Error:', error);
     });
 }, [toggle, params]);
 
+const likedRecipes = userData.map((recipe) => recipe.likedRecipes)
+
+
+//second fetch to get recipes to display
+// const optionsLiked = {
+//   method: "GET",
+//   headers: {
+//     "Content-Type": "application/json", 
+//     "Authorization": accessToken
+//   },
+//   body: JSON.stringify({likedRecipes})
+// }
+
+// useEffect(() => {
+//   fetch(API_URL(`users/${params.userId}`), optionsLiked)
+//   .then((response) => response.json())
+//   .then((data) => {
+//     setUserData(data.response)
+//     })
+//     .catch((error) => {
+//       console.error('Error:', error);
+//     });
+// }, [toggle, params]);
+console.log(userData);
+// const likedRecipes = userData.map((recipe) => recipe.likedRecipes)
+console.log(JSON.stringify(likedRecipes));
 
   return (
     <>
     <HeadlineDiv>
       <a onClick={() => setToggle(true)}>
-        <h2 className={toggle ? 'active-h2' : ''}>Posted recipes</h2>
+        <h2 className={toggle ? 'active-h2' : ''}>Posted</h2>
       </a>
       <a onClick={() => setToggle(false) }>
-      <h2 className={toggle ? '' : 'active-h2'}>Saved recipes</h2>
+      <h2 className={toggle ? '' : 'active-h2'}>Liked</h2>
       </a>
     </HeadlineDiv>
     <RecipeList>
