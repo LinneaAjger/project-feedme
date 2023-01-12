@@ -7,7 +7,6 @@ import recipeReducer from "reducers/recipeReducer";
 
 const SingleFilter = ({ svg, title, array }) => {
     const [click, setClick] = useState(false)
-    const [selected, setSelected] = useState(false)
     const [filtering, setFiltering] = useState(false)
     const accessToken = localStorage.getItem('accessToken')
     const [value, setValue] = useState()
@@ -53,24 +52,24 @@ const SingleFilter = ({ svg, title, array }) => {
     return (
       <>
         <SingleFilterDiv>
-                {svg}
-                <p> {title}</p>
-                <UnstyledBtn onClick={handleClick}>
-                    <DropdownSvg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L4.65904 5.1957C5.05147 5.64569 5.74824 5.65374 6.15097 5.21294L10 1" stroke="black"/>
-                    </DropdownSvg>
-                </UnstyledBtn>
-                <TagBtnContainer className={click ? "" : "tags-hidden"}>
-                    {array.map((recipe) => 
-                        <TagBtn
-                            onClick={() => filterTags(recipe.value)}
-                            value={recipe.value}>
-                                {recipe.title}
-                        </TagBtn>
-                    )}
-                </TagBtnContainer>
-            </SingleFilterDiv>
-        </>
+          {svg}
+          <p> {title}</p>
+          <UnstyledBtn onClick={handleClick}>
+            <DropdownSvg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L4.65904 5.1957C5.05147 5.64569 5.74824 5.65374 6.15097 5.21294L10 1" stroke="black"/>
+            </DropdownSvg>
+          </UnstyledBtn>
+          <TagBtnContainer className={click ? "" : "tags-hidden"}>
+            {array.map((recipe) => 
+              <TagBtn
+                onClick={() => filterTags(recipe.value)}
+                value={recipe.value}>
+                  {recipe.title}
+              </TagBtn>
+              )}
+          </TagBtnContainer>
+        </SingleFilterDiv>
+      </>
     )
 }
 
