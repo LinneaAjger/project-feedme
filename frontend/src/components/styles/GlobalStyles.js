@@ -281,6 +281,12 @@ export const SrOnly = styled.div`
 
 export const SmallP = styled.p`
   font-size: 14px;
+
+  a {
+      &:hover {
+          color: var(--color-vividBlue);
+        }
+    }
 `
 
 export const TagContainer = styled.div`
