@@ -5,13 +5,16 @@ import Logo from './media/Logo.svg'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 export const Header = () => {
+  const accessToken = localStorage.getItem('accessToken');
   const username = localStorage.getItem('username');
 
   return (
     <Wrapper>
       <StyledHeader>
         <Nav />
+        {accessToken &&(
         <StyledP>Logged in as: {username}</StyledP>
+        )}
         <NavLink to="/" className="logo-group">
           <h1>FEED ME</h1>
           <StyledLogo viewBox="0 0 221 218" fill="none" xmlns="http://www.w3.org/2000/svg">
