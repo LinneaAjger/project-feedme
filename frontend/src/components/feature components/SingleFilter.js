@@ -20,7 +20,6 @@ const SingleFilter = ({ svg, title, array }) => {
     const filterTags = (value) => {
         setFiltering(true)
         setValue(value)
-        setSelected(true)
     }
 
         useEffect(() => {
@@ -65,8 +64,7 @@ const SingleFilter = ({ svg, title, array }) => {
                     {array.map((recipe) => 
                         <TagBtn
                             onClick={() => filterTags(recipe.value)}
-                            value={recipe.value}
-                            className={selected ? "selected": ""}>
+                            value={recipe.value}>
                                 {recipe.title}
                         </TagBtn>
                     )}

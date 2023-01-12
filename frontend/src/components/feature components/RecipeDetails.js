@@ -88,6 +88,7 @@ const RecipeInstructionsDiv = styled.div`
 const Ingredients = styled(StyledNonTransparentDiv)`
     border-radius: 3px;
     padding: 10px;
+    width: 50%;
 
     ul {
         list-style: inside;
@@ -105,6 +106,7 @@ const Instructions = styled(StyledNonTransparentDiv)`
     border-radius: 3px;
     background-color: inherit;
     padding: 10px;
+    width: 50%;
     
     ol {
         li {
