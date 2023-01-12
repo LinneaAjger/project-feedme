@@ -103,7 +103,7 @@ const Wrapper = styled.div`
   background-color: var(--color-beige);
   box-shadow: rgb(0 0 0 / 5%) 1px 1px 10px;
   position: fixed;
-  z-index: 97;
+  z-index: 99;
 `
 
 const StyledP = styled.p`
