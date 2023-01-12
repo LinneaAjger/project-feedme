@@ -190,18 +190,32 @@ app.get("/users/:userId/posts", async (req, res) => {
 })
 // //show liked recipes from a specific user
 // app.get("/users/:userId/likedposts", authenticateUser)
-// app.get("/users/:userId/likedposts", async (req, res) => {
-//   const { userId } = req.params;
-//   try {
-//     const usersRecipes = await Recipe.find({user: userId}).sort({createdAt: 'desc'})
-//     res.status(200).json({
-//      success: true,
-//      response: usersRecipes
-//     })
-//   } catch (error) {
-//      res.status(400).json({success: false, response: error});
-//    }
-// })
+app.get("/users/:userId/", async (req, res) => {
+  const { userId } = req.params
+  try {
+    const usersRecipes = await Recipe.find({user: userId}).sort({createdAt: 'desc'})
+    res.status(200).json({
+     success: true,
+     response: usersRecipes
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
+})
+
+app.get("/users/:userId/likedposts", async (req, res) => {
+  try {
+    const usersRecipes = await Recipe.find({_id: {
+      $in: req.body
+  }}).sort({createdAt: 'desc'})
+    res.status(200).json({
+     success: true,
+     response: usersRecipes
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
+})
 
 // Posts new recipe to feed
 // app.post("/recipes", authenticateUser)
