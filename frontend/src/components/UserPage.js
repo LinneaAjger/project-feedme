@@ -8,6 +8,7 @@ import LikeSaveCommentContainer from './feature components/LikeSaveCommentContai
 
 const UserPage = () => {
 const [posts, setPosts] = useState([])
+const [likedPosts, setLikedPosts] = useState([])
 const [userData, setUserData] = useState([])
 const accessToken = localStorage.getItem('accessToken');
 const [toggle, setToggle]= useState(true)
@@ -32,7 +33,8 @@ const options = {
   }
 }
 useEffect(() => {
-  fetch(API_URL(toggle ? `users/${params.userId}/posts` : 'savedPosts'), options)
+  // fetch(API_URL(toggle ? `users/${params.userId}/posts` : 'savedPosts'), options)
+  fetch(API_URL(`users/${params.userId}/posts`), options)
   .then((response) => response.json())
   .then((data) => {
     setPosts(data.response)
@@ -41,7 +43,7 @@ useEffect(() => {
       console.error('Error:', error);
     });
 }, [toggle, params]);
-console.log(posts);
+console.log('First fetch - Posts:', posts);
 
 //get liked recipes from user
 useEffect(() => {
@@ -49,13 +51,27 @@ useEffect(() => {
   .then((response) => response.json())
   .then((data) => {
     setUserData(data.response)
+    
+    const optionsLiked = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", 
+        "Authorization": accessToken
+      },
+      body: JSON.stringify(userData.likedRecipes)
+    }
+    //second fetch with the data received
+      return fetch(API_URL(`users/${params.userId}/likedposts`), optionsLiked)
+      .then((response) => response.json())
+      .then((data) => {
+        setLikedPosts(data.response)
+        console.log(likedPosts)
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
 }, [toggle, params]);
-
-const likedRecipes = userData.map((recipe) => recipe.likedRecipes)
 
 
 //second fetch to get recipes to display
@@ -65,22 +81,23 @@ const likedRecipes = userData.map((recipe) => recipe.likedRecipes)
 //     "Content-Type": "application/json", 
 //     "Authorization": accessToken
 //   },
-//   body: JSON.stringify({likedRecipes})
+//   body: JSON.stringify(userData.likedRecipes)
 // }
 
 // useEffect(() => {
-//   fetch(API_URL(`users/${params.userId}`), optionsLiked)
+//   fetch(API_URL(`users/${params.userId}/likedposts`), optionsLiked)
 //   .then((response) => response.json())
 //   .then((data) => {
-//     setUserData(data.response)
+//     setLikedPosts(data.response)
 //     })
 //     .catch((error) => {
 //       console.error('Error:', error);
 //     });
-// }, [toggle, params]);
-console.log(userData);
-// const likedRecipes = userData.map((recipe) => recipe.likedRecipes)
-console.log(JSON.stringify(likedRecipes));
+// }, []);
+// console.log('userData (liked recipes):', userData);
+
+// console.log('likedPosts', likedPosts);
+// console.log('string to server', JSON.stringify(userData.likedRecipes))
 
   return (
     <>
@@ -119,6 +136,7 @@ const HeadlineDiv = styled.div`
   width: 100%;
   justify-content: center;
   gap: 5%;
+  margin-top: 10px;
   
   a {
     cursor: pointer;

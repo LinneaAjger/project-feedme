@@ -13,8 +13,9 @@ const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
   const dispatch = useDispatch()
   const recipeList = useSelector((store) => store.recipes.items)
-  const [liked, setLiked] = useState(false)
-  console.log(liked)
+  // const [liked, setLiked] = useState(false)
+  const [liked, setLiked] = useState([])
+  console.log('liked', liked)
   console.log(recipeList)
 
   //Fetch all recipes
@@ -49,19 +50,21 @@ const RecipesInFeed = () => {
     
    // Like-function for recipes   
     const onLikeClick = async (recipeId) => {
+      if (liked.includes(recipeId)){
+      } else {
         const options = {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              "Authorization": accessToken
-            }
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": accessToken
           }
-          await fetch(API_URL(`recipes/${recipeId}`), options)
-            .then((response) => response.json())
-            .then(() => {
-                setLiked(true)
-            })
-            .finally(() => setTimeout(() => {setLiked(false); }, 600))
+        }
+        await fetch(API_URL(`recipes/${recipeId}`), options)
+          .then((response) => response.json())
+          .then(() => {
+              setLiked(liked.concat(recipeId))
+          })
+      }
     }
     
   return (
