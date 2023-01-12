@@ -37,7 +37,7 @@ useEffect(() => {
   fetch(API_URL(toggle ? `users/${userId}/posts` : `users/${userId}`), options)
   .then((response) => response.json())
   .then((data) => {
-    setMyPosts(toggle ? data.response : data.response.likedRecipes);
+    setMyPosts(toggle ? data.response.reverse() : data.response.likedRecipes.reverse());
     })
     .catch((error) => {
       console.error('Error:', error);
