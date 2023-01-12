@@ -21,14 +21,11 @@ const Recipe = ({ recipeId }) => {
       .then(res => res.json())
       .then(data => {
         setRecipe(data.response)
-        console.log(data.response)
       })
       .catch((error) => {
         console.error('Error:', error)
       })
       }, [])
-
-console.log(recipe)
 
   return (
     <RecipeDiv>

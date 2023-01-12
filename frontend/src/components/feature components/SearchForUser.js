@@ -21,7 +21,6 @@ const SearchForUser = ( ) => {
              fetch(API_URL("users"), options)
                 .then(res => res.json())
                 .then(data => {
-                console.log(data.response)
                 if(data.success) {
                 setUsers(data.response)
                 }

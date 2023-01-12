@@ -3,7 +3,6 @@ import styled from "styled-components/macro";
 import { API_URL } from "utils/utils";
 
 const LikeSaveCommentContainer = ({recipeId}) => {
-    console.log(recipeId)
     const [liked, setLiked] = useState(false)
     const [saved, setSaved] = useState(false)
     
@@ -18,12 +17,10 @@ const LikeSaveCommentContainer = ({recipeId}) => {
             .then((response) => response.json())
             .then(() => {
                 setLiked
-                console.log("like")
             })
     }
 
     const onSaveClick = () => {
-        console.log("save")
         setSaved
     }
 

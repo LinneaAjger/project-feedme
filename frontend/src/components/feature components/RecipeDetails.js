@@ -4,7 +4,6 @@ import { StyledNonTransparentDiv } from "components/styles/DivStyles";
 import { Tag } from "./TagsVisual";
 
 const RecipeDetails = ({ recipeInfo }) => {
-    console.log(recipeInfo)
 
     // Turning ingredients string into array (to be able to display the ingredients in a list). The string is split at each comma.
     const IngredientsIntoList = recipeInfo.map((recipe) => {

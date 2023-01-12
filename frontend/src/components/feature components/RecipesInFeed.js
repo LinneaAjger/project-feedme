@@ -18,9 +18,6 @@ const RecipesInFeed = () => {
   // const [liked, setLiked] = useState(false)
   const userId = localStorage.getItem('userId');
   const [liked, setLiked] = useState([])
-  console.log('liked', liked)
-  console.log(recipeList)
-  console.log(userId)
 
   //Fetch all recipes for feed
   useEffect(() => {
@@ -34,7 +31,6 @@ const RecipesInFeed = () => {
       fetch(API_URL("recipes"), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
       if(data.success) {
         batch (() => {
           dispatch(recipeReducer.actions.setItems(data.response))

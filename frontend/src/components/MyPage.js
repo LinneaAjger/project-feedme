@@ -16,8 +16,6 @@ const userId = localStorage.getItem('userId');
 const [toggle, setToggle]= useState(false)
 const [liked, setLiked] = useState([])
 
-console.log(myPosts)
-console.log()
 const navigate = useNavigate()
 
 

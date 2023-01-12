@@ -48,8 +48,6 @@ const SingleFilter = ({ svg, title, array }) => {
                 console.error('Error:', error)
               }))
               }, [filterTags])
-
-              console.log(value)
     return (
       <>
         <SingleFilterDiv>

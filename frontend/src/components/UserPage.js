@@ -16,7 +16,6 @@ const accessToken = localStorage.getItem('accessToken');
 const [toggle, setToggle]= useState(true)
 const [liked, setLiked] = useState([])
 
-console.log(posts)
 const params = useParams()
 const navigate = useNavigate()
 
@@ -95,7 +94,6 @@ useEffect(() => {
          </RecipeContainer>
       )}
     </RecipeList>
-
     </RecipeFeed>
   )
 }
