@@ -16,8 +16,7 @@ const RecipesInFeed = () => {
   const recipeList = useSelector((store) => store.recipes.items)
   const [liked, setLiked] = useState(false)
 
-
-  //Fetch all recipes
+  //Fetch all recipes for feed
   useEffect(() => {
     const options = {
       method: "GET",
@@ -47,19 +46,36 @@ const RecipesInFeed = () => {
       }))
       }, [])
       
-      const onLikeClick = (recipeId) => {
-        const options = {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json'
-            }
+    const onLikeClick = (recipeId) => {
+      const options = {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
           }
-          fetch(API_URL(`recipes/${recipeId}`), options)
-            .then((response) => response.json())
-            .then(() => {
-                setLiked
-                console.log("like")
-            })
+        }
+        fetch(API_URL(`recipes/${recipeId}`), options)
+          .then((response) => response.json())
+          .then(() => {
+              setLiked
+              console.log("like")
+          })
+    }
+
+    //Delete recipes
+    const onDeleteClick = async (recipeId) => {
+        const options = {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": accessToken
+          }
+        }
+        await fetch(API_URL(`recipes/${recipeId}`), options)
+          .then((response) => response.json())
+          .then(() => {
+              location.reload()    
+          })
+      
     }
     
   return (
@@ -85,7 +101,7 @@ const RecipesInFeed = () => {
         <LikeContainer>
             {/* Jag har tillfälligt tagit bort "onClick='delete' från button:en nedan */}
             {/* Add function to only show this button when post-user-id === user-id */}
-            <button type="button">
+            <button type="button" onClick={() => onDeleteClick(singleRecipe._id)} recipeId={singleRecipe._id}>
                 <StyledSvg 
                     width="10" 
                     height="15" 
