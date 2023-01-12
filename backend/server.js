@@ -182,7 +182,7 @@ app.get("/users/:userId/posts", authenticateUser)
 app.get("/users/:userId/posts", async (req, res) => {
   const { userId } = req.params;
   try {
-    const usersRecipes = await Recipe.find({user: userId}).sort({createdAt: 'desc'})
+    const usersRecipes = await Recipe.find({username: userId}).sort({createdAt: 'desc'})
     res.status(200).json({
      success: true,
      response: usersRecipes

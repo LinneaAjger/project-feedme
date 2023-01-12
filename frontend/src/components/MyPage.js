@@ -10,8 +10,9 @@ const MyPage = () => {
 const [myPosts, setMyPosts] = useState([])
 const accessToken = localStorage.getItem('accessToken');
 const userId = localStorage.getItem('userId');
+console.log(userId)
 const [toggle, setToggle]= useState(true)
-
+console.log(myPosts)
 const navigate = useNavigate()
 
 useEffect(() => {
