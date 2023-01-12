@@ -38,7 +38,7 @@ useEffect(() => {
   .then((response) => response.json())
   .then((data) => {
     setUsername(toggle ? data.response[0].username: data.response.username )
-    setPosts(toggle ? data.response : data.response.likedRecipes);
+    setPosts(toggle ? data.response.reverse() : data.response.likedRecipes.reverse());
     })
     .catch((error) => {
       console.error('Error:', error);
