@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
     default: () => crypto.randomBytes(128).toString("hex")
   },
   likedRecipes: {
-    type: [RecipeSchema]
+    type: [String]
   }
 })
 
@@ -191,10 +191,9 @@ app.get("/users/:userId/posts", async (req, res) => {
      res.status(400).json({success: false, response: error});
    }
 })
-// //show liked recipes from a specific user
 // app.get("/users/:userId/likedposts", authenticateUser)
-// app.get("/users/:userId/likedposts", async (req, res) => {
-//   const { userId } = req.params;
+// app.get("/users/:userId/", async (req, res) => {
+//   const { userId } = req.params
 //   try {
 //     const usersRecipes = await Recipe.find({user: userId}).sort({createdAt: 'desc'})
 //     res.status(200).json({
@@ -205,6 +204,22 @@ app.get("/users/:userId/posts", async (req, res) => {
 //      res.status(400).json({success: false, response: error});
 //    }
 // })
+
+// //show liked recipes from a specific user
+// app.get("/users/:userId/likedposts", authenticateUser)
+app.get("/users/:userId/likedposts", async (req, res) => {
+  try {
+    const usersRecipes = await Recipe.find({_id: {
+      $in: req.body
+  }}).sort({createdAt: 'desc'})
+    res.status(200).json({
+     success: true,
+     response: usersRecipes
+    })
+  } catch (error) {
+     res.status(400).json({success: false, response: error});
+   }
+})
 
 // Posts new recipe to feed
 // app.post("/recipes", authenticateUser)
@@ -265,24 +280,9 @@ app.patch("/recipes/:recipeId", async (req, res) => {
   const { recipeId } = req.params
   const accessToken = req.header("Authorization")
   const user = await User.findOne({accessToken: accessToken})
+
   try {
-    const LikedRecipe = await Recipe.findByIdAndUpdate({_id: recipeId}, {$inc: {likes: 1}})
-
-    if (LikedRecipe) {
-      const addLikedRecipe = await User.findByIdAndUpdate({ _id: user._id}, { 
-        $push: {likedRecipes: {LikedRecipe}}
-      })
-
-      res.status(200).json({
-        response: "Updated",
-        data: addLikedRecipe
-      })
-
-       } else {
-        res.status(500).json({
-        response: "Could not update"
-        })
-      }
+    await Recipe.findByIdAndUpdate({_id: recipeId}, {$inc: {likes: 1}})
 
   } catch (error) {
     res.status(400).json({
@@ -290,6 +290,24 @@ app.patch("/recipes/:recipeId", async (req, res) => {
       response: error
     })
   }
+  const recipeAlreadySaved = await User.find({"likedRecipes": recipeId})
+  console.log('recipe saved', recipeAlreadySaved)
+
+  if (recipeAlreadySaved.length === 0) {
+  const addLikedRecipe = await User.findByIdAndUpdate({ _id: user._id}, { 
+      $push: {likedRecipes: recipeId}
+    })
+
+    res.status(200).json({
+      response: "Updated",
+      data: addLikedRecipe
+    })
+
+     } else {
+      res.status(500).json({
+      response: "Recipe already liked"
+      })
+    }
 })
 
 // Register new user
