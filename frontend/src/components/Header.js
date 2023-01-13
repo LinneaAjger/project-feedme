@@ -12,9 +12,9 @@ export const Header = () => {
     <Wrapper>
       <StyledHeader>
         <Nav />
-        {accessToken &&(
+        {/* {accessToken &&(
         <StyledP>Logged in as: {username}</StyledP>
-        )}
+        )} */}
         <NavLink to="/" className="logo-group">
           <h1>FEED ME</h1>
           <StyledLogo viewBox="0 0 221 218" fill="none" xmlns="http://www.w3.org/2000/svg">
