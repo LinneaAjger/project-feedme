@@ -78,6 +78,8 @@ const MainRecipeDiv = styled.div`
 const RecipeInstructionsDiv = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
     
     @media (min-width: 668px) {
         flex-direction: row;
@@ -87,7 +89,6 @@ const RecipeInstructionsDiv = styled.div`
 const Ingredients = styled(StyledNonTransparentDiv)`
     border-radius: 3px;
     padding: 10px;
-    width: 50%;
 
     ul {
         list-style: inside;
@@ -98,19 +99,24 @@ const Ingredients = styled(StyledNonTransparentDiv)`
 
     @media (min-width: 668px) {
         margin: 10px;
-
+        width: 50%;
     }
 `
 const Instructions = styled(StyledNonTransparentDiv)`
     border-radius: 3px;
     background-color: inherit;
     padding: 10px;
-    width: 50%;
     
     ol {
         li {
             margin-left: 0rem;
+        
         }
+    }
+
+    @media (min-width: 668px) {
+        margin: 10px;
+        width: 50%;
     }
 
 `
