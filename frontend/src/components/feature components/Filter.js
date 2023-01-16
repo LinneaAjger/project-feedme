@@ -107,6 +107,6 @@ const FilterBtn = styled(UnstyledBtn)`
 `
 
 const H1andBtnDiv = styled.div`
-display: flex;
-flex-direction: row;
+    display: flex;
+    flex-direction: row;
 `

@@ -191,8 +191,9 @@ const FormStyledDiv = styled(StyledDiv)`
   }
 
   @media (min-width: 667px) {
-    width: 80vw;
-    height: 80vh;
+    width: 70vw;
+    height: 100vh;
+    max-height: 900px;
 
     label {
     width: 70%;
@@ -201,8 +202,10 @@ const FormStyledDiv = styled(StyledDiv)`
 
   @media (min-width: 1024px) {
     width: 100vw;
-    height: 80vh;
+    height: 90vh;
     max-width: 900px;
+    max-height: 900px;
+    top: 47%;
 
     label {
     width: 80%;
