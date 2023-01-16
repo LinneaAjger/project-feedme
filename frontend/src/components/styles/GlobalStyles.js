@@ -145,7 +145,7 @@ img + img {
       flex-direction: row;
       justify-content: flex-end;
       align-items: flex-end;
-      padding: 0px 20px 13px 20px;
+      padding: 0px 20px 26px;
       width: 100%;
       opacity: 1;
 

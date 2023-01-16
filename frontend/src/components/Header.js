@@ -92,7 +92,7 @@ const StyledLogo = styled.svg`
     position: absolute;
     margin-left: 0px;
     left: 20px;
-    top: 15px;
+    top: -6px;
     }
 `
 
