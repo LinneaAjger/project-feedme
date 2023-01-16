@@ -187,6 +187,7 @@ img + img {
     align-items: center;
     transform: rotate(0.0turn);
     transition: all 0.5s ease-in-out;
+    margin-left: 5%;
 
     a {
       &:hover {
