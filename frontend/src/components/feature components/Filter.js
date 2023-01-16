@@ -43,8 +43,7 @@ const Filter = () => {
                     </svg>}
                 title="Meal"
                 array={MealArray}
-                />
-                
+                /> 
                 <SingleFilter 
                 svg={<svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 1.53845L9 11.0192M17 20.5L9 11.0192M9 11.0192L17 1.53845L1 20.5" stroke="black" stroke-width="2"/>
@@ -52,7 +51,6 @@ const Filter = () => {
                 title="Preferences"
                 array={PreferencesArray}
                 />
-                
                 <SingleFilter 
                 svg={<svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5 10.6731C18.5 16.3018 14.4206 20.7692 9.5 20.7692C4.57939 20.7692 0.5 16.3018 0.5 10.6731C0.5 5.04436 4.57939 0.576904 9.5 0.576904C14.4206 0.576904 18.5 5.04436 18.5 10.6731Z" stroke="black"/>

@@ -133,6 +133,7 @@ const FeedSection = styled.section`
       grid-template-columns: 1fr 2fr 1fr;
       column-gap: 2vw;    
       width: 80%;
+      max-width: 1000px;
     }
 `
 
