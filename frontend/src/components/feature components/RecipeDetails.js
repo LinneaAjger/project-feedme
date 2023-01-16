@@ -83,6 +83,7 @@ const RecipeInstructionsDiv = styled.div`
     
     @media (min-width: 668px) {
         flex-direction: row;
+        align-items: flex-start;
     }
 `
 
@@ -110,7 +111,6 @@ const Instructions = styled(StyledNonTransparentDiv)`
     ol {
         li {
             margin-left: 0rem;
-        
         }
     }
 
