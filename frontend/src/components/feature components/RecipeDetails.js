@@ -22,8 +22,6 @@ const RecipeDetails = ({ recipeInfo }) => {
     return (
         <>
             {recipeInfo.map((recipe) => {
-                return (
-                <MainRecipeDiv key={recipe._id}>
                 <MainRecipeDiv key={recipe._id}>
                     <div>
                         <h1>{recipe.name}</h1>
@@ -59,7 +57,6 @@ const RecipeDetails = ({ recipeInfo }) => {
                         </Instructions>
                     </RecipeInstructionsDiv>
                 </MainRecipeDiv>
-                )
             })}
         </>
     )

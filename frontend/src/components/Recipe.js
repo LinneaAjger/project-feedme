@@ -6,7 +6,6 @@ import styled from 'styled-components/macro'
 import { SmallDiv } from './styles/GlobalStyles'
 
 const Recipe = () => {
-const Recipe = () => {
   const [recipe, setRecipe] = useState([])
   const accessToken = localStorage.getItem('accessToken')
   const params = useParams()
