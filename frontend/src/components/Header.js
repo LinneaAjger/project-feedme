@@ -49,6 +49,7 @@ const StyledHeader = styled.header`
 
   @media (min-width: 668px) {
     height: 140px;
+    width: 90%;
 
     h1 {
     font-size: 3rem;
@@ -59,7 +60,7 @@ const StyledHeader = styled.header`
     flex-direction: row-reverse;
     align-items: flex-end;
     width: 95%;
-    height: 160px;
+    height: 180px;
 
 
     

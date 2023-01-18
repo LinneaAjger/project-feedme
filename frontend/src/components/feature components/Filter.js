@@ -4,7 +4,7 @@ import SingleFilter from "./SingleFilter";
 import { MealArray } from "./Form"
 import { PreferencesArray } from "./Form"
 import { TimeArray } from "./Form"
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { UnstyledBtn } from "components/styles/ButtonStyles";
 
 
@@ -46,7 +46,7 @@ const Filter = () => {
                 /> 
                 <SingleFilter 
                 svg={<svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1.53845L9 11.0192M17 20.5L9 11.0192M9 11.0192L17 1.53845L1 20.5" stroke="black" stroke-width="2"/>
+                        <path d="M1 1.53845L9 11.0192M17 20.5L9 11.0192M9 11.0192L17 1.53845L1 20.5" stroke="black" strokeWidth="2"/>
                     </svg>}
                 title="Preferences"
                 array={PreferencesArray}
@@ -67,15 +67,16 @@ const Filter = () => {
 export default Filter
 
 const FilterDiv = styled(StyledTransparentDiv)`
+box-shadow: none;
+min-width: 250px;
     @media (max-width: 668px) {
         display: flex;
         flex-direction: column;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.10);
         background-color: var(--color-beige);
         width: 90%;
         justify-self: center;
         border: none;
-        padding: 5px 15px 5px 15px;
+        padding: 10px 20px;
     }
     div {
         @media (max-width: 668px) {

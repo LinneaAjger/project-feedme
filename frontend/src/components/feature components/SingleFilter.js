@@ -58,8 +58,9 @@ const SingleFilter = ({ svg, title, array }) => {
             </DropdownSvg>
           </UnstyledBtn>
           <TagBtnContainer className={click ? "" : "tags-hidden"}>
-            {array.map((recipe) => 
+            {array.map((recipe, index) => 
               <TagBtn
+                key={index}
                 onClick={() => filterTags(recipe.value)}
                 value={recipe.value}>
                   {recipe.title}
