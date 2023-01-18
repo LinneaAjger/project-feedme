@@ -8,6 +8,7 @@ import Input from './Input'
 import InputTextArea from './InputTextArea'
 import Checkbox from './Checkbox'
 
+// Filter arrays
 export const MealArray = [{ value: 'breakfast', title: 'Breakfast' }, { value: 'lunch', title: 'Lunch' }, { value: 'dinner', title: 'Dinner' }, { value: 'snack', title: 'Snack' }]
 export const PreferencesArray = [{ value: 'vegan', title: 'Vegan' }, { value: 'vegetarian', title: 'Vegetarian' }, { value: 'Gluten free', title: 'Gluten free' }, { value: 'lactose free', title: 'Lactose free' }]
 export const TimeArray = [{ value: '<30min', title: '<30min' }, { value: '>30min', title: '>30min' }, { value: '>1h', title: '>1h' }]
@@ -22,6 +23,7 @@ const Form = ({ setCollapsed }) => {
 
   const accessToken = localStorage.getItem('accessToken');
 
+  //Submitting new recipe
   const onSubmit = () => {
     const options = {
       method: "POST",

@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components"
 import { useDispatch, useSelector, batch } from 'react-redux'
 import recipeReducer from 'reducers/recipeReducer';
 import { API_URL } from 'utils/utils';
 import { Link } from "react-router-dom";
-import { RecipeContainer } from "../styles/DivStyles"
+import { RecipeContainer, RecipeList, LikeContainer, RecipeFeed } from "../styles/DivStyles"
 import { SmallP, TagContainer, StyledSvg } from "../styles/GlobalStyles"
-import { RecipeList } from "../styles/DivStyles";
 import TagsVisual from "./TagsVisual";
-import { LikeContainer } from "../styles/DivStyles";
-import { RecipeFeed } from "../styles/DivStyles";
 
 const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
   const dispatch = useDispatch()
   const recipeList = useSelector((store) => store.recipes.items)
-  // const [liked, setLiked] = useState(false)
   const userId = localStorage.getItem('userId');
   const [liked, setLiked] = useState([])
 
@@ -67,7 +62,7 @@ const RecipesInFeed = () => {
       }
     }
 
-  //Delete recipes
+  // Delete recipes
     const onDeleteClick = async (recipeId) => {
       const options = {
         method: 'DELETE',
@@ -87,7 +82,7 @@ const RecipesInFeed = () => {
     <RecipeFeed>
       <RecipeList>
         {recipeList.map((singleRecipe) => 
-        <RecipeContainer>
+        <RecipeContainer key={singleRecipe._id}>
         <Link to={`/recipes/${singleRecipe._id}`} recipeId={singleRecipe._id}>
             {singleRecipe.recipe && (
               <div>
@@ -97,7 +92,7 @@ const RecipesInFeed = () => {
                 <p>"{singleRecipe.recipe.description}"</p>
                 <TagContainer>
                 {singleRecipe.recipe.tags.map((tag) => {
-                  return <TagsVisual tag={tag} /> 
+                  return <TagsVisual key={tag} tag={tag} /> 
                 })}
                 </TagContainer>
               </div>
@@ -136,4 +131,3 @@ const RecipesInFeed = () => {
     )
 }
  export default RecipesInFeed
-

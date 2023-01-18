@@ -4,11 +4,12 @@ import { useParams } from 'react-router-dom'
 import RecipeDetails from './feature components/RecipeDetails'
 import styled from 'styled-components/macro'
 
-const Recipe = ({ recipeId }) => {
+const Recipe = () => {
   const [recipe, setRecipe] = useState([])
   const accessToken = localStorage.getItem('accessToken')
   const params = useParams()
 
+  // Fetching single recipes by Id
   useEffect(() => {
     const options = {
       method: "GET",
@@ -30,11 +31,17 @@ const Recipe = ({ recipeId }) => {
   return (
     <RecipeDiv>
       {recipe.map((recipeInfo) => 
-      <div>
+      <div key={recipeInfo._id}>
         <UserInfoDiv>
           <p>{recipeInfo.username}</p>
-          <p>{`${new Date(recipeInfo.createdAt).toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric',   hour: '2-digit',
-              minute: '2-digit', hour12: false })}`}</p>
+          <p>{`${new Date(recipeInfo.createdAt).toLocaleDateString('en-us', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false })}`}
+          </p>
         </UserInfoDiv>
         <RecipeDetails recipeInfo={[recipeInfo.recipe]}/>
       </div>
@@ -73,4 +80,5 @@ const UserInfoDiv = styled.div`
       margin-top: 40px;
       margin-left: 40px;
     }
-  }`
+  }
+`

@@ -18,10 +18,12 @@ const RecipeFeed = () => {
     }   
   }, [accessToken])
 
+  // Toggeling the Form component
   const toggle = () => {
     setCollapsed(!collapsed)
   }
 
+  // Function to make sure that not all components mount depending on screen size
   const useMediaQuery = (width) => {
     const [pixelWidthReached, setPixelWidthReached] = useState(false);
   
@@ -102,7 +104,7 @@ const RecipeFeed = () => {
         </div>
       </FeedSection>
       )
-      }
+    }
     </SectionAroundFeed>
     )
   }

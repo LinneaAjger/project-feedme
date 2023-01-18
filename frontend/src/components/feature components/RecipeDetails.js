@@ -5,14 +5,14 @@ import { Tag } from "./TagsVisual";
 
 const RecipeDetails = ({ recipeInfo }) => {
 
-    // Turning ingredients string into array (to be able to display the ingredients in a list). The string is split at each comma.
+    // Turning ingredients into array (to be able to display the ingredients in a list). The string is split at each comma.
     const IngredientsIntoList = recipeInfo.map((recipe) => {
         return (
             recipe.ingredients[0].split(',')
         )
     })
 
-    // Turning the instructions string into an array (to be able to display the ingredients in a list). The string is split at each line-break.
+    // Turning the instructions into an array (to be able to display the instructions in a list). The string is split at each line-break.
     const InstructionsIntoList = recipeInfo.map((recipe) => {
         return (
             recipe.instructions[0].split('\n')
@@ -23,7 +23,7 @@ const RecipeDetails = ({ recipeInfo }) => {
         <>
             {recipeInfo.map((recipe) => {
                 return (
-                <MainRecipeDiv>
+                <MainRecipeDiv key={recipe._id}>
                     <div>
                         <h1>{recipe.name}</h1>
                         <p>"{recipe.description}"</p>
@@ -41,9 +41,9 @@ const RecipeDetails = ({ recipeInfo }) => {
                             <ul>
                                 {IngredientsIntoList[0].map((li) => {
                                     return (
-                                        <li>{li}</li>
+                                        <li key={li}>{li}</li>
                                     )
-                                })}
+                                })} 
                             </ul>
                         </Ingredients>
                         <Instructions>
@@ -51,7 +51,7 @@ const RecipeDetails = ({ recipeInfo }) => {
                             <ol>
                             {InstructionsIntoList[0].map((li) => {
                                     return (
-                                        <li>{li}</li>
+                                        <li key={li}>{li}</li>
                                     )
                                 })}
                             </ol>
