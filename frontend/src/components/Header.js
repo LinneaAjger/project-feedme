@@ -5,6 +5,8 @@ import Logo from './media/Logo.svg'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 export const Header = () => {
+
+  // the plan is to show the username of the logged in user
   const accessToken = localStorage.getItem('accessToken');
   const username = localStorage.getItem('username');
 

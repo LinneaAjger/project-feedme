@@ -10,30 +10,31 @@ const SearchForUser = ( ) => {
     const [searchedUsers, setSearchedUsers] = useState([])
     const accessToken = localStorage.getItem('accessToken')
 
+    // get-request to get all usernames
     useEffect (() => {
-            const options = {
-                method: "GET",
-                headers: {
-                "Content-Type": "application/json",
-                "Authorization": accessToken
-                }
+        const options = {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": accessToken
             }
-             fetch(API_URL("users"), options)
-                .then(res => res.json())
-                .then(data => {
-                if(data.success) {
-                setUsers(data.response)
-                }
-                })
-                .catch((error => {
-                console.error('Error:', error)
-                }))
+        }
+            fetch(API_URL("users"), options)
+            .then(res => res.json())
+            .then(data => {
+            if(data.success) {
+            setUsers(data.response)
+            }
+            })
+            .catch((error => {
+            console.error('Error:', error)
+            }))
     }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault()
     }
-
+// function to filter all users which names includes the searched word
     const handleSearchChange = (event) => {
         const filteredUsers = users.filter(user => user.username.toLowerCase().includes(event.target.value.toLowerCase()))
         if(event.target.value === '') {
@@ -42,6 +43,9 @@ const SearchForUser = ( ) => {
         else {
             setSearchedUsers(filteredUsers)
         }
+    }
+    const handleClick = () => {
+        handleSearchChange('')
     }
 
     return (
@@ -60,7 +64,7 @@ const SearchForUser = ( ) => {
             {searchedUsers.length !== 0 && (
             <SearchResultsDiv>
             {searchedUsers.map(singleUser =>
-                <Link to={`/users/${singleUser._id}`}>{singleUser.username}</Link>)}
+                <Link to={`/users/${singleUser._id}`}  onClick={handleClick}>{singleUser.username}</Link>)}
             </SearchResultsDiv>)}
         </>
     )

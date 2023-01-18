@@ -12,12 +12,10 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
   const [password, setPassword] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
   
-  const accessToken = localStorage.getItem('accessToken');
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
   
-
+// when submitting the form a post-request is sent with the credentials
   const onSubmit = (event) => {
       event.preventDefault()
       const options = {
@@ -27,6 +25,7 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
         },
         body: JSON.stringify({username: username, password: password})
       }
+      // depending on the login type, different routes are used
       fetch(API_URL(loginType), options)
         .then(res => res.json())
         .then(data => {

@@ -225,6 +225,7 @@ img + img {
     min-width: 270px;
     }
   }
+
 `
 
 export const OuterWrapper = styled.main`

@@ -32,7 +32,7 @@ const options = {
     "Authorization": accessToken
   }
 }
-
+ // fetch the posted or liked recipes depending on the toggle 
 useEffect(() => {
   fetch(API_URL(toggle ? `users/${userId}/posts` : `users/${userId}`), options)
   .then((response) => response.json())

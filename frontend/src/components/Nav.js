@@ -5,12 +5,11 @@ import { UnstyledBtn } from './styles/ButtonStyles'
 import SearchForUser from './feature components/SearchForUser'
 
 const Nav = () => {
-
   const [click, setClick] = useState(false)
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-
-
+ 
+  // function to toggle the sliding navbar
   const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
 

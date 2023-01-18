@@ -6,7 +6,6 @@ import { API_URL } from 'utils/utils'
 import TagsVisual from './feature components/TagsVisual'
 import { LikeContainer } from './styles/DivStyles'
 import { PostsToggle, HeadlineDiv } from './styles/DivStyles'
-import styled from 'styled-components/macro'
 import { RecipeFeed } from './styles/DivStyles'
 
 const UserPage = () => {
@@ -32,7 +31,7 @@ const options = {
     "Authorization": accessToken
   }
 }
-
+ // fetch the posted or liked recipes depending on the toggle 
 useEffect(() => {
   fetch(API_URL(toggle ? `users/${params.userId}/posts` : `users/${params.userId}`), options)
   .then((response) => response.json())
