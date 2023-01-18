@@ -2,17 +2,17 @@ import styled from 'styled-components/macro'
 
 export const StyledTransparentDiv = styled.div`
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: inherit;
   border: solid 4px var(--color-darkSand);
-  filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.25));
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
 `
 
 export const StyledNonTransparentDiv = styled.div`
   padding: 20px;
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: var(--color-darkSand);
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
 `
 
 export const StyledFlexDiv = styled.div`
@@ -165,7 +165,7 @@ border-radius: 15px;
 background-color: var(--color-beige);
 width: 100%;
 height: 100%;
-padding: 30px;
+padding: 20px;
 justify-content: space-between;
 min-height: 150px;
 margin-bottom: 20px;
@@ -204,7 +204,7 @@ export const LikeContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   border-left: 2px solid var(--color-darkSand);
-  padding: 0px 0px 0px 30px;
+  padding: 0px 0px 0px 20px;
   z-index: 1;
 
   button {
@@ -255,7 +255,7 @@ export const RecipeFeed = styled.div`
 width: 95%;
 
   @media (min-width: 668px) {
-      width: 90%;
+      width: 95%;
   }
 
   @media (min-width: 1024px) {

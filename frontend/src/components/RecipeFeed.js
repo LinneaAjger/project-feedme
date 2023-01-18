@@ -120,21 +120,21 @@ align-items: center;
 
 const FeedSection = styled.section`
   height: 100%;
-  margin-top: 4%;
+  margin-top: 20px;
   display: grid;
-  width: 97%;
+  width: 95%;
   position: relative;
+  justify-items: center;
 
     @media (min-width: 668px) and (max-width: 1024px) {
       grid-template-columns: 2fr 1fr;
-      gap: 2%;
-      width: 80%
+      justify-items: stretch;
+      width: 90%;
     }
 
     @media (min-width: 1025px) {
       grid-template-columns: 1fr 2fr 1fr;
-      column-gap: 2vw;    
-      width: 80%;
+      column-gap: 20px;    
       max-width: 1000px;
     }
 `
@@ -143,6 +143,7 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  width: 95%;
 
   button {
     background-color:inherit;

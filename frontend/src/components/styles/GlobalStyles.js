@@ -81,6 +81,7 @@ h2 {
 a {
   color: var(--color-black);
   text-decoration: none;
+
 }
 
 ul {
@@ -280,8 +281,8 @@ export const SrOnly = styled.div`
   border-width: 0;
 `
 
-export const SmallP = styled.p`
-  font-size: 14px;
+export const SmallDiv = styled.div`
+  font-size: 0.8rem;
 
   a {
       &:hover {

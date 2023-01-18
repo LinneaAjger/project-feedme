@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { API_URL } from 'utils/utils'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import RecipeDetails from './feature components/RecipeDetails'
 import styled from 'styled-components/macro'
+import { SmallDiv } from './styles/GlobalStyles'
 
+const Recipe = () => {
 const Recipe = () => {
   const [recipe, setRecipe] = useState([])
   const accessToken = localStorage.getItem('accessToken')
@@ -33,7 +35,7 @@ const Recipe = () => {
       {recipe.map((recipeInfo) => 
       <div key={recipeInfo._id}>
         <UserInfoDiv>
-          <p>{recipeInfo.username}</p>
+        <Link to={`/users/${recipeInfo.userId}`}>{recipeInfo.username}</Link>
           <p>{`${new Date(recipeInfo.createdAt).toLocaleDateString('en-us', {
             year: 'numeric',
             month: 'short',
@@ -61,24 +63,20 @@ const RecipeDiv = styled.div`
 
   @media (min-width: 668px) {
       margin-top: 70px;
-      width: 60%;
+      width: 90%;
     }
 
   @media (min-width: 1024px) {
-    margin-top: 70px;
+    margin-top: 100px;
     width: 60%;
   }
 `
 
-const UserInfoDiv = styled.div`
-  div {
-    margin-top: 10px;
-    margin-left: 10px;
-    box-sizing: border-box;
+const UserInfoDiv = styled(SmallDiv)`
+    font-size: 1rem;
     
     @media (min-width: 668px) {
       margin-top: 40px;
-      margin-left: 40px;
     }
-  }
-`
+  `
+

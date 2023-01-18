@@ -28,7 +28,6 @@ useEffect(() => {
       console.error('Error:', error);
     });
 }, [userId]);
-console.log(posts)
 
 if (posts.length > 0) {
 
@@ -36,7 +35,7 @@ if (posts.length > 0) {
         <MarginTopDiv>
             <h2>Recently liked recipes</h2>
             {posts.map((singleRecipe) => 
-                <Link to={`/recipes/${singleRecipe._id}`} recipeId={singleRecipe._id}>
+                <Link to={`/recipes/${singleRecipe._id}`} recipeid={singleRecipe._id}  key={singleRecipe._id}>
                 {singleRecipe.recipe.name}</Link>
             )}
         </MarginTopDiv>
