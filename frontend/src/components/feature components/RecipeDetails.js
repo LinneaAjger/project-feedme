@@ -5,14 +5,14 @@ import { Tag } from "./TagsVisual";
 
 const RecipeDetails = ({ recipeInfo }) => {
 
-    // Turning ingredients into array (to be able to display the ingredients in a list). The string is split at each comma.
+    // Turning ingredients string into array (to be able to display the ingredients in a list). The string is split at each comma.
     const IngredientsIntoList = recipeInfo.map((recipe) => {
         return (
             recipe.ingredients[0].split(',')
         )
     })
 
-    // Turning the instructions into an array (to be able to display the instructions in a list). The string is split at each line-break.
+    // Turning the instructions string into an array (to be able to display the ingredients in a list). The string is split at each line-break.
     const InstructionsIntoList = recipeInfo.map((recipe) => {
         return (
             recipe.instructions[0].split('\n')
@@ -22,6 +22,7 @@ const RecipeDetails = ({ recipeInfo }) => {
     return (
         <>
             {recipeInfo.map((recipe) => {
+                return (
                 <MainRecipeDiv key={recipe._id}>
                     <div>
                         <h1>{recipe.name}</h1>
@@ -42,7 +43,7 @@ const RecipeDetails = ({ recipeInfo }) => {
                                     return (
                                         <li key={index} >{li}</li>
                                     )
-                                })} 
+                                })}
                             </ul>
                         </Ingredients>
                         <Instructions>
@@ -57,6 +58,7 @@ const RecipeDetails = ({ recipeInfo }) => {
                         </Instructions>
                     </RecipeInstructionsDiv>
                 </MainRecipeDiv>
+                )
             })}
         </>
     )
