@@ -1,8 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
-import user from './reducers/user'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+// import user from './reducers/user'
 import recipeReducer from './reducers/recipeReducer'
 import Login from 'components/Login'
 import Header from 'components/Header'
@@ -18,7 +18,7 @@ import { GlobalStyles, OuterWrapper, Innerwrapper } from 'components/styles/Glob
 
 export const App = () => {
   const reducer = combineReducers({ 
-    user: user.reducer,
+    // user: user.reducer,
     recipes: recipeReducer.reducer,
   })
   const store = configureStore({ reducer })

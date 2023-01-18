@@ -31,9 +31,8 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
         .then(data => {
           if(data.success) {
             batch(() => {
-              dispatch(user.actions.setUsername(data.response.username))
-              // dispatch(user.actions.setId(data.response.id))
-              dispatch(user.actions.setError(null))
+              // dispatch(user.actions.setUsername(data.response.username))
+              // dispatch(user.actions.setError(null))
               localStorage.setItem("accessToken", data.response.accessToken);
               localStorage.setItem("userId", data.response.id);
               localStorage.setItem("username", data.response.username);
@@ -41,9 +40,9 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
             })
           } else {
             batch(() => {
-              dispatch(user.actions.setUsername(null))
-              dispatch(user.actions.setId(null))
-              dispatch(user.actions.setError(data.response))
+              // dispatch(user.actions.setUsername(null))
+              // dispatch(user.actions.setId(null))
+              // dispatch(user.actions.setError(data.response))
               setErrorMsg(data.response)
             })
           }
