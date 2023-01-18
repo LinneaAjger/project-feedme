@@ -63,7 +63,7 @@ const RecipesInFeed = () => {
     }
 
   //Delete recipes
-    const onDeleteClick = async (recipeId) => {
+    const onDeleteClick = async (recipeid) => {
       const options = {
         method: 'DELETE',
         headers: {
@@ -74,7 +74,7 @@ const RecipesInFeed = () => {
         await fetch(API_URL(`recipes/${recipeid}`), options)
           .then((response) => response.json())
           .then(() => {
-            location.reload()    
+            location.reload() 
           })
     }
     
