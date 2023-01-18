@@ -6,7 +6,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import TagsVisual from './feature components/TagsVisual'
 import { LikeContainer } from './styles/DivStyles'
 import { PostsToggle, HeadlineDiv } from './styles/DivStyles'
-import styled from 'styled-components/macro'
 import { RecipeFeed } from './styles/DivStyles'
 
 const MyPage = () => {
@@ -66,7 +65,8 @@ useEffect(() => {
              {singleRecipe.recipe && (
                <div>
                 <SmallDiv>
-                   <Link to={`/users/${singleRecipe.userId}`}>{singleRecipe.username}</Link>, {`${new Date(singleRecipe.createdAt).toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })}`} </SmallDiv>
+                   <Link to={`/users/${singleRecipe.userId}`}>{singleRecipe.username}</Link>, {`${new Date(singleRecipe.createdAt).toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })}`} 
+                </SmallDiv>
                 <Link to={`/recipes/${singleRecipe._id}`}>
                     <h3>{singleRecipe.recipe.name}</h3>
                     <p>"{singleRecipe.recipe.description}"</p>
@@ -102,5 +102,3 @@ useEffect(() => {
 }
 
 export default MyPage
-
-

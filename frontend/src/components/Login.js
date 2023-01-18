@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { API_URL } from 'utils/utils'
-import { useDispatch, batch } from 'react-redux'
+import { batch } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
-import user from 'reducers/user'
 import styled from 'styled-components'
 import { StyledDiv, StyledFlexDiv } from './styles/DivStyles'
 import { StyledButton } from './styles/ButtonStyles'
@@ -12,7 +11,6 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
   const [password, setPassword] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
   
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   
 // when submitting the form a post-request is sent with the credentials
@@ -31,8 +29,6 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
         .then(data => {
           if(data.success) {
             batch(() => {
-              // dispatch(user.actions.setUsername(data.response.username))
-              // dispatch(user.actions.setError(null))
               localStorage.setItem("accessToken", data.response.accessToken);
               localStorage.setItem("userId", data.response.id);
               localStorage.setItem("username", data.response.username);
@@ -40,9 +36,6 @@ const Login = ({loginType, loginHeadline, buttonText}) => {
             })
           } else {
             batch(() => {
-              // dispatch(user.actions.setUsername(null))
-              // dispatch(user.actions.setId(null))
-              // dispatch(user.actions.setError(data.response))
               setErrorMsg(data.response)
             })
           }
