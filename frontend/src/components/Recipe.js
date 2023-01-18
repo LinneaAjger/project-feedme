@@ -32,7 +32,7 @@ const Recipe = () => {
   return (
     <RecipeDiv>
       {recipe.map((recipeInfo) => 
-      <div key={recipeInfo._id}>
+      <RecipeInfoContainer key={recipeInfo._id}>
         <UserInfoDiv>
         <Link to={`/users/${recipeInfo.userId}`}>{recipeInfo.username}</Link>
           <p>{`${new Date(recipeInfo.createdAt).toLocaleDateString('en-us', {
@@ -45,7 +45,7 @@ const Recipe = () => {
           </p>
         </UserInfoDiv>
         <RecipeDetails recipeInfo={[recipeInfo.recipe]}/>
-      </div>
+      </RecipeInfoContainer>
       )}
     </RecipeDiv>
   )
@@ -68,6 +68,15 @@ const RecipeDiv = styled.div`
   @media (min-width: 1024px) {
     margin-top: 100px;
     width: 60%;
+  }
+`
+
+const RecipeInfoContainer = styled.div`
+  margin-bottom: 100px;
+
+  @media (min-width: 1025px) {
+    margin-bottom: 200px;
+
   }
 `
 

@@ -98,6 +98,29 @@ img + img {
     margin-left: 10px;
   }
 
+@media (min-width: 667px) {
+  html {
+    font-size: 18px;
+  } 
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 20px;
+  } 
+
+  li {
+    width: auto;
+  }
+
+  li + li {
+      margin-left: 2.5rem;
+  }
+  li + button {
+      margin-left: 2.5rem;
+  }
+}
+
 .nav-menu {
     display: flex;
     flex-direction: column;
@@ -163,7 +186,7 @@ img + img {
 
     }
   }
-
+// CSS classes
   .nav-menu.active {
     position: absolute;
     left: 0px;
@@ -198,30 +221,10 @@ img + img {
     &:hover {
       transform: rotate(0.05turn);
     }
+    @media (min-width: 1024px) {
+    min-width: 270px;
+    }
   }
-
-@media (min-width: 667px) {
-  html {
-    font-size: 18px;
-  } 
-}
-
-@media (min-width: 1024px) {
-  html {
-    font-size: 20px;
-  } 
-
-  li {
-    width: auto;
-  }
-
-  li + li {
-      margin-left: 2.5rem;
-  }
-  li + button {
-      margin-left: 2.5rem;
-  }
-}
 `
 
 export const OuterWrapper = styled.main`
