@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const SearchForUser = ( ) => {
     const [users, setUsers] = useState([])
     const [searchedUsers, setSearchedUsers] = useState([])
+    
     const accessToken = localStorage.getItem('accessToken')
 
     // get-request to get all usernames

@@ -36,13 +36,14 @@ useEffect(() => {
   fetch(API_URL(toggle ? `users/${params.userId}/posts` : `users/${params.userId}`), options)
   .then((response) => response.json())
   .then((data) => {
-    setUsername(toggle ? data.response[0].username: data.response.username )
+    setUsername(toggle ? data.user.username : data.response.username )
     setPosts(toggle ? data.response.reverse() : data.response.likedRecipes.reverse());
     })
     .catch((error) => {
       console.error('Error:', error);
     });
 }, [toggle, params]);
+
   return (
     <RecipeFeed>
     <HeadlineDiv>
@@ -58,13 +59,21 @@ useEffect(() => {
         </a>
       </PostsToggle>
     </HeadlineDiv>
+      {posts !== 0 &&(
     <RecipeList>
       {posts.map((singleRecipe) =>
          <RecipeContainer key={singleRecipe._id}>
              {singleRecipe.recipe && (
                <div>
                  <SmallDiv>
-                   <Link to={`/users/${singleRecipe.userId}`}>{singleRecipe.username}</Link>, {`${new Date(singleRecipe.createdAt).toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })}`} </SmallDiv>
+                   <Link to={`/users/${singleRecipe.userId}`}>{singleRecipe.username}</Link>, {`${new Date(singleRecipe.createdAt).toLocaleDateString('en-us', {  
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    hour12: false })}`} 
+                    </SmallDiv>
                 <Link to={`/recipes/${singleRecipe._id}`} recipeid={singleRecipe._id}>
                   <h3>{singleRecipe.recipe.name}</h3>
                   <p>"{singleRecipe.recipe.description}"</p>
@@ -93,6 +102,7 @@ useEffect(() => {
          </RecipeContainer>
       )}
     </RecipeList>
+    )}
     </RecipeFeed>
   )
 }
