@@ -88,7 +88,6 @@ const RecipeFeed = () => {
       ) : (
         <FeedSection> 
         <RecentlyLiked />
-        <UploadWidget />
         <div>
           <ButtonContainer>
             <button  
@@ -98,6 +97,7 @@ const RecipeFeed = () => {
               <p>add new recipe</p>
             </button>
             {!collapsed && <Form collapsed={collapsed} setCollapsed={setCollapsed} />}
+            <UploadWidget />
             </ButtonContainer>
         <RecipesInFeed />
         </div>

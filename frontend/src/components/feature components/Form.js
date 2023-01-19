@@ -159,6 +159,7 @@ const Form = ({ setCollapsed }) => {
           </Tag>
         </TagsDiv>
         <UploadWidget />
+        <input type="file" />
         <ButtonDiv>
           <AddNewRecipeButton type="submit">Add recipe</AddNewRecipeButton>
         </ButtonDiv>
