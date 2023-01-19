@@ -58,12 +58,11 @@ const RecipesInFeed = () => {
           .then((response) => response.json())
           .then(() => {
               setLiked(liked.concat(recipeid))
-              // här göra en dispatch ist för endast useState, för att få upp likesen?
           })
       }
     }
 
-  //Delete recipes
+  //Delete-function for recipes
     const onDeleteClick = async (recipeid) => {
       const options = {
         method: 'DELETE',

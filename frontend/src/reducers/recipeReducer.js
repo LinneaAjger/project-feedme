@@ -6,8 +6,7 @@ const recipeReducer = createSlice({
     items: [],
     error: null,
     username: null,
-    id: null,
-    likedRecipes:[]
+    id: null
   },
   reducers: {
     setItems: (store, action) => {
@@ -27,9 +26,6 @@ const recipeReducer = createSlice({
     },
     setId: (store, action) => {
       store.id = action.payload
-    },
-    setLikedRecipes: (store, action) => {
-      store.items.unshift(action.payload)
     }
   }
 })
