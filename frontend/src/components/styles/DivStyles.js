@@ -206,6 +206,7 @@ export const LikeContainer = styled.div`
   border-left: 2px solid var(--color-darkSand);
   padding: 0px 0px 0px 20px;
   z-index: 1;
+  text-align: center;
 
   button {
         border: none;
@@ -261,4 +262,23 @@ width: 95%;
   @media (min-width: 1024px) {
       width: 600px;
     }
+`
+
+export const DescriptionImagesTagsDiv = styled.div`
+    width: 100%;
+
+    a {
+      display: flex;
+    }
+`
+
+export const DescriptionDiv = styled.div `
+  margin-left: 20px;
+`
+
+export const ImageDiv = styled.div `
+  img {
+    border-radius: 5px;
+    margin-top: 10px;
+  }
 `
