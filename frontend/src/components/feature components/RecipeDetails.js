@@ -2,6 +2,14 @@ import React from "react";
 import styled from "styled-components/macro";
 import { StyledNonTransparentDiv } from "components/styles/DivStyles";
 import { Tag } from "./TagsVisual";
+import {AdvancedImage} from '@cloudinary/react';
+import {CloudinaryImage} from '@cloudinary/url-gen';
+import {fill} from "@cloudinary/url-gen/actions/resize";
+import { ImageDiv } from "components/styles/DivStyles";
+
+//placeholder image for now
+const myImage = new CloudinaryImage('cld-sample-4', {cloudName: 'dmitjxc0w'}).resize(fill())
+
 
 const RecipeDetails = ({ recipeInfo }) => {
 
@@ -24,6 +32,9 @@ const RecipeDetails = ({ recipeInfo }) => {
             {recipeInfo.map((recipe) => {
                 return (
                 <MainRecipeDiv key={recipe._id}>
+                    <ImageDiv>
+                         <AdvancedImage cldImg={myImage} />
+                    </ImageDiv>
                     <div>
                         <h1>{recipe.name}</h1>
                         <p>"{recipe.description}"</p>

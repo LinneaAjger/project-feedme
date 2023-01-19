@@ -6,6 +6,7 @@ import RecentlyLiked from './feature components/RecentlyLiked';
 import styled from 'styled-components/macro';
 import AddIcon from './media/AddIcon.png'
 import RecipesInFeed from './feature components/RecipesInFeed';
+import UploadWidget from './feature components/UploadWidget';
 
 const RecipeFeed = () => {
   const navigate = useNavigate()
@@ -87,6 +88,7 @@ const RecipeFeed = () => {
       ) : (
         <FeedSection> 
         <RecentlyLiked />
+        <UploadWidget />
         <div>
           <ButtonContainer>
             <button  
