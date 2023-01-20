@@ -8,10 +8,48 @@ import LUNCH from "../media/LUNCH.jpg"
 import SNACK from "../media/SNACK.jpg"
 import FOOD from "../media/FOOD.jpg"
 import DINNER from "../media/DINNER.jpg"
+import { API_URL } from 'utils/utils';
+
 
 const RecipeCard = ({recipeList}) => {
  const userId = localStorage.getItem('userId');
  const [liked, setLiked] = useState([])
+ const accessToken = localStorage.getItem('accessToken')
+
+    // Like-function for recipes   
+    const onLikeClick = async (recipeid) => {
+      if (liked.includes(recipeid)){
+      } else {
+        const options = {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": accessToken
+          }
+        }
+        await fetch(API_URL(`recipes/${recipeid}`), options)
+          .then((response) => response.json())
+          .then(() => {
+              setLiked(liked.concat(recipeid))
+          })
+      }
+    }
+
+  //Delete-function for recipes
+    const onDeleteClick = async (recipeid) => {
+      const options = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": accessToken
+          }
+        }
+        await fetch(API_URL(`recipes/${recipeid}`), options)
+          .then((response) => response.json())
+          .then(() => {
+            location.reload() 
+          })
+    }
 
  return (
   <RecipeList>
