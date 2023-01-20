@@ -137,6 +137,7 @@ const Form = ({ setCollapsed }) => {
           value={rating}
           type="number"
           srOnly="Rating">
+            <option selected="true" disabled value="Rating:"></option>
             <option label="1 - okay recipe" value="1"></option>
             <option label="2" value="2"></option>
             <option label="3" value="3"></option>
