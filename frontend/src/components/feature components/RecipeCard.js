@@ -13,7 +13,6 @@ const RecipeCard = ({recipeList}) => {
  const userId = localStorage.getItem('userId');
  const [liked, setLiked] = useState([])
 
- console.log(recipeList)
  return (
   <RecipeList>
    {recipeList.map((singleRecipe) =>

@@ -129,14 +129,21 @@ const Form = ({ setCollapsed }) => {
           placeholder="Instructions"
           value={instructions}
           onChange={handleInstructions}
-        />
-        <Input
-          type="number"
-          srOnly="Rating"
-          placeholder="Rating 1-5"
+        /> 
+        <div>
+        Rating:
+          <select 
+          onChange={handleRating} 
           value={rating}
-          onChange={handleRating}
-        />
+          type="number"
+          srOnly="Rating">
+            <option label="1 - okay recipe" value="1"></option>
+            <option label="2" value="2"></option>
+            <option label="3" value="3"></option>
+            <option label="4" value="4"></option>
+            <option label="5 - best recipe ever" value=">5"></option>
+          </select>
+        </div>
         <TagsDiv>
           <Tag>
             <h2>Meal</h2>
