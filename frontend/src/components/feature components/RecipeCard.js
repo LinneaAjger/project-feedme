@@ -6,6 +6,8 @@ import TagsVisual from './TagsVisual'
 import BREAKFAST from "../media/BREAKFAST.jpg"
 import LUNCH from "../media/LUNCH.jpg"
 import SNACK from "../media/SNACK.jpg"
+import FOOD from "../media/FOOD.jpg"
+import DINNER from "../media/DINNER.jpg"
 
 const RecipeCard = ({recipeList}) => {
  const userId = localStorage.getItem('userId');
@@ -23,15 +25,7 @@ const RecipeCard = ({recipeList}) => {
         </SmallDiv>
         <Link to={`/recipes/${singleRecipe._id}`}>
         <ImageDiv>
-            {singleRecipe.recipe.tags.includes('breakfast') && (
-              <img src={BREAKFAST} />
-            )}
-            {singleRecipe.recipe.tags.includes('lunch' || 'dinner') && (
-              <img src={LUNCH} />
-            )}
-            {singleRecipe.recipe.tags.includes('snack') && (
-              <img src={SNACK} />
-            )}
+            {singleRecipe.recipe.tags.includes('breakfast') ? <img src={BREAKFAST} /> : singleRecipe.recipe.tags.includes('lunch') ? <img src={LUNCH} /> : singleRecipe.recipe.tags.includes('dinner') ? <img src={DINNER} /> : singleRecipe.recipe.tags.includes('snack') ? <img src={SNACK} /> :  <img src={FOOD} />}
             </ImageDiv>
             <DescriptionDiv>
             <h3>{singleRecipe.recipe.name}</h3>

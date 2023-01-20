@@ -6,6 +6,8 @@ import { ImageDiv } from "components/styles/DivStyles";
 import BREAKFAST from "../media/BREAKFAST.jpg"
 import LUNCH from "../media/LUNCH.jpg"
 import SNACK from "../media/SNACK.jpg"
+import FOOD from "../media/FOOD.jpg"
+import DINNER from "../media/DINNER.jpg"
 
 const RecipeDetails = ({ recipeInfo }) => {
 
@@ -28,17 +30,9 @@ const RecipeDetails = ({ recipeInfo }) => {
             {recipeInfo.map((recipe) => {
                 return (
                 <MainRecipeDiv key={recipe._id}>
-                    <ImageDiv>
-                        {recipe.tags.includes('breakfast') && (
-                            <img src={BREAKFAST} />
-                        )}
-                        {recipe.tags.includes('lunch' || 'dinner') && (
-                            <img src={LUNCH} />
-                        )}
-                        {recipe.tags.includes('snack') && (
-                            <img src={SNACK} />
-                        )}                   
-                    </ImageDiv>
+                    <BigImageDiv>
+                    {recipe.tags.includes('breakfast') ? <img src={BREAKFAST} /> : recipe.tags.includes('lunch') ? <img src={LUNCH} /> : recipe.tags.includes('dinner') ? <img src={DINNER} /> : recipe.tags.includes('snack') ? <img src={SNACK} /> :  <img src={FOOD} />}                
+                    </BigImageDiv>
                     <div>
                         <h1>{recipe.name}</h1>
                         <p>"{recipe.description}"</p>
@@ -155,4 +149,11 @@ const TagDiv = styled.div`
     flex-direction: row;
     margin-top: 10px;
     margin-bottom: 10px;
+`
+
+const BigImageDiv = styled(ImageDiv)`
+width: 100%;
+    img{
+        width: 100%;
+    }
 `

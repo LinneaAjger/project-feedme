@@ -282,5 +282,7 @@ export const ImageDiv = styled.div `
   img {
     border-radius: 5px;
     margin-top: 10px;
+    object-fit: cover;
+    width: 200px;
   }
 `
