@@ -7,10 +7,10 @@ import { RecipeFeed } from "../styles/DivStyles"
 import RecipeCard from "./RecipeCard";
 
 const RecipesInFeed = () => {
+  const [liked, setLiked] = useState([])
   const accessToken = localStorage.getItem('accessToken')
   const dispatch = useDispatch()
   const recipeList = useSelector((store) => store.recipes.items)
-  const [liked, setLiked] = useState([])
 
   //Fetch all recipes for feed
   useEffect(() => {
@@ -40,45 +40,11 @@ const RecipesInFeed = () => {
         console.error('Error:', error)
       }))
       }, [liked])
-    
-   // Like-function for recipes   
-    const onLikeClick = async (recipeid) => {
-      if (liked.includes(recipeid)){
-      } else {
-        const options = {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-            "Authorization": accessToken
-          }
-        }
-        await fetch(API_URL(`recipes/${recipeid}`), options)
-          .then((response) => response.json())
-          .then(() => {
-              setLiked(liked.concat(recipeid))
-          })
-      }
-    }
-
-  //Delete-function for recipes
-    const onDeleteClick = async (recipeid) => {
-      const options = {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          "Authorization": accessToken
-          }
-        }
-        await fetch(API_URL(`recipes/${recipeid}`), options)
-          .then((response) => response.json())
-          .then(() => {
-            location.reload() 
-          })
-    }
+  
     
   return (
     <RecipeFeed>
-      <RecipeCard recipeList={recipeList} />
+      <RecipeCard recipeList={recipeList} liked={liked} setLiked={setLiked}/>
     </RecipeFeed>
     )
 }

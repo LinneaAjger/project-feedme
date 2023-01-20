@@ -11,10 +11,10 @@ import DINNER from "../media/DINNER.jpg"
 import { API_URL } from 'utils/utils';
 
 
-const RecipeCard = ({recipeList}) => {
+const RecipeCard = ({recipeList, liked, setLiked}) => {
  const userId = localStorage.getItem('userId');
- const [liked, setLiked] = useState([])
  const accessToken = localStorage.getItem('accessToken')
+ console.log(liked)
 
     // Like-function for recipes   
     const onLikeClick = async (recipeid) => {
