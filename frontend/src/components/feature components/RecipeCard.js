@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import {AdvancedImage} from '@cloudinary/react';
-import {CloudinaryImage} from '@cloudinary/url-gen';
-import {fill} from "@cloudinary/url-gen/actions/resize";
-import UploadWidget from './UploadWidget';
 import { SmallDiv, TagContainer, StyledSvg  } from '../styles//GlobalStyles'
 import { RecipeList, RecipeContainer, LikeContainer, DescriptionImagesTagsDiv, DescriptionDiv, ImageDiv } from '../styles/DivStyles'
 import TagsVisual from './TagsVisual'
-
-
-//placeholder image for now
-const myImage = new CloudinaryImage('cld-sample-4', {cloudName: 'dmitjxc0w'}).resize(fill().width(200).height(150));
+import BREAKFAST from "../media/BREAKFAST.jpg"
+import LUNCH from "../media/LUNCH.jpg"
+import SNACK from "../media/SNACK.jpg"
 
 const RecipeCard = ({recipeList}) => {
  const userId = localStorage.getItem('userId');
  const [liked, setLiked] = useState([])
 
+ console.log(recipeList)
  return (
   <RecipeList>
    {recipeList.map((singleRecipe) =>
@@ -26,8 +22,16 @@ const RecipeCard = ({recipeList}) => {
            <Link to={`/users/${singleRecipe.userId}`}>{singleRecipe.username}, {`${new Date(singleRecipe.createdAt).toLocaleDateString('en-us', {  year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })}`}</Link>
         </SmallDiv>
         <Link to={`/recipes/${singleRecipe._id}`}>
-            <ImageDiv>
-              <AdvancedImage cldImg={myImage} />
+        <ImageDiv>
+            {singleRecipe.recipe.tags.includes('breakfast') && (
+              <img src={BREAKFAST} />
+            )}
+            {singleRecipe.recipe.tags.includes('lunch' || 'dinner') && (
+              <img src={LUNCH} />
+            )}
+            {singleRecipe.recipe.tags.includes('snack') && (
+              <img src={SNACK} />
+            )}
             </ImageDiv>
             <DescriptionDiv>
             <h3>{singleRecipe.recipe.name}</h3>

@@ -6,7 +6,6 @@ import RecentlyLiked from './feature components/RecentlyLiked';
 import styled from 'styled-components/macro';
 import AddIcon from './media/AddIcon.png'
 import RecipesInFeed from './feature components/RecipesInFeed';
-import UploadWidget from './feature components/UploadWidget';
 
 const RecipeFeed = () => {
   const navigate = useNavigate()
@@ -19,7 +18,7 @@ const RecipeFeed = () => {
     }   
   }, [accessToken])
 
-  // Toggeling the Form component
+  // Toggling the Form component
   const toggle = () => {
     setCollapsed(!collapsed)
   }
@@ -97,7 +96,6 @@ const RecipeFeed = () => {
               <p>add new recipe</p>
             </button>
             {!collapsed && <Form collapsed={collapsed} setCollapsed={setCollapsed} />}
-            <UploadWidget />
             </ButtonContainer>
         <RecipesInFeed />
         </div>

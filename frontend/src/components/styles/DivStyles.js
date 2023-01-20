@@ -277,6 +277,8 @@ export const DescriptionDiv = styled.div `
 `
 
 export const ImageDiv = styled.div `
+    width: 45%;
+
   img {
     border-radius: 5px;
     margin-top: 10px;
