@@ -2,14 +2,10 @@ import React from "react";
 import styled from "styled-components/macro";
 import { StyledNonTransparentDiv } from "components/styles/DivStyles";
 import { Tag } from "./TagsVisual";
-import {AdvancedImage} from '@cloudinary/react';
-import {CloudinaryImage} from '@cloudinary/url-gen';
-import {fill} from "@cloudinary/url-gen/actions/resize";
 import { ImageDiv } from "components/styles/DivStyles";
-
-//placeholder image for now
-const myImage = new CloudinaryImage('cld-sample-4', {cloudName: 'dmitjxc0w'}).resize(fill())
-
+import BREAKFAST from "../media/BREAKFAST.jpg"
+import LUNCH from "../media/LUNCH.jpg"
+import SNACK from "../media/SNACK.jpg"
 
 const RecipeDetails = ({ recipeInfo }) => {
 
@@ -33,7 +29,15 @@ const RecipeDetails = ({ recipeInfo }) => {
                 return (
                 <MainRecipeDiv key={recipe._id}>
                     <ImageDiv>
-                         <AdvancedImage cldImg={myImage} />
+                        {recipe.tags.includes('breakfast') && (
+                            <img src={BREAKFAST} />
+                        )}
+                        {recipe.tags.includes('lunch' || 'dinner') && (
+                            <img src={LUNCH} />
+                        )}
+                        {recipe.tags.includes('snack') && (
+                            <img src={SNACK} />
+                        )}                   
                     </ImageDiv>
                     <div>
                         <h1>{recipe.name}</h1>

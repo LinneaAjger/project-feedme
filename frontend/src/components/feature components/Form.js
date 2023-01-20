@@ -7,7 +7,6 @@ import { StyledDiv } from 'components/styles/DivStyles'
 import Input from './Input'
 import InputTextArea from './InputTextArea'
 import Checkbox from './Checkbox'
-import UploadWidget from './UploadWidget'
 
 
 // Filter arrays
@@ -158,8 +157,6 @@ const Form = ({ setCollapsed }) => {
             </div>
           </Tag>
         </TagsDiv>
-        <UploadWidget />
-        <input type="file" />
         <ButtonDiv>
           <AddNewRecipeButton type="submit">Add recipe</AddNewRecipeButton>
         </ButtonDiv>

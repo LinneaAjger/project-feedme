@@ -1,23 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { SmallDiv, TagContainer, StyledSvg  } from './styles/GlobalStyles'
-import { RecipeList, RecipeContainer } from './styles/DivStyles'
 import { API_URL } from 'utils/utils'
 import { useNavigate, Link } from 'react-router-dom'
-import TagsVisual from './feature components/TagsVisual'
-import { LikeContainer } from './styles/DivStyles'
 import { PostsToggle, HeadlineDiv } from './styles/DivStyles'
 import { RecipeFeed } from './styles/DivStyles'
-import {fill} from "@cloudinary/url-gen/actions/resize";
-import {CloudinaryImage} from '@cloudinary/url-gen';
-import {AdvancedImage} from '@cloudinary/react';
 import RecipeCard from './feature components/RecipeCard'
-
-// const myImage = cld.image('docs/models'); 
-
-// Resize to 250 x 250 pixels using the 'fill' crop mode.
-
-
-const myImage = new CloudinaryImage('cld-sample-5', {cloudName: 'dmitjxc0w'}).resize(fill().width(200).height(150));
 
 const MyPage = () => {
 const [myPosts, setMyPosts] = useState([])

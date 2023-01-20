@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, batch } from 'react-redux'
 import recipeReducer from 'reducers/recipeReducer';
 import { API_URL } from 'utils/utils';
-import { Link } from "react-router-dom";
-import { RecipeContainer, RecipeList, LikeContainer, RecipeFeed } from "../styles/DivStyles"
-import { SmallDiv, TagContainer, StyledSvg } from "../styles/GlobalStyles"
-import TagsVisual from "./TagsVisual";
+import { RecipeFeed } from "../styles/DivStyles"
+
 import RecipeCard from "./RecipeCard";
 
 const RecipesInFeed = () => {
   const accessToken = localStorage.getItem('accessToken')
   const dispatch = useDispatch()
   const recipeList = useSelector((store) => store.recipes.items)
-  const userId = localStorage.getItem('userId');
   const [liked, setLiked] = useState([])
 
   //Fetch all recipes for feed
