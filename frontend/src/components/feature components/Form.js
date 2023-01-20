@@ -114,22 +114,30 @@ const Form = ({ setCollapsed }) => {
         <Input
           type="text"
           srOnly="Description"
-          placeholder="Description"
+          placeholder="Say something about your recipe"
           value={description}
           onChange={handleDescription}
         />
-        <InputTextArea
-          srOnly="Ingredients"
-          placeholder="Ingredients"
-          value={ingredients}
-          onChange={handleIngredients}
-        />
-        <InputTextArea
-          srOnly="Instructions"
-          placeholder="Instructions"
-          value={instructions}
-          onChange={handleInstructions}
-        /> 
+          <label>
+          Ingredients:
+            <InputTextArea
+              srOnly="Ingredients"
+              placeholder="Separate your ingredients with a comma"
+              value={ingredients}
+              onChange={handleIngredients}
+            />
+          </label>
+
+        <label>
+        Instructions:
+          <InputTextArea
+            srOnly="Instructions"
+            placeholder="Separate the steps by using a line-break after each step"
+            value={instructions}
+            onChange={handleInstructions}
+          /> 
+        </label>
+
         <div>
         Rating:
           <select 
@@ -199,6 +207,7 @@ const FormStyledDiv = styled(StyledDiv)`
     margin-top: 0px;
     width: 100%;
     justify-content: flex-start;
+    text-align: center;
   }
 
   @media (min-width: 667px) {
